@@ -12,8 +12,9 @@ export default function Login() {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [signin, setSignin] = useState(false);
+  const [error, setError] = useState(null);
 
-  const { currentUser, login, signup } = useAuth();
+  const { login, signup } = useAuth();
   const myauth = getAuth();
   const navigate = useNavigate();
 
@@ -23,6 +24,10 @@ export default function Login() {
     // TODO: add loading indicator
 
     if (signin) {
+      if (firstName === '' || lastName === '') {
+        setError('Please fill out all fields');
+        return;
+      }
       try {
         await signup(email, password);
         const newUser = myauth.currentUser;
@@ -36,6 +41,13 @@ export default function Login() {
         setPassword('');
       } catch (error) {
         console.log(error);
+        if (password.length < 6) {
+          setError('Password Needs to be at least 6 characters');
+        } else if (error) {
+          setError('Email already in use');
+        } else {
+          setError('Please Fill In All Fields');
+        }
       }
     } else {
       try {
@@ -45,6 +57,7 @@ export default function Login() {
         setPassword('');
       } catch (error) {
         console.log(error);
+        setError('Invalid Email or password');
       }
     }
   };
@@ -67,7 +80,15 @@ export default function Login() {
             onChange={(e) => setPassword(e.target.value)}
           />
           <button type='submit'>Go</button>
-          <button onClick={() => setSignin(true)}>Sign Up</button>
+          <button
+            onClick={() => {
+              setSignin(true);
+              setError(null);
+            }}
+          >
+            Sign Up
+          </button>
+          {error && <p id='error'>{error}</p>}
         </form>
       ) : (
         <form onSubmit={handleSubmit}>
@@ -97,7 +118,15 @@ export default function Login() {
             onChange={(e) => setPassword(e.target.value)}
           />
           <button type='submit'>Go</button>
-          <button onClick={() => setSignin(false)}>login</button>
+          <button
+            onClick={() => {
+              setSignin(false);
+              setError(null);
+            }}
+          >
+            login
+          </button>
+          {error && <p id='error'>{error}</p>}
         </form>
       )}
     </div>
