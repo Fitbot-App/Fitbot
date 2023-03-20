@@ -10,8 +10,6 @@ function GenerateWorkout() {
     e.preventDefault();
     setLoading(true);
 
-    // communicate with API
-    // post input value 'prompt' to API end point
     try {
       const res = await axios.post('http://localhost:3001/generateWorkout', {
         prompt,

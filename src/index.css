@@ -15,3 +15,116 @@ code {
 input {
   border: 1px solid black;
 }
+
+body {
+  background-color: black;
+}
+
+.landingContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.landingTitle {
+  font-family: Contrail One;
+  font-size: 96px; 
+  text-align: center; 
+  color: #A7FF37;
+}
+
+.landingIconsContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.landingIcons {
+  display: flex;
+  justify-content: space-between;
+  width: 40%;
+}
+
+.landingButtonsContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 6rem;
+}
+
+.landingButton {
+  font-family: Contrail One;
+  font-size: 24px;
+  padding: 20px;
+  margin-left: 5rem;
+  margin-right: 5rem;
+  border: 5px solid #FF3767;
+  border-radius: 3rem;
+  background-color: black;
+  color: #A7FF37;
+}
+
+.landingButton:hover {
+  background-color: #FF3767;
+  color: #A7FF37;
+}
+
+.loginContainer {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loginForm {
+  height: 65vh;
+  border: 5px solid #FF3767;
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  border-radius: 3rem;
+  background-color: black
+}
+
+.signinForm {
+  height: 90vh;
+}
+
+.loginForm label {
+  color: #A7FF37;
+  font-family: Contrail One;
+  font-size: 30px;
+}
+
+.loginForm input {
+  width: 70%;
+  font-family: Contrail One;
+  border-radius: 3rem;
+  font-size: 20px;
+  padding: 1rem;
+}
+
+.loginForm button {
+  width: 74%;
+  font-family: Contrail One;
+  background-color: black;
+  color: #A7FF37;
+  border: 3px solid #A7FF37;
+  border-radius: 3rem;
+  font-size: 30px;
+}
+
+.loginForm button:hover {
+  background-color: #A7FF37;
+  color: black;
+}
+
+.loginFormLabel {
+  margin-left: 1rem;
+}
+
+.loginForm div {
+  float: left;
+}
