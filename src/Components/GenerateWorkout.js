@@ -53,8 +53,6 @@ function GenerateWorkout() {
     e.preventDefault();
     setLoading(true);
 
-    // communicate with API
-    // post selected option value to API endpoint
     try {
       const res = await axios.post("http://localhost:3001/generateWorkout", {
         prompt: `can you give me six exercises for my ${selectedOption}. The format of the response

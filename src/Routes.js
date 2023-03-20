@@ -9,7 +9,7 @@ import PickExercise from "./Components/PickExercise";
 export default function MyRoutes() {
   return (
     <div>
-      <Routes>
+      <Routes> 
         <Route path="/" Component={LandingPage} />
         <Route path="/login" Component={Login} />
         <Route path="/home" Component={Home} />

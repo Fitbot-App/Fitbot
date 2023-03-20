@@ -5,6 +5,8 @@ import { useAuth } from '../AuthContext';
 import { getAuth } from 'firebase/auth';
 import { doc, setDoc } from 'firebase/firestore';
 import { db } from '../firebase';
+import { AiOutlineLock, AiOutlineMail } from 'react-icons/ai';
+import { TbHandFinger, TbHandTwoFingers } from 'react-icons/tb';
 
 export default function Login() {
   const [email, setEmail] = useState('');
@@ -13,7 +15,7 @@ export default function Login() {
   const [lastName, setLastName] = useState('');
   const [signin, setSignin] = useState(false);
 
-  const { currentUser, login, signup } = useAuth();
+  const { login, signup } = useAuth();
   const myauth = getAuth();
   const navigate = useNavigate();
 
@@ -49,17 +51,22 @@ export default function Login() {
     }
   };
   return (
-    <div>
-      <Link to='/'>Go Back</Link>
+    <div className='loginContainer'>
       {!signin ? (
-        <form onSubmit={handleSubmit}>
-          <label>Email</label>
+        <form className='loginForm' onSubmit={handleSubmit}>
+          <div>
+            <AiOutlineMail color='#A7FF37' size='30' />
+            <label className='loginFormLabel'>Email</label>
+          </div>
           <input
             name='email'
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
-          <label>Password</label>
+          <div>
+            <AiOutlineLock color='#A7FF37' size='30' />
+            <label className='loginFormLabel'> Password</label>
+          </div>
           <input
             type={'password'}
             name='password'
@@ -70,26 +77,38 @@ export default function Login() {
           <button onClick={() => setSignin(true)}>Sign Up</button>
         </form>
       ) : (
-        <form onSubmit={handleSubmit}>
-          <label>First Name</label>
+        <form className='loginForm signinForm' onSubmit={handleSubmit}>
+          <div>
+            <TbHandFinger color='#A7FF37' size='30' />
+            <label className='loginFormLabel'>First Name</label>
+          </div>
           <input
             name='firstName'
             value={firstName}
             onChange={(e) => setFirstName(e.target.value)}
           />
-          <label>Last Name</label>
+          <div>
+            <TbHandTwoFingers color='#A7FF37' size='30' />
+            <label className='loginFormLabel'>Last Name</label>
+          </div>
           <input
             name='lastName'
             value={lastName}
             onChange={(e) => setLastName(e.target.value)}
           />
-          <label>Email</label>
+          <div>
+            <AiOutlineMail color='#A7FF37' size='30' />
+            <label className='loginFormLabel'>Email</label>
+          </div>
           <input
             name='email'
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
-          <label>Password</label>
+          <div>
+            <AiOutlineLock color='#A7FF37' size='30' />
+            <label className='loginFormLabel'> Password</label>
+          </div>
           <input
             name='password'
             type={'password'}
