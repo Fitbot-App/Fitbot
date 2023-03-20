@@ -1,44 +1,40 @@
-import { useState } from "react";
-import axios from "axios";
-
-const instance = axios.create({
-  baseURL: "http://localhost:3000",
-});
+import { useState } from 'react';
+import axios from 'axios';
 
 function GenerateWorkout() {
-  const [prompt, setPrompt] = useState("");
-  const [response, setResponse] = useState("");
+  const [prompt, setPrompt] = useState('');
+  const [response, setResponse] = useState('');
   const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
 
     // communicate with API
     // post input value 'prompt' to API end point
-    instance
-      .post("/generateWorkout", { prompt })
-      .then((res) => {
-        setResponse(res.data);
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.error(err);
+    try {
+      const res = await axios.post('http://localhost:3001/generateWorkout', {
+        prompt,
       });
+      setResponse(res.data);
+      setLoading(false);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
     <div>
       <form onSubmit={handleSubmit}>
         <input
-          type="text"
+          type='text'
           value={prompt}
           onChange={(e) => setPrompt(e.target.value)}
-          placeholder="Ask anything... :)"
+          placeholder='Ask anything... :)'
         />
-        <button type="submit">Ask</button>
+        <button type='submit'>Ask</button>
       </form>
-      <p className="response-area">{loading ? "loading..." : response}</p>
+      <p className='response-area'>{loading ? 'loading...' : response}</p>
     </div>
   );
 }
