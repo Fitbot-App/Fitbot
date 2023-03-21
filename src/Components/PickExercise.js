@@ -1,6 +1,7 @@
-import React from "react";
-import { useState } from "react";
-import GenerateWorkout from "./GenerateWorkout";
+import React from 'react';
+import { useState } from 'react';
+import GenerateWorkout from './GenerateWorkout';
+import { GiBiceps } from 'react-icons/gi';
 
 const PickExercise = () => {
   const [count, setCount] = useState(0);
@@ -19,30 +20,27 @@ const PickExercise = () => {
     <div>
       <ul>
         <li>
-          <GenerateWorkout />
+          <GenerateWorkout remove={false} />
         </li>
         {count > 0 ? (
-          <div>
-            <li>
-              <GenerateWorkout />
-              <button onClick={decrement}>x</button>
-            </li>
-          </div>
+          <li>
+            <GenerateWorkout count={count} decrement={decrement} />
+          </li>
         ) : null}
         {count > 1 ? (
           <li>
-            <GenerateWorkout />
-            <button onClick={decrement}>x</button>
+            <GenerateWorkout count={count} decrement={decrement} />
           </li>
         ) : null}
         {count > 2 ? (
           <li>
-            <GenerateWorkout />
-            <button onClick={decrement}>x</button>
+            <GenerateWorkout count={count} decrement={decrement} />
           </li>
         ) : null}
       </ul>
-      <button onClick={increment}>Add a muscle group</button>
+      <button className='addMuscleGroupButton' onClick={increment}>
+        Add a muscle group <GiBiceps color='#37a5ff' />
+      </button>
     </div>
   );
 };
