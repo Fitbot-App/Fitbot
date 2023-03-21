@@ -4,7 +4,7 @@ import axios from "axios";
 
 function GenerateWorkout({ count, decrement, remove }) {
   const [selectedOption, setSelectedOption] = useState("");
-  const [response, setResponse] = useState("");
+  const [response, setResponse] = useState([]);
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
@@ -14,9 +14,9 @@ function GenerateWorkout({ count, decrement, remove }) {
     try {
       const res = await axios.post("http://localhost:3001/generateWorkout", {
         prompt: `can you give me six exercises for my ${selectedOption}. The format of the response
-        should be a numbered vertical list of just the exercise names`,
+        should be a numbered vertical list of just the exercise names with a colon after each exercise expcept for the last. Here's an example "1. crunches :" `,
       });
-      setResponse(res.data);
+      setResponse(res.data.split(":"));
       setLoading(false);
     } catch (error) {
       console.error(error);
@@ -45,7 +45,19 @@ function GenerateWorkout({ count, decrement, remove }) {
       {loading ? (
         <p className="generatedResponse">Loading...</p>
       ) : (
-        <p className="generatedResponse">{response}</p>
+        <p className="generatedResponse">
+          {response.map((item) => {
+            return item ? (
+              <div>
+                <span>
+                  <p>
+                    {item} <button>+</button>
+                  </p>
+                </span>
+              </div>
+            ) : null;
+          })}
+        </p>
       )}
     </div>
   );
