@@ -39,9 +39,7 @@ const PickExercise = () => {
   return (
     <div>
       <ul>
-        <li>
-          <GenerateWorkout />
-        </li>
+        <GenerateWorkout />
         {listItems.map((item, index) => (
           <div key={index}>{item}</div>
         ))}
