@@ -19,7 +19,7 @@ export default function LandingPage() {
         <button
           className="landingButton"
           onClick={() => {
-            navigate("/pickExercise");
+            navigate('/pickExercise');
           }}
         >
           Continue as Guest
