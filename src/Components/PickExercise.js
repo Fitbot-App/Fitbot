@@ -1,8 +1,8 @@
-import React from "react";
-import { useState } from "react";
-import GenerateWorkout from "./GenerateWorkout";
-import { GiBiceps } from "react-icons/gi";
-import { MdDelete } from "react-icons/md";
+import React from 'react';
+import { useState } from 'react';
+import GenerateWorkout from './GenerateWorkout';
+import { GiBiceps } from 'react-icons/gi';
+import { MdDelete } from 'react-icons/md';
 
 const PickExercise = () => {
   const [listItems, setListItems] = useState([]);
@@ -24,13 +24,13 @@ const PickExercise = () => {
       <li>
         <GenerateWorkout />
         <button
-          className="xButton"
+          className='xButton'
           onClick={() => {
             setCount((count) => (count -= 1));
             setRemoved((removed) => !removed);
           }}
         >
-          Remove <MdDelete color="#FF3767" />
+          Remove <MdDelete color='#FF3767' />
         </button>
       </li>
     );
@@ -46,8 +46,8 @@ const PickExercise = () => {
           <div key={index}>{item}</div>
         ))}
       </ul>
-      <button className="addMuscleGroupButton" onClick={addItem}>
-        Add a muscle group <GiBiceps color="#37a5ff" />
+      <button className='addMuscleGroupButton' onClick={addItem}>
+        Add a muscle group <GiBiceps color='#37a5ff' />
       </button>
     </div>
   );
