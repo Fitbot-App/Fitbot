@@ -202,3 +202,294 @@ body {
 .broomIcon:hover {
   color: black;
 }
+
+.intensityContainer {
+  box-sizing: border-box;
+  position: absolute;
+  width: 900px;
+  height: 500px;
+  left: 153px;
+  top: 52px;
+  border: 3px solid #FFFFFF;
+  border-radius: 60px;
+}
+
+.experienceDiv{
+  box-sizing: border-box;
+  position: absolute;
+  width: 350px;
+  height: 400px;
+  left: 90px;
+  top: 50px;
+  border: 3px solid #A7FF37;
+  border-radius: 32px;
+}
+
+.intensityDiv{
+  box-sizing: border-box;
+  position: absolute;
+  width: 350px;
+  height: 400px;
+  left: 500px;
+  top: 50px; 
+  border: 3px solid #A7FF37;
+  border-radius: 32px;
+}
+
+.experienceTitle{
+  width: 377px;
+  height: 50px;
+  left: 289px;
+  top: 111px;
+  margin-left: 20px;
+  font-family: 'Contrail One';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 38px;
+  color: #A7FF37;
+}
+
+.intensityTitle{
+  width: 472px;
+  height: 50px;
+  left: 801px;
+  top: 115px;
+  margin-left: 20px;
+  font-family: 'Contrail One';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 38px;
+  color: #A7FF37;
+}
+
+.experienceBeginner{
+  box-sizing: border-box;
+  width: 250px;
+  height: 80px;
+  top: 285px;
+  margin-left: 45px;
+  margin-bottom: 10px;
+  background-color: black;
+  border: 3px solid #FF3767;
+  border-radius: 32px;
+  font-family: 'Contrail One';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 38px;
+  text-align: center;
+  color: #A7FF37;
+}
+
+.experienceBeginner:hover {
+  background-color: #FF3767;
+  color: black;
+}
+
+/* .experienceBeginner:focus {
+  background-color: black;
+  color: #FF3767;
+  box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #FF3767;
+} */
+
+.selectedIntensity {
+  box-sizing: border-box;
+  width: 250px;
+  height: 80px;
+  margin-left: 45px;
+  margin-bottom: 10px;
+  border: 3px solid #FF3767;
+  border-radius: 32px;
+  font-family: 'Contrail One';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 38px;
+  text-align: center;
+  background-color: black;
+  color: #FF3767;
+  box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #FF3767;
+}
+
+.selectedExperience {
+  box-sizing: border-box;
+  width: 250px;
+  height: 80px;
+  margin-left: 45px;
+  margin-bottom: 10px;
+  border: 3px solid #FF3767;
+  border-radius: 32px;
+  font-family: 'Contrail One';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 38px;
+  text-align: center;
+  background-color: black;
+  color: #FF3767;
+  box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #FF3767;
+ }
+
+.experienceIntermediate{
+  box-sizing: border-box;
+  width: 250px;
+  height: 80px;
+  left: 312px;
+  top: 450px;
+  margin-left: 45px;
+  margin-bottom: 10px;
+  background-color: black;
+  border: 3px solid #FF3767;
+  border-radius: 32px;
+  font-family: 'Contrail One';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 38px;
+  text-align: center;
+  color: #A7FF37;
+}
+
+.experienceIntermediate:hover {
+  background-color: #FF3767;
+  color: black;
+}
+
+.experienceIntermediate:focus {
+  background-color: rgb(55, 47, 47);
+  color: #FF3767;
+  box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #FF3767;
+}
+
+.experienceAdvanced{
+  box-sizing: border-box;
+  width: 250px;
+  height: 80px;
+  left: 312px;
+  top: 615px;
+  margin-left: 45px;
+  background-color: black;
+  border: 3px solid #FF3767;
+  border-radius: 32px;
+  font-family: 'Contrail One';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 38px;
+  text-align: center;
+  color: #A7FF37;
+}
+
+.experienceAdvanced:hover {
+  background-color: #FF3767;
+  color: black;
+}
+
+.experienceAdvanced:focus {
+  background-color: black;
+  color: #FF3767;
+  box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #FF3767;
+}
+
+.intensityEasy{
+  box-sizing: border-box;
+  width: 250px;
+  height: 80px;
+  left: 867px;
+  top: 293px;
+  margin-left: 45px;
+  margin-bottom: 10px;
+  background-color: black;
+  border: 3px solid #FF3767;
+  border-radius: 32px;
+  font-family: 'Contrail One';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 38px;
+  text-align: center;
+  color: #A7FF37;
+}
+
+.intensityEasy:hover {
+  background-color: #FF3767;
+  color: black;
+}
+
+.intensityEasy:focus {
+  background-color: black;
+  color: #FF3767;
+  box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #FF3767;
+}
+
+.intensityMedium{
+  box-sizing: border-box;
+  width: 250px;
+  height: 80px;
+  left: 867px;
+  top: 458px;
+  margin-left: 45px;
+  margin-bottom: 10px;
+  background-color: black;
+  border: 3px solid #FF3767;
+  border-radius: 32px;
+  font-family: 'Contrail One';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 38px;
+  text-align: center;
+  color: #A7FF37;
+}
+
+.intensityMedium:hover {
+  background-color: #FF3767;
+  color: black;
+}
+
+.intensityMedium:focus {
+  background-color: black;
+  color: #FF3767;
+  box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #FF3767;
+}
+
+.intensityHard{
+  box-sizing: border-box;
+  width: 250px;
+  height: 80px;
+  left: 867px;
+  top: 623px;
+  margin-left: 45px;
+  background-color: black;
+  border: 3px solid #FF3767;
+  border-radius: 32px;
+  font-family: 'Contrail One';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 38px;
+  text-align: center;
+  color: #A7FF37;
+}
+
+.intensityHard:hover {
+  background-color: #FF3767;
+  color: black;
+}
+
+.intensityHard:focus {
+  background-color: black;
+  color: #FF3767;
+  box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #FF3767;
+}
+
+.rightArrowIntensity{
+  margin-left: 900px;
+  margin-top: 200px
+}
+
+h3{
+  color: white;
+}
