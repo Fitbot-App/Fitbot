@@ -225,6 +225,7 @@ body {
   padding: 2rem;
   display: flex;
   flex-direction: column;
+  overflow: scroll;
 }
 
 .selectedExercises {
@@ -245,8 +246,8 @@ body {
 .muscleGroupButton {
   font-family: Contrail One;
   background-color: black;
-  color: #37a5ff;
-  border: 2px solid #37a5ff;
+  color: #FF3767;
+  border: 2px solid #FF3767;
   border-radius: 3rem;
   font-size: 20px;
   padding-left: 10px;
@@ -254,8 +255,8 @@ body {
 }
 
 .muscleGroupButton:hover {
-  background-color: #37a5ff;
-  border: 2px solid #37a5ff;
+  background-color: #FF3767;
+  border: 2px solid #FF3767;
   color: black;
 }
 
@@ -280,10 +281,11 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  overflow-y: scroll;
 }
 
 .singleGeneratedExercise {
-  margin: 1rem;
+  margin: 10px;
   border: solid white;
   border-radius: 3rem;
   width: 60%;
