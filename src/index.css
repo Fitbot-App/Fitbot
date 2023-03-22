@@ -203,7 +203,7 @@ body {
   color: black;
 }
 
-.pickExcerciseContainer {
+.pickExerciseContainer {
   width: 100vw;
   height: 100vh;
   display: flex;
@@ -211,7 +211,7 @@ body {
   align-items: center;
 }
 
-.pickExcerciseBox {
+.pickExerciseBox {
   width: 50%;
   height: 70%;
   border: solid white;
@@ -221,7 +221,7 @@ body {
   flex-direction: column;
 }
 
-.selectedExcercises {
+.selectedExercises {
   width: 20%;
   height: 70%;
   border: solid white;
@@ -259,7 +259,7 @@ body {
   align-items: center;
 }
 
-.singleExcercise {
+.singleExercise {
   padding-left: 10px;
   padding-right: 10px;
   display: flex;
@@ -270,13 +270,13 @@ body {
   padding-bottom: 5px;
 }
 
-.generatedExcercises {
+.generatedExercises {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.singleGeneratedExcercise {
+.singleGeneratedExercise {
   margin: 1rem;
   border: solid white;
   border-radius: 3rem;

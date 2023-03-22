@@ -1,31 +1,31 @@
 import React from 'react';
 import GenerateWorkout from './GenerateWorkout';
 import { useSelector, useDispatch } from 'react-redux';
-import { removeExcercise } from '../slices/chosenExcercisesSlice';
+import { removeExercise } from '../slices/chosenExercisesSlice';
 
 const PickExercise = () => {
-  const excercises = useSelector((state) => state.excercises);
+  const exercises = useSelector((state) => state.exercises);
 
   const dispatch = useDispatch();
 
-  function handleRemove(excercise) {
-    dispatch(removeExcercise(excercise));
+  function handleRemove(exercise) {
+    dispatch(removeExercise(exercise));
   }
 
   return (
-    <div className='pickExcerciseContainer'>
-      <div className='pickExcerciseBox'>
+    <div className='pickExerciseContainer'>
+      <div className='pickExerciseBox'>
         <div>
           <GenerateWorkout />
         </div>
       </div>
-      <div className='selectedExcercises generatedResponse'>
-        {excercises.excercises.map((excercise, idx) => {
+      <div className='selectedExercises generatedResponse'>
+        {exercises.exercises.map((exercise, idx) => {
           return (
-            <div key={idx} className='singleGeneratedExcercise'>
-              <span className='singleExcercise'>
-                {excercise}
-                <button onClick={() => handleRemove(excercise)}>-</button>
+            <div key={idx} className='singleGeneratedExercise'>
+              <span className='singleExercise'>
+                {exercise}
+                <button onClick={() => handleRemove(exercise)}>-</button>
               </span>
             </div>
           );

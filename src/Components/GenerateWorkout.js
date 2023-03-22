@@ -2,7 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
-import { setExcercises } from '../slices/chosenExcercisesSlice';
+import { setExercises } from '../slices/chosenExercisesSlice';
 
 function GenerateWorkout() {
   const [selectedOption, setSelectedOption] = useState('none');
@@ -31,8 +31,8 @@ function GenerateWorkout() {
     }
   };
 
-  function addExcercise(item) {
-    dispatch(setExcercises(item));
+  function addExercise(item) {
+    dispatch(setExercises(item));
     setResponse(
       response.filter((addedItem) => {
         return item !== addedItem;
@@ -67,12 +67,12 @@ function GenerateWorkout() {
       {loading ? (
         <p className='generatedResponse'>Loading...</p>
       ) : (
-        <div className='generatedResponse generatedExcercises'>
+        <div className='generatedResponse generatedExercises'>
           {response.map((item, index) => {
             return item ? (
-              <div key={index} className='singleGeneratedExcercise'>
-                <span className='singleExcercise'>
-                  {item} <button onClick={() => addExcercise(item)}>+</button>
+              <div key={index} className='singleGeneratedExercise'>
+                <span className='singleExercise'>
+                  {item} <button onClick={() => addExercise(item)}>+</button>
                 </span>
               </div>
             ) : null;

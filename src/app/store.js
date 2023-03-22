@@ -1,11 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
 import equipmentReducer from '../slices/equipmentSlice';
-import excercisesReducer from '../slices/chosenExcercisesSlice';
+import exercisesReducer from '../slices/chosenExercisesSlice';
 
 const store = configureStore({
   reducer: {
     equipment: equipmentReducer,
-    excercises: excercisesReducer,
+    exercises: exercisesReducer,
   },
 });
 
