@@ -1,63 +1,83 @@
-import React from "react";
-import { useState } from "react";
-import axios from "axios";
+import React from 'react';
+import { useState } from 'react';
+import axios from 'axios';
+import { useDispatch } from 'react-redux';
+import { setExcercises } from '../slices/chosenExcercisesSlice';
 
-function GenerateWorkout({ count, decrement, remove }) {
-  const [selectedOption, setSelectedOption] = useState("");
+function GenerateWorkout() {
+  const [selectedOption, setSelectedOption] = useState('none');
   const [response, setResponse] = useState([]);
   const [loading, setLoading] = useState(false);
 
+  const dispatch = useDispatch();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true);
+    if (selectedOption === 'none') {
+      window.alert('Please select a muscle group');
+      return;
+    }
 
+    setLoading(true);
     try {
-      const res = await axios.post("http://localhost:3001/generateWorkout", {
+      const res = await axios.post('http://localhost:3001/generateWorkout', {
         prompt: `can you give me six exercises for my ${selectedOption}. The format of the response
         should be a numbered vertical list of just the exercise names with a colon after each exercise expcept for the last. Here's an example "1. crunches :" `,
       });
-      setResponse(res.data.split(":"));
+      setResponse(res.data.split(':'));
       setLoading(false);
     } catch (error) {
       console.error(error);
     }
   };
 
+  function addExcercise(item) {
+    dispatch(setExcercises(item));
+    setResponse(
+      response.filter((addedItem) => {
+        return item !== addedItem;
+      })
+    );
+  }
+
   return (
     <div>
-      <form onSubmit={handleSubmit}>
+      <form className='muscleGroupForm' onSubmit={handleSubmit}>
         <select
+          className='muscleGroupSelector'
           value={selectedOption}
           onChange={(e) => setSelectedOption(e.target.value)}
         >
-          <option value="">Select an option</option>
-          <option value="back">Back</option>
-          <option value="core">Core</option>
-          <option value="chest">Chest</option>
-          <option value="legs">Legs</option>
-          <option value="arms">Arms</option>
-          <option value="cardio">Cardio</option>
+          <option value='none'>Select an option</option>
+          <option value='back'>Back</option>
+          <option value='core'>Core</option>
+          <option value='chest'>Chest</option>
+          <option value='legs'>Legs</option>
+          <option value='arms'>Arms</option>
+          <option value='cardio'>Cardio</option>
         </select>
-        <button type="submit" disabled={!selectedOption}>
-          Ask
+        <button
+          className='muscleGroupButton'
+          type='submit'
+          disabled={!selectedOption}
+        >
+          Generate Movements
         </button>
       </form>
       {loading ? (
-        <p className="generatedResponse">Loading...</p>
+        <p className='generatedResponse'>Loading...</p>
       ) : (
-        <p className="generatedResponse">
-          {response.map((item) => {
+        <div className='generatedResponse generatedExcercises'>
+          {response.map((item, index) => {
             return item ? (
-              <div>
-                <span>
-                  <p>
-                    {item} <button>+</button>
-                  </p>
+              <div key={index} className='singleGeneratedExcercise'>
+                <span className='singleExcercise'>
+                  {item} <button onClick={() => addExcercise(item)}>+</button>
                 </span>
               </div>
             ) : null;
           })}
-        </p>
+        </div>
       )}
     </div>
   );

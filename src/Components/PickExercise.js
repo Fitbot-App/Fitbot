@@ -1,52 +1,36 @@
 import React from 'react';
-import { useState } from 'react';
 import GenerateWorkout from './GenerateWorkout';
-import { GiBiceps } from 'react-icons/gi';
-import { MdDelete } from 'react-icons/md';
+import { useSelector, useDispatch } from 'react-redux';
+import { removeExcercise } from '../slices/chosenExcercisesSlice';
 
 const PickExercise = () => {
-  const [listItems, setListItems] = useState([]);
-  const [count, setCount] = useState(0);
+  const excercises = useSelector((state) => state.excercises);
 
-  function addItem() {
-    if (count < 3) {
-      setCount((count) => (count += 1));
-      setListItems([
-        ...listItems,
-        <ListItem key={listItems.length} index={listItems.length} />,
-      ]);
-    }
-  }
+  const dispatch = useDispatch();
 
-  function ListItem() {
-    const [removed, setRemoved] = useState(false);
-    return removed ? null : (
-      <li>
-        <GenerateWorkout />
-        <button
-          className='xButton'
-          onClick={() => {
-            setCount((count) => (count -= 1));
-            setRemoved((removed) => !removed);
-          }}
-        >
-          Remove <MdDelete color='#FF3767' />
-        </button>
-      </li>
-    );
+  function handleRemove(excercise) {
+    dispatch(removeExcercise(excercise));
   }
 
   return (
-    <div>
-      <ul>
-        <GenerateWorkout />
-        {listItems.map((item, index) => (
-          <div key={index}>{item}</div>
-        ))}
-      </ul>
-      <button className='addMuscleGroupButton' onClick={addItem}>
-        Add a muscle group <GiBiceps color='#37a5ff' />
-      </button>
+    <div className='pickExcerciseContainer'>
+      <div className='pickExcerciseBox'>
+        <div>
+          <GenerateWorkout />
+        </div>
+      </div>
+      <div className='selectedExcercises generatedResponse'>
+        {excercises.excercises.map((excercise, idx) => {
+          return (
+            <div key={idx} className='singleGeneratedExcercise'>
+              <span className='singleExcercise'>
+                {excercise}
+                <button onClick={() => handleRemove(excercise)}>-</button>
+              </span>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 };
