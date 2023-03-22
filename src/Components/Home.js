@@ -11,7 +11,6 @@ export default function Home() {
       navigate('/');
     } catch (error) {
       console.log(error);
-      console.log(`Help I can't get out!`);
     }
   };
 

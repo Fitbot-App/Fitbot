@@ -2,9 +2,11 @@ import React from 'react';
 import GenerateWorkout from './GenerateWorkout';
 import { useSelector, useDispatch } from 'react-redux';
 import { removeExercise } from '../slices/chosenExercisesSlice';
+import { BiLeftArrow, BiRightArrow } from 'react-icons/bi';
+import { Link } from 'react-router-dom';
 
 const PickExercise = () => {
-  const exercises = useSelector((state) => state.exercises);
+  const { exercises } = useSelector((state) => state);
 
   const dispatch = useDispatch();
 
@@ -14,6 +16,9 @@ const PickExercise = () => {
 
   return (
     <div className='pickExerciseContainer'>
+      <Link to='/intensity'>
+        <BiLeftArrow className='leftArrowIntensity' color='#A7FF37' size='70' />
+      </Link>
       <div className='pickExerciseBox'>
         <div>
           <GenerateWorkout />
@@ -31,6 +36,13 @@ const PickExercise = () => {
           );
         })}
       </div>
+      <Link to='/finalize'>
+        <BiRightArrow
+          className='leftArrowIntensity'
+          color='#A7FF37'
+          size='70'
+        />
+      </Link>
     </div>
   );
 };
