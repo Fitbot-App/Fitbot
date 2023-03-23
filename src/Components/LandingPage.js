@@ -1,6 +1,6 @@
 import React from 'react';
 import { FaRunning, FaSwimmer } from 'react-icons/fa';
-import { IoIosFitness } from 'react-icons/io';
+import { BsLightning } from 'react-icons/bs';
 import { useNavigate } from 'react-router-dom';
 import logo from '../logo/FitBot.png';
 
@@ -8,14 +8,16 @@ export default function LandingPage() {
   const navigate = useNavigate();
   return (
     <div className='landingContainer'>
-      <img
-        className='landingPageLogo'
-        src={logo}
-        alt='FitBot'
-        width={200}
-        height={300}
-      />
-      {/* <h1 className="landingTitle">Welcome to FitBot</h1> */}
+      <div className='landingTransparentOverlay' />
+      <div className='landingLogoContainer'>
+        <img
+          className='landingPageLogo'
+          src={logo}
+          alt='FitBot'
+          width={350}
+          height={500}
+        />
+      </div>
       <div className='landingButtonsContainer'>
         <button
           className='landingButton'
@@ -25,22 +27,23 @@ export default function LandingPage() {
         >
           Continue as Guest
         </button>
+        <BsLightning color='#A7FF37' size={60} className='z-[2]' />
         <button
           className='landingButton'
           onClick={() => {
             navigate('/Login');
           }}
         >
-          Login or Sign Up
+          Login / Sign Up
         </button>
       </div>
-      <div className='landingIconsContainer'>
-        <div className='landingIcons'>
-          <FaRunning color='#A7FF37' size='96' />
-          <IoIosFitness color='#A7FF37' size='96' />
-          <FaSwimmer color='#A7FF37' size='96' />
-        </div>
-      </div>
+      {/* <div className='landingIconsContainer'>
+          <div className='landingIcons'>
+            <FaRunning color='#A7FF37' size='96' />
+            <IoIosFitness color='#A7FF37' size='96' />
+            <FaSwimmer color='#A7FF37' size='96' />
+          </div>
+        </div> */}
     </div>
   );
 }

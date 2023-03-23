@@ -65,32 +65,30 @@ export default function Login() {
   };
   return (
     <div className='loginContainer'>
+      <div className='transparentOverlay' />
       {!signin ? (
         <form className='loginForm' onSubmit={handleSubmit}>
-          <div>
-            <div>
-              <AiOutlineMail color='#A7FF37' size='30' />
-              <label className='loginFormLabel'>Email</label>
-            </div>
-            <input
-              name='email'
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-          </div>
-          <div>
-            <div>
-              <AiOutlineLock color='#A7FF37' size='30' />
-              <label className='loginFormLabel'>Password</label>
-            </div>
-            <input
-              type={'password'}
-              name='password'
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </div>
+          <label className='loginFormLabel flex items-center'>
+            <AiOutlineMail color='#A7FF37' size='25' />
+            Email
+          </label>
+          <input
+            name='email'
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <label className='loginFormLabel'>
+            <AiOutlineLock color='#A7FF37' size='25' />
+            Password
+          </label>
+          <input
+            type={'password'}
+            name='password'
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
           <button type='submit'>Go</button>
+          <p className=''>new user?</p>
           <button
             onClick={() => {
               setSignin(true);
