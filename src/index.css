@@ -351,268 +351,97 @@ body {
 
 /* Intensity and skill level page */
 
+.intensityTransparentOverlay{
+  background-color: rgb(0 0 0 / 0.7);
+  opacity: 0.7;
+  position: 'absolute';
+  top: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 2;
+    right: 0;
+    height: 100vh;
+    width: 100%;
+}
+
 .intensityContainer {
-  box-sizing: border-box;
   width: 100vw;
   height: 100vh;
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
-
-.experienceDiv{
-  box-sizing: border-box;
-  width: 30%;
-  height: 70%;
-  border: 3px solid #A7FF37;
-  border-radius: 32px;
+  flex-wrap: wrap;
+  background-image: url("https://www.capefearfitness.net/wp-content/uploads/2015/04/Black-and-White.jpg");
+  background-size: cover;
+  position: absolute;
 }
 
 .intensityDiv{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
   box-sizing: border-box;
   width: 30%;
   height: 70%;
+  background-color: black;
   border: 3px solid #A7FF37;
   border-radius: 32px;
+  z-index: 2;
 }
 
-.experienceTitle{
+.intensityDivsContainer {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.title{
   text-align: center;
   font-family: 'Contrail One';
-  font-style: normal;
-  font-weight: 400;
   font-size: 30px;
-  line-height: 38px;
   color: #A7FF37;
 }
 
-.intensityTitle{
-  text-align: center;
+.intensityButton{
+  width: 70%;
+  height: 20%;
+  margin-bottom: 10px;
+  border: 2px solid #FF3767;
+  border-radius: 20px;
   font-family: 'Contrail One';
-  font-style: normal;
-  font-weight: 400;
   font-size: 30px;
-  line-height: 38px;
   color: #A7FF37;
 }
 
-.experienceBeginner{
-  box-sizing: border-box;
-  width: 250px;
-  height: 80px;
-  top: 285px;
-  margin-left: 45px;
-  margin-bottom: 10px;
-  background-color: black;
-  border: 3px solid #FF3767;
-  border-radius: 32px;
-  font-family: 'Contrail One';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 30px;
-  line-height: 38px;
-  text-align: center;
-  color: #A7FF37;
-}
-
-.experienceBeginner:hover {
-  background-color: #FF3767;
-  color: black;
-}
-
-.selectedIntensity {
-  box-sizing: border-box;
-  width: 250px;
-  height: 80px;
-  margin-left: 45px;
+.intensityButtonSelected {
+  width: 70%;
+  height: 20%;
   margin-bottom: 10px;
   border: 3px solid #FF3767;
-  border-radius: 32px;
+  border-radius: 20px;
   font-family: 'Contrail One';
-  font-style: normal;
-  font-weight: 400;
   font-size: 30px;
-  line-height: 38px;
-  text-align: center;
-  background-color: black;
-  color: #FF3767;
-  box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #FF3767;
-}
-
-.selectedExperience {
-  box-sizing: border-box;
-  width: 250px;
-  height: 80px;
-  margin-left: 45px;
-  margin-bottom: 10px;
-  border: 3px solid #FF3767;
-  border-radius: 32px;
-  font-family: 'Contrail One';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 30px;
-  line-height: 38px;
-  text-align: center;
-  background-color: black;
   color: #FF3767;
   box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #FF3767;
  }
 
-.experienceIntermediate{
-  box-sizing: border-box;
-  width: 250px;
-  height: 80px;
-  left: 312px;
-  top: 450px;
-  margin-left: 45px;
-  margin-bottom: 10px;
-  background-color: black;
-  border: 3px solid #FF3767;
-  border-radius: 32px;
-  font-family: 'Contrail One';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 30px;
-  line-height: 38px;
-  text-align: center;
-  color: #A7FF37;
-}
-
-.experienceIntermediate:hover {
+.intensityButton:hover {
   background-color: #FF3767;
   color: black;
 }
 
-.experienceIntermediate:focus {
-  background-color: rgb(55, 47, 47);
-  color: #FF3767;
-  box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #FF3767;
+.rightArrowIntensity {
+  position: absolute;
+  z-index: 2;
 }
 
-.experienceAdvanced{
-  box-sizing: border-box;
-  width: 250px;
-  height: 80px;
-  left: 312px;
-  top: 615px;
-  margin-left: 45px;
-  background-color: black;
-  border: 3px solid #FF3767;
-  border-radius: 32px;
-  font-family: 'Contrail One';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 30px;
-  line-height: 38px;
-  text-align: center;
-  color: #A7FF37;
-}
-
-.experienceAdvanced:hover {
-  background-color: #FF3767;
-  color: black;
-}
-
-.experienceAdvanced:focus {
-  background-color: black;
-  color: #FF3767;
-  box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #FF3767;
-}
-
-.intensityEasy{
-  box-sizing: border-box;
-  width: 250px;
-  height: 80px;
-  left: 867px;
-  top: 293px;
-  margin-left: 45px;
-  margin-bottom: 10px;
-  background-color: black;
-  border: 3px solid #FF3767;
-  border-radius: 32px;
-  font-family: 'Contrail One';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 30px;
-  line-height: 38px;
-  text-align: center;
-  color: #A7FF37;
-}
-
-.intensityEasy:hover {
-  background-color: #FF3767;
-  color: black;
-}
-
-.intensityEasy:focus {
-  background-color: black;
-  color: #FF3767;
-  box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #FF3767;
-}
-
-.intensityMedium{
-  box-sizing: border-box;
-  width: 250px;
-  height: 80px;
-  left: 867px;
-  top: 458px;
-  margin-left: 45px;
-  margin-bottom: 10px;
-  background-color: black;
-  border: 3px solid #FF3767;
-  border-radius: 32px;
-  font-family: 'Contrail One';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 30px;
-  line-height: 38px;
-  text-align: center;
-  color: #A7FF37;
-}
-
-.intensityMedium:hover {
-  background-color: #FF3767;
-  color: black;
-}
-
-.intensityMedium:focus {
-  background-color: black;
-  color: #FF3767;
-  box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #FF3767;
-}
-
-.intensityHard{
-  box-sizing: border-box;
-  width: 250px;
-  height: 80px;
-  left: 867px;
-  top: 623px;
-  margin-left: 45px;
-  background-color: black;
-  border: 3px solid #FF3767;
-  border-radius: 32px;
-  font-family: 'Contrail One';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 30px;
-  line-height: 38px;
-  text-align: center;
-  color: #A7FF37;
-}
-
-.intensityHard:hover {
-  background-color: #FF3767;
-  color: black;
-}
-
-.intensityHard:focus {
-  background-color: black;
-  color: #FF3767;
-  box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #FF3767;
-}
-
-.rightArrowIntensity{
-  margin-top: 200px;
+.leftArrowIntensity {
+  position: absolute;
+  z-index: 2;
 }
 
 .rightArrowIntensity:hover{

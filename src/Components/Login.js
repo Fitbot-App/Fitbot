@@ -76,6 +76,7 @@ export default function Login() {
             name='email'
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            className='text-center'
           />
           <label className='loginFormLabel'>
             <AiOutlineLock color='#A7FF37' size='25' />
@@ -86,6 +87,7 @@ export default function Login() {
             name='password'
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            className='text-center'
           />
           <button type='submit'>Go</button>
           <p className=''>new user?</p>

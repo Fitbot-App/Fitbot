@@ -21,82 +21,95 @@ const Intensity = () => {
 
   return (
     <div className='intensityContainer'>
-      <Link to='/'>
-        <BiLeftArrow className='leftArrowIntensity' color='#A7FF37' size='70' />
-      </Link>
-      <div className='experienceDiv'>
-        <h2 className='experienceTitle'>Set Your Experience Level</h2>
-        <button
-          className={`${
-            experience === 'Beginner'
-              ? 'selectedExperience'
-              : 'experienceBeginner'
-          }`}
-          value='Beginner'
-          onClick={handleExperienceClick}
-        >
-          Beginner
-        </button>
-        <button
-          className={`${
-            experience === 'Intermediate'
-              ? 'selectedExperience'
-              : 'experienceIntermediate'
-          }`}
-          value='Intermediate'
-          onClick={handleExperienceClick}
-        >
-          Intermediate
-        </button>
-        <button
-          className={`${
-            experience === 'Advanced'
-              ? 'selectedExperience'
-              : 'experienceAdvanced'
-          }`}
-          value='Advanced'
-          onClick={handleExperienceClick}
-        >
-          Advanced
-        </button>
+      <div className='intensityTransparentOverlay' />
+      <div className='intensityDivsContainer'>
+        <Link to='/'>
+          <BiLeftArrow
+            className='leftArrowIntensity'
+            color='#A7FF37'
+            size='70'
+          />
+        </Link>
+        <div className='intensityDiv'>
+          <h2 className='title'>Set Your Experience Level</h2>
+          <button
+            className={`${
+              experience === 'Beginner'
+                ? 'intensityButtonSelected'
+                : 'intensityButton'
+            }`}
+            value='Beginner'
+            onClick={handleExperienceClick}
+          >
+            Beginner
+          </button>
+          <button
+            className={`${
+              experience === 'Intermediate'
+                ? 'intensityButtonSelected'
+                : 'intensityButton'
+            }`}
+            value='Intermediate'
+            onClick={handleExperienceClick}
+          >
+            Intermediate
+          </button>
+          <button
+            className={`${
+              experience === 'Advanced'
+                ? 'intensityButtonSelected'
+                : 'intensityButton'
+            }`}
+            value='Advanced'
+            onClick={handleExperienceClick}
+          >
+            Advanced
+          </button>
+        </div>
+        <div className='intensityDiv'>
+          <h2 className='title'>Set Your Desired Intensity</h2>
+          <button
+            className={`${
+              intensity === 'Easy'
+                ? 'intensityButtonSelected'
+                : 'intensityButton'
+            }`}
+            value='Easy'
+            onClick={handleIntensityClick}
+          >
+            Easy
+          </button>
+          <button
+            className={`${
+              intensity === 'Medium'
+                ? 'intensityButtonSelected'
+                : 'intensityButton'
+            }`}
+            value='Medium'
+            onClick={handleIntensityClick}
+          >
+            Medium
+          </button>
+          <button
+            className={`${
+              intensity === 'Hard'
+                ? 'intensityButtonSelected'
+                : 'intensityButton'
+            }`}
+            value='Hard'
+            onClick={handleIntensityClick}
+          >
+            Hard
+          </button>
+        </div>
+        <Link to='/pickExercise'>
+          <BiRightArrow
+            className='rightArrowIntensity'
+            color='#A7FF37'
+            size='70'
+          />
+        </Link>
       </div>
-      <div className='intensityDiv'>
-        <h2 className='intensityTitle'>Set Your Desired Intensity</h2>
-        <button
-          className={`${
-            intensity === 'Easy' ? 'selectedIntensity' : 'intensityEasy'
-          }`}
-          value='Easy'
-          onClick={handleIntensityClick}
-        >
-          Easy
-        </button>
-        <button
-          className={`${
-            intensity === 'Medium' ? 'selectedIntensity' : 'intensityMedium'
-          }`}
-          value='Medium'
-          onClick={handleIntensityClick}
-        >
-          Medium
-        </button>
-        <button
-          className={`${
-            intensity === 'Hard' ? 'selectedIntensity' : 'intensityHard'
-          }`}
-          value='Hard'
-          onClick={handleIntensityClick}
-        >
-          Hard
-        </button>
-      </div>
-      <Link to='/pickExercise'>
-        <BiRightArrow
-          className='rightArrowIntensity'
-          color='#A7FF37'
-          size='70'
-        />
-      </Link>
     </div>
   );
 };
