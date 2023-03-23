@@ -3,6 +3,7 @@ import { setIntensity, setExperience } from '../slices/intensitySlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { BiRightArrow, BiLeftArrow } from 'react-icons/bi';
 import { Link } from 'react-router-dom';
+import logo from '../logo/Fitbot2.png';
 
 const Intensity = () => {
   const intensity = useSelector((state) => state.intensity.intensity);
@@ -22,6 +23,9 @@ const Intensity = () => {
   return (
     <div className='intensityContainer'>
       <div className='intensityTransparentOverlay' />
+
+      <h1 className='intesityTitle'>Step 1/3</h1>
+      <img width={70} src={logo} alt='FitBot' className='cornerLogo' />
       <div className='intensityDivsContainer'>
         <Link to='/'>
           <BiLeftArrow

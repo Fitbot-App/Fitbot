@@ -22,10 +22,11 @@ input {
 
 body {
   background-color: black;
+  letter-spacing: 1px;
 }
 
 #error {
-  color: red;
+  color: #FF3767;
 }
 
 /* Landing page styles */
@@ -100,7 +101,7 @@ body {
   padding: 15px;
   margin-left: 5rem;
   margin-right: 5rem;
-  border: 5px solid #FF3767;
+  border: 2px solid #FF3767;
   border-radius: 3rem;
   background-color: black;
   color: #A7FF37;
@@ -205,31 +206,20 @@ body {
 }
 
 .loginForm div {
-  float: left;
+  display: flex;
+  justify-content: center;
 }
 
 /* Generate Workout Styles */
 
 .generatedResponse {
   font-family: Contrail One;
-  letter-spacing: 1px;
   color:#A7FF37;
 }
 
-.clearWorkout {
-  margin: 3px;
+.generatedExercisesWarning{
   font-family: Contrail One;
-  background-color: black;
-  color: #37a5ff;
-  border: 2px solid #37a5ff;
-  border-radius: 3rem;
-  font-size: 20px;
-}
-
-.clearWorkout:hover {
-  background-color: #37a5ff;
-  border: 2px solid #37a5ff;
-  color: black;
+  color: #FF3767;
 }
 
 .xButton {
@@ -267,42 +257,89 @@ body {
   color: black;
 }
 
+/*Pick Exercise Page */
+
 .pickExerciseContainer {
   width: 100vw;
   height: 100vh;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
+  background-image: url("https://images.squarespace-cdn.com/content/v1/58add6dc5016e11dc287536a/1528627828522-GR5UX06W5MNWJUJA4QII/BK_CF_079.jpg?format=1000w");
+  background-size: cover;
+}
+
+.pickExerciseDivsContainer {
+  position: absolute;
+  width: 100vw; 
+  height: 100vh; 
+  display: flex;
+  justify-content: space-around; 
+  align-items: center; 
+  z-index: 20;
+}
+
+.cornerLogo {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 20;
+}
+
+.pickTransparentOverlay {
+  background-color: rgb(0 0 0 / 0.7);
+  opacity: 0.7;
+  position: 'absolute';
+  top: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 2;
+  right: 0;
+  height: 100vh;
+  width: 100%;
 }
 
 .pickExerciseBox {
-  width: 50%;
+  width: 30%;
   height: 70%;
-  border: solid white;
   border-radius: 3rem;
   padding: 2rem;
   display: flex;
   flex-direction: column;
   overflow: scroll;
+  background-color: black;
+  border: solid 3px #A7FF37;
+}
+
+.pickExerciseTitle {
+  text-align: center; 
+  font-size: 25px;
 }
 
 .selectedExercises {
   width: 20%;
   height: 70%;
-  border: solid white;
+  border: solid 3px #A7FF37;
   border-radius: 3rem;
   padding: 2rem;
   overflow: auto;
+  background-color: black;
 }
 
 .muscleGroupSelector {
-  padding: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
   margin: 10px;
   border-radius: 3rem;
+  height: 36px;
+  background-color: black;
+  border: solid #A7FF37;
+  text-align: center;
 }
 
 .muscleGroupButton {
   font-family: Contrail One;
+  height: 36px;
   background-color: black;
   color: #FF3767;
   border: 2px solid #FF3767;
@@ -346,7 +383,8 @@ body {
   margin: 10px;
   border: solid white;
   border-radius: 3rem;
-  width: 60%;
+  width: 90%;
+  box-shadow: 0 0 2px #fff, 0 0 5px #A7FF37, 0 0 7px #A7FF37, 0 0 10px #A7FF37;
 }
 
 /* Intensity and skill level page */
@@ -359,9 +397,9 @@ body {
   bottom: 0;
   right: 0;
   z-index: 2;
-    right: 0;
-    height: 100vh;
-    width: 100%;
+  right: 0;
+  height: 100vh;
+  width: 100%;
 }
 
 .intensityContainer {
@@ -371,7 +409,7 @@ body {
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-  background-image: url("https://www.capefearfitness.net/wp-content/uploads/2015/04/Black-and-White.jpg");
+  background-image: url("https://images.squarespace-cdn.com/content/v1/5e81f296eca8656d4cc7f9ac/1625218190083-45ABEW5ZJG5BIZRCS5O6/SwiftGym036_sr.jpg?format=2500w");
   background-size: cover;
   position: absolute;
 }
@@ -397,6 +435,20 @@ body {
   display: flex;
   justify-content: space-around;
   align-items: center;
+}
+
+.intesityTitle{
+color:white;
+display: flex;
+ width: 100vw;
+justify-content:center;
+position: absolute ;
+z-index:20 ;
+font-size: 52px;
+top: 0;
+margin-top: 10px;
+font-family: Contrail One;
+color: #A7FF37;
 }
 
 .title{
