@@ -7,6 +7,7 @@ import { doc, setDoc } from 'firebase/firestore';
 import { db } from '../firebase';
 import { AiOutlineLock, AiOutlineMail } from 'react-icons/ai';
 import { TbHandFinger, TbHandTwoFingers } from 'react-icons/tb';
+import logo from '../logo/Fitbot2.png';
 
 export default function Login() {
   const [email, setEmail] = useState('');
@@ -66,10 +67,11 @@ export default function Login() {
   return (
     <div className='loginContainer'>
       <div className='transparentOverlay' />
+      <img width={70} src={logo} alt='FitBot' className='cornerLogo' />
       {!signin ? (
         <form className='loginForm' onSubmit={handleSubmit}>
           <label className='loginFormLabel flex items-center'>
-            <AiOutlineMail color='#A7FF37' size='25' />
+            <AiOutlineMail className='mx-2' color='#A7FF37' size='25' />
             Email
           </label>
           <input
@@ -79,7 +81,7 @@ export default function Login() {
             className='text-center'
           />
           <label className='loginFormLabel'>
-            <AiOutlineLock color='#A7FF37' size='25' />
+            <AiOutlineLock className='mx-2' color='#A7FF37' size='25' />
             Password
           </label>
           <input
@@ -104,36 +106,41 @@ export default function Login() {
       ) : (
         <form className='loginForm signinForm' onSubmit={handleSubmit}>
           <div>
-            <TbHandFinger color='#A7FF37' size='30' />
-            <label className='loginFormLabel'>First Name</label>
+            <label className='loginFormLabel'>
+              <TbHandFinger className='mx-2' color='#A7FF37' size='30' />
+              First Name
+            </label>
           </div>
           <input
             name='firstName'
             value={firstName}
             onChange={(e) => setFirstName(e.target.value)}
           />
-          <div>
-            <TbHandTwoFingers color='#A7FF37' size='30' />
-            <label className='loginFormLabel'>Last Name</label>
-          </div>
+
+          <label className='loginFormLabel'>
+            <TbHandTwoFingers className='mx-2' color='#A7FF37' size='30' />
+            Last Name
+          </label>
           <input
             name='lastName'
             value={lastName}
             onChange={(e) => setLastName(e.target.value)}
           />
-          <div>
-            <AiOutlineMail color='#A7FF37' size='30' />
-            <label className='loginFormLabel'>Email</label>
-          </div>
+          <label className='loginFormLabel'>
+            <AiOutlineMail className='mx-2' color='#A7FF37' size='30' />
+            Email
+          </label>
           <input
             name='email'
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
-          <div>
-            <AiOutlineLock color='#A7FF37' size='30' />
-            <label className='loginFormLabel'> Password</label>
-          </div>
+
+          <label className='loginFormLabel'>
+            <AiOutlineLock className='mx-2' color='#A7FF37' size='30' />
+            Password
+          </label>
+
           <input
             name='password'
             type={'password'}
@@ -141,6 +148,7 @@ export default function Login() {
             onChange={(e) => setPassword(e.target.value)}
           />
           <button type='submit'>Go</button>
+          <p className=''>have an account?</p>
           <button
             onClick={() => {
               setSignin(false);
