@@ -32,7 +32,6 @@ body {
 
 .landingContainer {
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
@@ -57,23 +56,55 @@ body {
   width: 40%;
 }
 
+.landingTransparentOverlay {
+  background-color: rgb(0 0 0 / 0.7);
+  opacity: 0.7;
+  position: 'absolute';
+  top: 0;
+  bottom: 0;
+  right: 0;
+  height: 100vh;
+  width: 100%;
+  z-index: 2;
+}
+
+.landingLogoContainer {
+  background-color: black;
+  height: 100vh;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 2;
+}
+
 .landingButtonsContainer {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 6rem;
+  background-image: url('https://images.saymedia-content.com/.image/ar_1:1%2Cc_fill%2Ccs_srgb%2Cfl_progressive%2Cq_auto:eco%2Cw_1200/MTg5NzYxMTgxNjQzMTg3OTAw/the-philosophy-behind-bikram-yoga.jpg');
+  background-size: cover;
+  height: 100vh;
+  width: 50%;
+  position: absolute;
+  right: 0;
+  top: 0;
 }
 
 .landingButton {
   font-family: Contrail One;
-  font-size: 24px;
-  padding: 20px;
+  font-size: 20px;
+  padding: 15px;
   margin-left: 5rem;
   margin-right: 5rem;
   border: 5px solid #FF3767;
   border-radius: 3rem;
   background-color: black;
   color: #A7FF37;
+  z-index: 2;
 }
 
 .landingButton:hover {
@@ -83,23 +114,40 @@ body {
 
 /* Login in page styles */
 
+
 .loginContainer {
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
+  background-image: url("https://post.healthline.com/wp-content/uploads/2020/08/man-deadlift-1200x628-facebook-1200x628.jpg");
+  background-size: cover;
+}
+
+.transparentOverlay{
+  background-color: rgb(0 0 0 / 0.7);
+  opacity: 0.7;
+  position: 'absolute';
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  height: 100%;
+  width: 100%;
 }
 
 .loginForm {
-  height: 65vh;
   border: 5px solid #FF3767;
   width: 30%;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
   align-items: center;
   border-radius: 3rem;
-  background-color: black
+  background-color: black;
+  position: absolute;
+  z-index: 2;
 }
 
 .signinForm {
@@ -109,15 +157,19 @@ body {
 .loginForm label {
   color: #A7FF37;
   font-family: Contrail One;
-  font-size: 30px;
+  font-size: 20px;
+  display: flex;
+  margin-top: 15px;
+  margin-bottom: 10px;
 }
 
 .loginForm input {
-  width: 100%;
+  width: 80%;
   font-family: Contrail One;
   border-radius: 3rem;
-  font-size: 20px;
-  padding: 1rem;
+  font-size: 25px;
+  padding: 5px;
+  margin-bottom: 15px;
 }
 
 .loginForm div {
@@ -134,7 +186,13 @@ body {
   color: #A7FF37;
   border: 3px solid #A7FF37;
   border-radius: 3rem;
-  font-size: 30px;
+  font-size: 25px;
+  margin-bottom: 15px;
+}
+
+.loginForm p{
+  font-family: Contrail One;
+  color: #A7FF37;
 }
 
 .loginForm button:hover {
@@ -291,45 +349,35 @@ body {
   width: 60%;
 }
 
+/* Intensity and skill level page */
+
 .intensityContainer {
   box-sizing: border-box;
-  position: absolute;
-  width: 900px;
-  height: 500px;
-  left: 153px;
-  top: 52px;
-  border: 3px solid #FFFFFF;
-  border-radius: 60px;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .experienceDiv{
   box-sizing: border-box;
-  position: absolute;
-  width: 350px;
-  height: 400px;
-  left: 90px;
-  top: 50px;
+  width: 30%;
+  height: 70%;
   border: 3px solid #A7FF37;
   border-radius: 32px;
 }
 
 .intensityDiv{
   box-sizing: border-box;
-  position: absolute;
-  width: 350px;
-  height: 400px;
-  left: 500px;
-  top: 50px; 
+  width: 30%;
+  height: 70%;
   border: 3px solid #A7FF37;
   border-radius: 32px;
 }
 
 .experienceTitle{
-  width: 377px;
-  height: 50px;
-  left: 289px;
-  top: 111px;
-  margin-left: 20px;
+  text-align: center;
   font-family: 'Contrail One';
   font-style: normal;
   font-weight: 400;
@@ -339,11 +387,7 @@ body {
 }
 
 .intensityTitle{
-  width: 472px;
-  height: 50px;
-  left: 801px;
-  top: 115px;
-  margin-left: 20px;
+  text-align: center;
   font-family: 'Contrail One';
   font-style: normal;
   font-weight: 400;
@@ -375,12 +419,6 @@ body {
   background-color: #FF3767;
   color: black;
 }
-
-/* .experienceBeginner:focus {
-  background-color: black;
-  color: #FF3767;
-  box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #FF3767;
-} */
 
 .selectedIntensity {
   box-sizing: border-box;
@@ -574,8 +612,7 @@ body {
 }
 
 .rightArrowIntensity{
-  margin-left: 900px;
-  margin-top: 200px
+  margin-top: 200px;
 }
 
 .rightArrowIntensity:hover{
