@@ -606,6 +606,10 @@ color: #A7FF37;
   background-image: url("https://images.squarespace-cdn.com/content/v1/5d07f87f8ac0bf00019389a4/1638220970423-8M3TQBPVVO1PJ559SEFP/TN_Website_Bench.jpg?format=2500w");
 }
 
+.finalResponse{
+  color: white;
+}
+
 /* Finalize Page */
 
 .rightArrowIntensity {
