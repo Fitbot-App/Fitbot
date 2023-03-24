@@ -7,6 +7,7 @@ import PickExercise from './Components/PickExercise';
 import Intensity from './Components/Intensity';
 import Finalize from './Components/Finalize';
 import Equipment from './Components/Equipment';
+import WorkoutBarChart from './Components/WorkoutBarChart';
 
 export default function MyRoutes() {
   return (
@@ -19,6 +20,7 @@ export default function MyRoutes() {
         <Route path='/intensity' Component={Intensity} />
         <Route path='/finalize' Component={Finalize} />
         <Route path='/equipment' Component={Equipment} />
+        <Route path='/workoutBarChart' Component={WorkoutBarChart} />
       </Routes>
     </div>
   );
