@@ -1,9 +1,11 @@
 import React from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { setUser } from '../slices/userSlice';
 import { useAuth } from '../AuthContext';
 import { getAuth } from 'firebase/auth';
-import { doc, setDoc } from 'firebase/firestore';
+import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { db } from '../firebase';
 import { AiOutlineLock, AiOutlineMail } from 'react-icons/ai';
 import { TbHandFinger, TbHandTwoFingers } from 'react-icons/tb';
@@ -18,8 +20,12 @@ export default function Login() {
   const [error, setError] = useState(null);
 
   const { login, signup } = useAuth();
+
   const myauth = getAuth();
+
+  const newUser = myauth.currentUser;
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -33,7 +39,6 @@ export default function Login() {
       }
       try {
         await signup(email, password);
-        const newUser = myauth.currentUser;
         await setDoc(doc(db, 'users', newUser.uid), {
           firstName: firstName,
           lastName: lastName,
@@ -55,6 +60,17 @@ export default function Login() {
     } else {
       try {
         await login(email, password);
+        const userDocSnap = await getDoc(
+          doc(db, 'users', myauth.currentUser.uid)
+        );
+        const userObj = userDocSnap.data();
+        dispatch(
+          setUser({
+            firstName: userObj.firstName,
+            lastName: userObj.lastName,
+            email: email,
+          })
+        );
         navigate('/home');
         setEmail('');
         setPassword('');
