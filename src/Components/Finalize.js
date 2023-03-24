@@ -9,12 +9,10 @@ import Skeleton from '@mui/material/Skeleton';
 
 const Finalize = () => {
   const exercises = useSelector((state) => state.exercises.exercises);
-  const totalExcercises = exercises.length;
   const [duration, setDuration] = useState('');
   const [response, setResponse] = useState([]);
   const [finalized, setFinalized] = useState(false);
   const [loading, setLoading] = useState(false);
-  // console.log(state);
 
   const handleSubmit = async (e) => {
     setLoading(true);

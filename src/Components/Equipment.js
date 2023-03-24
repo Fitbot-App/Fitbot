@@ -5,7 +5,7 @@ import {
   MdKeyboardDoubleArrowLeft,
 } from 'react-icons/md';
 import { FaMinusCircle } from 'react-icons/fa';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { setEquipment, removeEquipment } from '../slices/equipmentSlice';
 import logo from '../logo/Fitbot2.png';
 
@@ -32,8 +32,6 @@ const Equipment = () => {
     dispatch(setEquipment(equipmentInput));
     setEquipmentInput('');
   }
-
-  const navigate = useNavigate();
 
   const handleKeypress = (e) => {
     if (e.key === 'Enter') {

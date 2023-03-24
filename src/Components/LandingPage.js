@@ -3,8 +3,11 @@ import React from 'react';
 import { BsLightning } from 'react-icons/bs';
 import { useNavigate } from 'react-router-dom';
 import logo from '../logo/FitBot.png';
+import { useSelector } from 'react-redux';
 
 export default function LandingPage() {
+  const state = useSelector((state) => state);
+  console.log(state);
   const navigate = useNavigate();
   return (
     <div className='landingContainer'>
