@@ -96,7 +96,7 @@ const Equipment = () => {
               })}
             </div>
           </div>
-          <div className='equipmentSkipButtonContainer'>
+          {/* <div className='equipmentSkipButtonContainer'>
             <button
               className='equipmentSkipButton'
               onClick={() => {
@@ -105,7 +105,7 @@ const Equipment = () => {
             >
               Skip
             </button>
-          </div>
+          </div> */}
         </div>
         <Link to='/pickExercise'>
           <MdKeyboardDoubleArrowRight

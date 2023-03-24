@@ -517,6 +517,7 @@ color: #A7FF37;
   display: flex;
   justify-content: space-around;
   align-items: center;
+  
 }
 
 .equipmentDiv {
@@ -557,7 +558,7 @@ color: #A7FF37;
   margin: 10px;
   border-radius: 3rem;
   height: 36px;
-  background-color: black;
+  background-color: rgb(37, 37, 37);
   border: solid #A7FF37;
   text-align: center;
   width: 40%;
@@ -587,7 +588,8 @@ color: #A7FF37;
 
 .equipmentSkipButtonContainer{
  display: flex;
- justify-content: flex-end;
+ justify-content: space-around;
+ align-items: center;
 }
 
 /* Equipment Selection Page */
@@ -598,16 +600,41 @@ color: #A7FF37;
   width: 100vw;
   height: 100vh;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   flex-wrap: wrap;
   background-size: cover;
   position: absolute;
   background-image: url("https://images.squarespace-cdn.com/content/v1/5d07f87f8ac0bf00019389a4/1638220970423-8M3TQBPVVO1PJ559SEFP/TN_Website_Bench.jpg?format=2500w");
 }
+.finalizeResponseContainer{
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
-.finalResponse{
-  color: white;
+.finalResponseDiv{
+  display: flex;
+  flex-direction: column;
+  margin-top: 100px;
+  padding: 15px;
+  width: 50%;
+  height: 70%;
+  color: #A7FF37;
+  background-color: black;
+  border: 3px solid #A7FF37;
+  border-radius: 32px;
+  z-index: 2;
+  overflow: scroll;
+}
+
+.finalResponseParts {
+  display: flex;
+  flex-direction: column;
+  color: #A7FF37;
 }
 
 /* Finalize Page */
@@ -615,15 +642,18 @@ color: #A7FF37;
 .rightArrowIntensity {
   position: absolute;
   z-index: 2;
+  right: 0;
 }
 
 .leftArrowIntensity {
   position: absolute;
   z-index: 2;
+  left: 0;
 }
 
 .rightArrowIntensity:hover{
   scale: 110%;
+
 }
 
 .leftArrowIntensity:hover {
