@@ -9,28 +9,42 @@ import Skeleton from '@mui/material/Skeleton';
 
 const Finalize = () => {
   const exercises = useSelector((state) => state.exercises.exercises);
-  const [duration, setDuration] = useState('60 minutes');
-  const [response, setResponse] = useState('');
+  const totalExcercises = exercises.length;
+  const [duration, setDuration] = useState('');
+  const [response, setResponse] = useState([]);
   const [finalized, setFinalized] = useState(false);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   // console.log(state);
 
   const handleSubmit = async (e) => {
     setLoading(true);
+    setFinalized(true);
     try {
-      const res = await axios.post('http://localhost:3001/generateWorkout', {
+      const res = await axios.post('http://localhost:3001/finalize', {
         prompt: `Can you generate a workout with the following exercises: ${exercises.join(
           ', '
-        )} that will take around ${duration}. The workout should include a warmup and be seperated into multiple parts. Each part should be seperated
-        by a colon, and each exercise should be seperated by a comma. Each exercise should include sets and reps`,
+        )} that will take around ${duration} minutes to complete. Duration should affect the amount of sets and reps per exercise. 
+        The workout should always include a warmup that consists of easy calisthenics that will warm up the muscles used in these exercises: ${exercises.join(
+          ', '
+        )} and easy cardio. 
+        The rest of the workout should be seperated into multiple parts with 1 to 4 excersises per part.
+        Each exercise should only be used once in the entire workout. Here's an example of how the response should be formated - 
+        Warm-up: exercise (sets x reps); exercise (sets x reps); exercise (sets x reps); 
+        Part-1: exercise (sets x reps); exercise (sets x reps); exercise (sets x reps); 
+        Part-2: exercise (sets x reps); exercise (sets x reps); exercise (sets x reps);  
+        Part-3: exercise (sets x reps); exercise (sets x reps); exercise (sets x reps)
+        `,
       });
-      setResponse(res.data);
+      const cleanedResponse = res.data.replace(/^\./, '');
+      console.log(cleanedResponse);
+      setResponse(cleanedResponse.split(';'));
       setLoading(false);
-      setFinalized(true);
     } catch (error) {
       console.error(error);
     }
   };
+
+  console.log(duration);
 
   return (
     <div className='finalizeContainer'>
@@ -39,80 +53,128 @@ const Finalize = () => {
       <Link className='cornerLogo' to='/'>
         <img width={70} src={logo} alt='FitBot' />
       </Link>
-      <div className='equipmentDivsContainer'>
-        <Link to='/intensity'>
+      <div className='finalizeResponseContainer'>
+        <Link to='/pickExercise'>
           <MdKeyboardDoubleArrowLeft
             className='leftArrowIntensity'
             color='#A7FF37'
             size='70'
           />
         </Link>
-        {finalized ? (
-          loading ? (
-            <Box>
-              <Skeleton
-                style={{
-                  backgroundColor: '#a8ff3765',
-                  margin: 15,
-                  height: 40,
-                }}
-              />
-              <Skeleton
-                style={{
-                  backgroundColor: '#a8ff3765',
-                  margin: 15,
-                  height: 40,
-                }}
-              />
-              <Skeleton
-                style={{
-                  backgroundColor: '#a8ff3765',
-                  margin: 15,
-                  height: 40,
-                }}
-              />
-              <Skeleton
-                style={{
-                  backgroundColor: '#a8ff3765',
-                  margin: 15,
-                  height: 40,
-                }}
-              />
-              <Skeleton
-                style={{
-                  backgroundColor: '#a8ff3765',
-                  margin: 15,
-                  height: 40,
-                }}
-              />
-              <Skeleton
-                style={{
-                  backgroundColor: '#a8ff3765',
-                  margin: 15,
-                  height: 40,
-                }}
-              />
-            </Box>
-          ) : (
-            <div className='finalResponse'>{response}</div>
-          )
-        ) : (
-          <div className='equipmentDiv'>
-            <div>
-              <h2 className='title mt-5'>Finalize</h2>
-              <div className='grid grid-cols-3 items-center m-5'>
-                {exercises.map((item) => {
-                  return <span className='equipmentItem'>{item}</span>;
+        <div className='finalResponseDiv'>
+          {finalized ? (
+            loading ? (
+              <Box>
+                <Skeleton
+                  style={{
+                    backgroundColor: '#a8ff3765',
+                    margin: 15,
+                    height: 40,
+                  }}
+                />
+                <Skeleton
+                  style={{
+                    backgroundColor: '#a8ff3765',
+                    margin: 15,
+                    height: 40,
+                  }}
+                />
+                <Skeleton
+                  style={{
+                    backgroundColor: '#a8ff3765',
+                    margin: 15,
+                    height: 40,
+                  }}
+                />
+                <Skeleton
+                  style={{
+                    backgroundColor: '#a8ff3765',
+                    margin: 15,
+                    height: 40,
+                  }}
+                />
+                <Skeleton
+                  style={{
+                    backgroundColor: '#a8ff3765',
+                    margin: 15,
+                    height: 40,
+                  }}
+                />
+                <Skeleton
+                  style={{
+                    backgroundColor: '#a8ff3765',
+                    margin: 15,
+                    height: 40,
+                  }}
+                />
+                <Skeleton
+                  style={{
+                    backgroundColor: '#a8ff3765',
+                    margin: 15,
+                    height: 40,
+                  }}
+                />
+                <Skeleton
+                  style={{
+                    backgroundColor: '#a8ff3765',
+                    margin: 15,
+                    height: 40,
+                  }}
+                />
+                <Skeleton
+                  style={{
+                    backgroundColor: '#a8ff3765',
+                    margin: 15,
+                    height: 40,
+                  }}
+                />
+              </Box>
+            ) : (
+              <div className='generatedResponse'>
+                {response.map((part) => {
+                  return part.split(':').map((item) => {
+                    if (item.includes('Warm-up') || item.includes('Part')) {
+                      return (
+                        <div className='font-bold text-xl pt-6'>{item}</div>
+                      );
+                    } else {
+                      return <li>{item}</li>;
+                    }
+                  });
                 })}
               </div>
+            )
+          ) : (
+            <div>
+              <div>
+                <h2 className='title mt-5'>Your Excersises</h2>
+                <div className='grid grid-cols-3 items-center m-5'>
+                  {exercises.map((item, i) => {
+                    return (
+                      <span key={i} className='equipmentItem'>
+                        {item}
+                      </span>
+                    );
+                  })}
+                </div>
+              </div>
+              <div className='equipmentSkipButtonContainer'>
+                <div>
+                  <input
+                    className='equipmentSelector generatedResponse'
+                    placeholder='duration . . .'
+                    value={duration}
+                    onChange={(e) => setDuration(e.target.value)}
+                  ></input>
+                  <span className='generatedResponse'>minutes (optional)</span>
+                </div>
+                <button className='equipmentSkipButton' onClick={handleSubmit}>
+                  Finalize
+                </button>
+              </div>
             </div>
-            <div className='equipmentSkipButtonContainer'>
-              <button className='equipmentSkipButton' onClick={handleSubmit}>
-                Finalize
-              </button>
-            </div>
-          </div>
-        )}
+          )}
+        </div>
       </div>
     </div>
   );

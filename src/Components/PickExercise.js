@@ -60,7 +60,7 @@ const PickExercise = () => {
         </div>
         <Link to='/finalize'>
           <MdKeyboardDoubleArrowRight
-            className='leftArrowIntensity'
+            className='rightArrowIntensity'
             color='#A7FF37'
             size='70'
           />
