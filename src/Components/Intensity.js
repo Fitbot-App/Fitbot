@@ -1,7 +1,10 @@
 import React from 'react';
 import { setIntensity, setExperience } from '../slices/intensitySlice';
 import { useDispatch, useSelector } from 'react-redux';
-import { BiRightArrow, BiLeftArrow } from 'react-icons/bi';
+import {
+  MdKeyboardDoubleArrowRight,
+  MdKeyboardDoubleArrowLeft,
+} from 'react-icons/md';
 import { Link } from 'react-router-dom';
 import logo from '../logo/Fitbot2.png';
 
@@ -25,10 +28,12 @@ const Intensity = () => {
       <div className='intensityTransparentOverlay' />
 
       <h1 className='intesityTitle'>Step 1/3</h1>
-      <img width={70} src={logo} alt='FitBot' className='cornerLogo' />
+      <Link to='/'>
+        <img width={70} src={logo} alt='FitBot' className='cornerLogo' />
+      </Link>
       <div className='intensityDivsContainer'>
         <Link to='/'>
-          <BiLeftArrow
+          <MdKeyboardDoubleArrowLeft
             className='leftArrowIntensity'
             color='#A7FF37'
             size='70'
@@ -106,8 +111,8 @@ const Intensity = () => {
             Hard
           </button>
         </div>
-        <Link to='/pickExercise'>
-          <BiRightArrow
+        <Link to='/equipment'>
+          <MdKeyboardDoubleArrowRight
             className='rightArrowIntensity'
             color='#A7FF37'
             size='70'

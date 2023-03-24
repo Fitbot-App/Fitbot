@@ -362,8 +362,6 @@ body {
 }
 
 .singleExercise {
-  padding-left: 10px;
-  padding-right: 10px;
   display: flex;
   justify-content: space-between;
   padding-left: 10px;
@@ -485,6 +483,130 @@ color: #A7FF37;
   background-color: #FF3767;
   color: black;
 }
+
+/* Equipment Selection Page */
+.equipmentContainer {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  background-image: url("https://i.pinimg.com/originals/a3/1d/e3/a31de3187c7fa939a863f4b8593ef1de.jpg");
+  background-size: cover;
+  position: absolute;
+}
+
+.equipmentTransparentOverlay {
+  background-color: rgb(0 0 0 / 0.7);
+  opacity: 0.7;
+  position: 'absolute';
+  top: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 2;
+  right: 0;
+  height: 100vh;
+  width: 100%;
+}
+
+.equipmentDivsContainer {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.equipmentDiv {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
+  margin-top: 100px;
+  width: 50%;
+  height: 70%;
+  background-color: black;
+  border: 3px solid #A7FF37;
+  border-radius: 32px;
+  z-index: 2;
+  
+}
+
+.equipmentItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color:#A7FF37;
+  font-family: Contrail One;
+  margin: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border: 2px solid #fff;
+  border-radius: 32px;
+  text-align: center;
+  box-shadow: 0 0 2px #fff, 0 0 5px #A7FF37, 0 0 7px #A7FF37, 0 0 10px #A7FF37
+}
+
+.equipmentSelector {
+  padding-left: 10px;
+  padding-right: 10px;
+  margin: 10px;
+  border-radius: 3rem;
+  height: 36px;
+  background-color: black;
+  border: solid #A7FF37;
+  text-align: center;
+  width: 40%;
+}
+
+.equipmentSkipButton{
+  font-family: Contrail One;
+    height: 36px;
+    background-color: black;
+    color: #FF3767;
+    border: 2px solid #FF3767;
+    border-radius: 3rem;
+    font-size: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin: 15px;
+    width: 20%;
+
+}
+
+.equipmentSkipButton:hover {
+  background-color: #FF3767;
+    color: black;
+    scale: 110%;
+    transition-duration: 400ms;
+}
+
+.equipmentSkipButtonContainer{
+ display: flex;
+ justify-content: flex-end;
+}
+
+/* Equipment Selection Page */
+
+/* Finalize Page */
+
+.finalizeContainer {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  background-size: cover;
+  position: absolute;
+  background-image: url("https://images.squarespace-cdn.com/content/v1/5d07f87f8ac0bf00019389a4/1638220970423-8M3TQBPVVO1PJ559SEFP/TN_Website_Bench.jpg?format=2500w");
+}
+
+/* Finalize Page */
 
 .rightArrowIntensity {
   position: absolute;

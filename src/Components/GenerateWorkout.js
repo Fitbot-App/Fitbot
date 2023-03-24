@@ -15,6 +15,7 @@ function GenerateWorkout() {
 
   const experience = useSelector((state) => state.intensity.experience);
   const intensity = useSelector((state) => state.intensity.intensity);
+  const equipment = useSelector((state) => state.equipment.equipment);
 
   const dispatch = useDispatch();
 
@@ -28,8 +29,11 @@ function GenerateWorkout() {
     setLoading(true);
     try {
       const res = await axios.post('http://localhost:3001/generateWorkout', {
-        prompt: `My experience level with fitness is ${experience}. I am looking for a ${intensity} workout. Can you give me six exercises for my ${selectedOption}. The format of the response
-        should be a numbered vertical list of just the exercise names with a colon after each exercise expcept for the last. Here's an example "1. crunches :" `,
+        prompt: `My experience level with fitness is ${experience}. I am looking for a ${intensity} workout. 
+        I have access to the following equipment: ${equipment.join(', ')}.
+        Can you give me six exercises for my ${selectedOption}. please include at least two exercises I can do with no equipment. 
+        The format of the response should be a numbered vertical list of just the exercise names with a colon 
+        after each exercise expcept for the last. Here's an example "1. crunches :" `,
       });
       setResponse(res.data.split(':'));
       setLoading(false);

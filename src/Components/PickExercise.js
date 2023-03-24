@@ -2,7 +2,10 @@ import React from 'react';
 import GenerateWorkout from './GenerateWorkout';
 import { useSelector, useDispatch } from 'react-redux';
 import { removeExercise } from '../slices/chosenExercisesSlice';
-import { BiLeftArrow, BiRightArrow } from 'react-icons/bi';
+import {
+  MdKeyboardDoubleArrowRight,
+  MdKeyboardDoubleArrowLeft,
+} from 'react-icons/md';
 import { Link } from 'react-router-dom';
 import { FaMinusCircle } from 'react-icons/fa';
 import logo from '../logo/Fitbot2.png';
@@ -20,11 +23,12 @@ const PickExercise = () => {
     <div className='pickExerciseContainer'>
       <div className='pickTransparentOverlay'></div>
       <div className='pickExerciseDivsContainer'>
-        <img width={70} src={logo} alt='FitBot' className='cornerLogo' />
-
-        <h1 className='intesityTitle'>Step 2/3</h1>
-        <Link to='/intensity'>
-          <BiLeftArrow
+        <h1 className='intesityTitle'>Step 3/3</h1>
+        <Link className='cornerLogo' to='/'>
+          <img width={70} src={logo} alt='FitBot' />
+        </Link>
+        <Link to='/equipment'>
+          <MdKeyboardDoubleArrowLeft
             className='leftArrowIntensity'
             color='#A7FF37'
             size='70'
@@ -55,7 +59,7 @@ const PickExercise = () => {
           })}
         </div>
         <Link to='/finalize'>
-          <BiRightArrow
+          <MdKeyboardDoubleArrowRight
             className='leftArrowIntensity'
             color='#A7FF37'
             size='70'

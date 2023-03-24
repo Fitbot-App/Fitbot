@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { useState } from 'react';
 import { useAuth } from '../AuthContext';
 import { getAuth } from 'firebase/auth';
@@ -67,7 +67,9 @@ export default function Login() {
   return (
     <div className='loginContainer'>
       <div className='transparentOverlay' />
-      <img width={70} src={logo} alt='FitBot' className='cornerLogo' />
+      <Link to='/'>
+        <img width={70} src={logo} alt='FitBot' className='cornerLogo' />
+      </Link>
       {!signin ? (
         <form className='loginForm' onSubmit={handleSubmit}>
           <label className='loginFormLabel flex items-center'>
