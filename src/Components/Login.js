@@ -21,9 +21,6 @@ export default function Login() {
 
   const { login, signup } = useAuth();
 
-  const myauth = getAuth();
-
-  const newUser = myauth.currentUser;
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -39,11 +36,7 @@ export default function Login() {
       }
       try {
         await signup(email, password);
-        await setDoc(doc(db, 'users', newUser.uid), {
-          firstName: firstName,
-          lastName: lastName,
-          email: email,
-        });
+
         navigate('/home');
         setEmail('');
         setPassword('');
@@ -56,10 +49,27 @@ export default function Login() {
           setError('Please Fill In All Fields');
         }
         console.log(error);
+        return;
       }
+
+      const myauth = getAuth();
+      dispatch(
+        setUser({
+          firstName: firstName,
+          lastName: lastName,
+          email: email,
+        })
+      );
+
+      await setDoc(doc(db, 'users', myauth.currentUser.uid), {
+        firstName: firstName,
+        lastName: lastName,
+        email: email,
+      });
     } else {
       try {
         await login(email, password);
+        const myauth = getAuth();
         const userDocSnap = await getDoc(
           doc(db, 'users', myauth.currentUser.uid)
         );
