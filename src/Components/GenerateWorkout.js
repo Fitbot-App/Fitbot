@@ -31,11 +31,12 @@ function GenerateWorkout() {
       const res = await axios.post('http://localhost:3001/generateWorkout', {
         prompt: `My experience level with fitness is ${experience}. I am looking for a ${intensity} workout. 
         I have access to the following equipment: ${equipment.join(', ')}.
-        Can you give me six exercises for my ${selectedOption}. Include at least two exercises I can do with no equipment. 
-        The format of the response should be a vertical list of just the exercise names with a colon 
-        after each exercise expcept for the last. Here's an example "Crunches:". Do not number the exercises.`,
+        Can you give me six exercises for my ${selectedOption}. Do not number the exercises. Include at least two calisthenic exercises. 
+        The format of the response should be a list of just the exercise names with a colon 
+        after each exercise expcept for the last. Here's an example "Crunches:".`,
       });
       setResponse(res.data.split(':'));
+
       setLoading(false);
     } catch (error) {
       console.error(error);
@@ -69,6 +70,7 @@ function GenerateWorkout() {
             <option value='chest'>Chest</option>
             <option value='legs'>Legs</option>
             <option value='arms'>Arms</option>
+            <option value='shoulders'>Shoulders</option>
             <option value='cardio'>Cardio</option>
           </select>
           <button
