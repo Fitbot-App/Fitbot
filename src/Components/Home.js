@@ -6,6 +6,8 @@ import { removeUser } from '../slices/userSlice';
 import { persistor } from '../app/store';
 
 export default function Home() {
+  const dispatch = useDispatch();
+
   const navigate = useNavigate();
   const { logout } = useAuth();
   const handleLogout = async () => {
@@ -18,9 +20,8 @@ export default function Home() {
       console.log(error);
     }
   };
-  const dispatch = useDispatch();
-  const user = useSelector((state) => state.loggedInUser.loggedInUser);
 
+  const user = useSelector((state) => state.loggedInUser.loggedInUser);
   return (
     <div>
       <h1 className='text-5xl generatedResponse'>
