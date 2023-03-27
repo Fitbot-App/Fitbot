@@ -21,28 +21,34 @@ const Finalize = () => {
       const res = await axios.post('http://localhost:3001/finalize', {
         prompt: `Can you generate a workout with the following exercises: ${exercises.join(
           ', '
-        )} that will take around ${duration} minutes to complete. Duration should affect the amount of sets and reps per exercise. 
+        )} that will take around ${
+          duration || '60'
+        } minutes to complete. Duration should affect the amount of sets and reps per exercise. 
         The workout should always include a warmup that consists of easy calisthenics that will warm up the muscles used in these exercises: ${exercises.join(
           ', '
         )} and easy cardio. 
         The rest of the workout should be seperated into multiple parts with 1 to 4 excersises per part.
         Each exercise should only be used once in the entire workout. Here's an example of how the response should be formated - 
-        Warm-up: exercise (sets x reps); exercise (sets x reps); exercise (sets x reps); 
+        Warm-Up: exercise (sets x reps); exercise (sets x reps); exercise (sets x reps); 
         Part-1: exercise (sets x reps); exercise (sets x reps); exercise (sets x reps); 
         Part-2: exercise (sets x reps); exercise (sets x reps); exercise (sets x reps);  
-        Part-3: exercise (sets x reps); exercise (sets x reps); exercise (sets x reps)
+        Part-3: exercise (sets x reps); exercise (sets x reps); exercise (sets x reps);
+
+        make sure there is a semicolon after every exercise.
         `,
       });
-      const cleanedResponse = res.data.replace(/^\./, '');
+      let cleanedResponse = res.data.replace(/^\./, '');
       console.log(cleanedResponse);
-      setResponse(cleanedResponse.split(';'));
+      cleanedResponse = cleanedResponse.split(';');
+      cleanedResponse = cleanedResponse.filter((el) => el !== '');
+      console.log(cleanedResponse);
+      setResponse(cleanedResponse);
       setLoading(false);
     } catch (error) {
       console.error(error);
     }
   };
-
-  console.log(duration);
+  console.log(exercises);
 
   return (
     <div className='finalizeContainer'>
@@ -131,7 +137,7 @@ const Finalize = () => {
               <div className='generatedResponse'>
                 {response.map((part) => {
                   return part.split(':').map((item) => {
-                    if (item.includes('Warm-up') || item.includes('Part')) {
+                    if (item.includes('Warm-Up') || item.includes('Part')) {
                       return (
                         <div className='font-bold text-xl pt-6'>{item}</div>
                       );

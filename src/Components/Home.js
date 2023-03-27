@@ -22,11 +22,12 @@ export default function Home() {
   };
 
   const user = useSelector((state) => state.loggedInUser.loggedInUser);
+
   return (
     <div>
-      <h1 className='text-5xl generatedResponse'>
+      {/* <h1 className='text-5xl generatedResponse'>
         {user.firstName}'s Dashboard
-      </h1>
+      </h1> */}
       <button onClick={handleLogout} className='muscleGroupButton'>
         logout
       </button>
