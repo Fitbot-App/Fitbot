@@ -10,7 +10,7 @@ export const userSlice = createSlice({
       state.loggedInUser = action.payload;
     },
     removeUser: (state) => {
-      state = {};
+      state.loggedInUser = {};
     },
   },
 });

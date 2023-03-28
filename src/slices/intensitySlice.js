@@ -1,12 +1,12 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  intensity: "",
-  experience: "",
+  intensity: '',
+  experience: '',
 };
 
 export const intensitySlice = createSlice({
-  name: "intesnity",
+  name: 'intesnity',
   initialState,
   reducers: {
     setIntensity: (state, action) => {
@@ -15,9 +15,14 @@ export const intensitySlice = createSlice({
     setExperience: (state, action) => {
       state.experience = action.payload;
     },
+    clearIntensity: (state, action) => {
+      state.intensity = '';
+      state.experience = '';
+    },
   },
 });
 
-export const { setIntensity, setExperience } = intensitySlice.actions;
+export const { setIntensity, setExperience, clearIntensity } =
+  intensitySlice.actions;
 
 export default intensitySlice.reducer;

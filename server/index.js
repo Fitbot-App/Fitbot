@@ -34,6 +34,17 @@ app.post('/finalize', async (req, res) => {
   });
   res.send(completion.data.choices[0].text);
 });
+
+app.post('/suggestedWorkout', async (req, res) => {
+  const { prompt } = req.body;
+  const completion = await openai.createCompletion({
+    model: 'text-davinci-003',
+    prompt: prompt,
+    max_tokens: 200,
+    temperature: 0.85,
+  });
+  res.send(completion.data.choices[0].text);
+});
 // 'prompt' is coming from axios post - from react js state - its input field value or query or question
 
 // Start the server ////////////////////
