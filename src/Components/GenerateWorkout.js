@@ -36,7 +36,6 @@ function GenerateWorkout() {
         after each exercise expcept for the last. Here's an example "Crunches:".`,
       });
       setResponse(res.data.split(':'));
-
       setLoading(false);
     } catch (error) {
       console.error(error);

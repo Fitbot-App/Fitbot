@@ -6,9 +6,14 @@ import logo from '../logo/Fitbot2.png';
 import axios from 'axios';
 import Box from '@mui/material/Box';
 import Skeleton from '@mui/material/Skeleton';
+import { serverTimestamp, addDoc, collection } from 'firebase/firestore';
+import { getAuth } from 'firebase/auth';
+import { db } from '../firebase';
 
 const Finalize = () => {
   const exercises = useSelector((state) => state.exercises.exercises);
+  const loggedInUser = useSelector((state) => state.loggedInUser.loggedInUser);
+
   const [duration, setDuration] = useState('');
   const [response, setResponse] = useState([]);
   const [finalized, setFinalized] = useState(false);
@@ -48,7 +53,15 @@ const Finalize = () => {
       console.error(error);
     }
   };
-  console.log(exercises);
+
+  const myauth = getAuth();
+  const handleSaveWorkout = async () => {
+    await addDoc(collection(db, 'workouts'), {
+      userId: myauth.currentUser.uid,
+      workout: response,
+      date: serverTimestamp(),
+    });
+  };
 
   return (
     <div className='finalizeContainer'>
@@ -146,6 +159,14 @@ const Finalize = () => {
                     }
                   });
                 })}
+                {loggedInUser.email && (
+                  <button
+                    className='equipmentSkipButton'
+                    onClick={handleSaveWorkout}
+                  >
+                    Save Workout
+                  </button>
+                )}
               </div>
             )
           ) : (

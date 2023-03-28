@@ -7,6 +7,9 @@ import {
   Legend,
 } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
+import { collection, query, where, getDocs, orderBy } from 'firebase/firestore';
+import { getAuth } from 'firebase/auth';
+import { db } from '../firebase';
 
 ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip, Legend);
 

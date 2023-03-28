@@ -18,11 +18,15 @@ export const exercisesSlice = createSlice({
         return action.payload !== exercise;
       });
     },
+    clearExercises: (state, action) => {
+      state.exercises = [];
+    },
   },
 });
 
 // Action creators
-export const { setExercises, removeExercise } = exercisesSlice.actions;
+export const { setExercises, removeExercise, clearExercises } =
+  exercisesSlice.actions;
 
 // Reducer
 export default exercisesSlice.reducer;
