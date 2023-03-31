@@ -59,12 +59,16 @@ const SuggestedWorkout = () => {
         </h1>
         <div className='generatedResponse'>
           {latestWorkout &&
-            latestWorkout.map((part) => {
+            latestWorkout.map((part, i) => {
               return part.split(':').map((item) => {
                 if (item.includes('Warm-Up') || item.includes('Part')) {
-                  return <div className='font-bold text-xl pt-6'>{item}</div>;
+                  return (
+                    <div key={i} className='font-bold text-xl pt-6'>
+                      {item}
+                    </div>
+                  );
                 } else {
-                  return <li>{item}</li>;
+                  return <li key={i}>{item}</li>;
                 }
               });
             })}

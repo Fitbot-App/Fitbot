@@ -29,6 +29,31 @@ body {
   color: #FF3767;
 }
 
+.rightArrowIntensity {
+  position: absolute;
+  z-index: 2;
+  right: 0;
+}
+
+.leftArrowIntensity {
+  position: absolute;
+  z-index: 2;
+  left: 0;
+}
+
+.rightArrowIntensity:hover {
+  scale: 110%;
+
+}
+
+.leftArrowIntensity:hover {
+  scale: 110%;
+}
+
+.landingPageLogo {
+  margin-top: 30px;
+}
+
 /* Landing page styles */
 
 .landingContainer {
@@ -676,34 +701,30 @@ color: #A7FF37;
 
 /* Home Page */
 
-.rightArrowIntensity {
-  position: absolute;
-  z-index: 2;
-  right: 0;
-}
+.dashboardContainer{
 
-.leftArrowIntensity {
-  position: absolute;
-  z-index: 2;
-  left: 0;
+      background: radial-gradient(circle at center, grey, #000000);
+      background-size: 400% 400%;
+      animation: gradient 20s ease infinite;
 }
+    @keyframes gradient {
+      0% {
+        background-position: 0% 50%;
+      }
+  
+      50% {
+        background-position: 100% 50%;
+      }
+  
+      100% {
+        background-position: 0% 50%;
+      }
+    }
 
-.rightArrowIntensity:hover{
-  scale: 110%;
-
-}
-
-.leftArrowIntensity:hover {
-  scale: 110%;
-}
-
-.landingPageLogo{
-  margin-top: 30px;
-}
 
 .calChartContainer {
   display: grid;
-  height: 40%;
+  
   grid-template-columns: 1fr 2fr;
   padding: 20px;
 }
@@ -713,6 +734,7 @@ color: #A7FF37;
   padding: 20px;
   border: 3px solid #A7FF37;
   border-radius: 32px;
+  background-color: #000000;
 }
 
 .calContainerDiv {
@@ -720,4 +742,5 @@ color: #A7FF37;
   padding: 20px;
   border: 3px solid #A7FF37;
   border-radius: 32px;
+  background-color: #000000;
 }

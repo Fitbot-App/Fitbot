@@ -36,8 +36,8 @@ export default function Home() {
   const user = useSelector((state) => state.loggedInUser.loggedInUser);
 
   return (
-    <div className='h-screen'>
-      <h1 className='text-5xl h-1/6 flex justify-center items-center generatedResponse'>
+    <div className='dashboardContainer'>
+      <h1 className='text-5xl p-4 flex justify-center items-center generatedResponse'>
         {user.firstName}'s Dashboard
       </h1>
       <Link className='cornerLogo' to='/'>
