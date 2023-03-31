@@ -642,6 +642,40 @@ color: #A7FF37;
 
 /* Finalize Page */
 
+/* Home Page */
+
+.suggestedWorkoutDiv {
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  margin: 10px;
+  width: 50%;
+  color: #A7FF37;
+  background-color: black;
+  border: 3px solid #A7FF37;
+  border-radius: 32px;
+  z-index: 2;
+  overflow: scroll;
+}
+
+.regenerateWorkout {
+  font-family: Contrail One;
+  background-color: black;
+  color: #FF3767;
+  border: 2px solid #FF3767;
+  border-radius: 3rem;
+  font-size: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.regenerateWorkout:hover {
+  background-color: #FF3767;
+  color: black;
+}
+
+/* Home Page */
+
 .rightArrowIntensity {
   position: absolute;
   z-index: 2;
@@ -665,4 +699,25 @@ color: #A7FF37;
 
 .landingPageLogo{
   margin-top: 30px;
+}
+
+.calChartContainer {
+  display: grid;
+  height: 40%;
+  grid-template-columns: 1fr 2fr;
+  padding: 20px;
+}
+
+.chartContainerDiv {
+  margin: 5px;
+  padding: 20px;
+  border: 3px solid #A7FF37;
+  border-radius: 32px;
+}
+
+.calContainerDiv {
+  margin: 5px;
+  padding: 20px;
+  border: 3px solid #A7FF37;
+  border-radius: 32px;
 }

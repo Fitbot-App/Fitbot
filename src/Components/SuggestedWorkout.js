@@ -52,8 +52,8 @@ const SuggestedWorkout = () => {
   }, []);
 
   return (
-    <div className='flex'>
-      <div className='finalResponseDiv'>
+    <div className='flex h-full'>
+      <div className='suggestedWorkoutDiv'>
         <h1 className='pickExerciseTitle generatedResponse'>
           Yesterdays Workout
         </h1>
@@ -70,13 +70,15 @@ const SuggestedWorkout = () => {
             })}
         </div>
       </div>
-      <div className='finalResponseDiv'>
+      <div className='suggestedWorkoutDiv'>
         <div className='flex'>
           <h1 className='pickExerciseTitle generatedResponse'>
             Suggested Workout
           </h1>
-
-          <button className='equipmentSkipButton' onClick={getWorkout}>
+          <button
+            className='regenerateWorkout absolute right-10'
+            onClick={getWorkout}
+          >
             Regenerate Workout
           </button>
         </div>

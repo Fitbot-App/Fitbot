@@ -16,16 +16,16 @@ ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip, Legend);
 
 const WorkoutBarChart = () => {
   const [jan, setJan] = useState(0);
-  const [feb, setFeb] = useState(0);
-  const [mar, setMar] = useState(0);
-  const [apr, setApr] = useState(0);
-  const [may, setMay] = useState(0);
-  const [jun, setJun] = useState(0);
-  const [jul, setJul] = useState(0);
-  const [aug, setAug] = useState(0);
-  const [sep, setSep] = useState(0);
-  const [oct, setOct] = useState(0);
-  const [nov, setNov] = useState(0);
+  const [feb, setFeb] = useState(3);
+  const [mar, setMar] = useState(10);
+  const [apr, setApr] = useState(20);
+  const [may, setMay] = useState(12);
+  const [jun, setJun] = useState(23);
+  const [jul, setJul] = useState(18);
+  const [aug, setAug] = useState(9);
+  const [sep, setSep] = useState(6);
+  const [oct, setOct] = useState(17);
+  const [nov, setNov] = useState(8);
   const [dec, setDec] = useState(0);
 
   const getWorkout = async () => {
@@ -45,9 +45,6 @@ const WorkoutBarChart = () => {
       console.log(e);
     }
   };
-
-  let today = new Date();
-  console.log(today.toString());
 
   const data = {
     labels: [
@@ -76,11 +73,11 @@ const WorkoutBarChart = () => {
     ],
   };
 
-  const options = {};
+  const options = { responsive: true, maintainAspectRatio: false };
 
   return (
-    <div>
-      <Bar data={data} options={options}></Bar>
+    <div className='w-11/12 h-full'>
+      <Bar data={data} options={options} style={{}}></Bar>
     </div>
   );
 };
