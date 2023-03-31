@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../AuthContext';
 import { useDispatch, useSelector } from 'react-redux';
 import { removeUser } from '../slices/userSlice';
@@ -11,6 +11,8 @@ import { getDoc, doc } from 'firebase/firestore';
 import { db } from '../firebase';
 import { getAuth } from 'firebase/auth';
 import SuggestedWorkout from './SuggestedWorkout';
+import logo from '../logo/Fitbot2.png';
+import WorkoutBarChart from './WorkoutBarChart';
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -34,11 +36,22 @@ export default function Home() {
   const user = useSelector((state) => state.loggedInUser.loggedInUser);
 
   return (
-    <div>
-      <h1 className='text-5xl generatedResponse'>
+    <div className='h-screen'>
+      <h1 className='text-5xl h-1/6 flex justify-center items-center generatedResponse'>
         {user.firstName}'s Dashboard
       </h1>
-      <SuggestedWorkout />
+      <Link className='cornerLogo' to='/'>
+        <img width={70} src={logo} alt='FitBot' />
+      </Link>
+      <div className='calChartContainer'>
+        <div className='calContainerDiv'></div>
+        <div className='chartContainerDiv'>
+          <WorkoutBarChart />
+        </div>
+      </div>
+      <div className='h-1/2'>
+        <SuggestedWorkout />
+      </div>
       <button onClick={handleLogout} className='muscleGroupButton'>
         logout
       </button>
