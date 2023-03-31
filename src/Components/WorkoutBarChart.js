@@ -12,60 +12,74 @@ import { getAuth } from 'firebase/auth';
 import { db } from '../firebase';
 import { useState } from 'react';
 
-ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip, Legend);
+ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip);
 
 const WorkoutBarChart = () => {
-  const [jan, setJan] = useState(0);
-  const [feb, setFeb] = useState(3);
-  const [mar, setMar] = useState(10);
-  const [apr, setApr] = useState(20);
-  const [may, setMay] = useState(12);
-  const [jun, setJun] = useState(23);
-  const [jul, setJul] = useState(18);
-  const [aug, setAug] = useState(9);
-  const [sep, setSep] = useState(6);
-  const [oct, setOct] = useState(17);
-  const [nov, setNov] = useState(8);
-  const [dec, setDec] = useState(0);
+  const getWorkout = async (year, month) => {
+    var thisYear = year;
+    if (month < 10) {
+      var thisMonth = `0${month}`;
+      if (month === 9) {
+        var nextMonth = '10';
+      } else {
+        var nextMonth = `0${month + 1}`;
+      }
+    } else {
+      if (month === 11) {
+        thisYear = year + 1;
+        var nextMonth = '00';
+      } else {
+        var nextMonth = `${month + 1}`;
+      }
+      var thisMonth = `${month}`;
+    }
+    console.log(thisMonth, nextMonth);
+    console.log(thisYear);
 
-  const getWorkout = async () => {
     const myauth = getAuth();
-    const March = query(
+    const q = query(
       collection(db, 'workouts'),
-      where('date', '>=', new Date('2023-03-01')),
-      where('date', '<=', new Date('2023-03-31')),
+      where('date', '>=', new Date(thisYear, thisMonth)),
+      where('date', '<', new Date(thisYear, nextMonth)),
       where('userId', '==', myauth.currentUser.uid)
     );
+
     try {
-      const querySnapshot = await getDocs(March);
+      const querySnapshot = await getDocs(q);
       const workouts = querySnapshot.docs.length;
-      setMar(workouts);
+      values.push(workouts);
       return workouts;
     } catch (e) {
       console.log(e);
     }
   };
 
-  const data = {
-    labels: [
-      'Jan',
-      'Feb',
-      'Mar',
-      'Apr',
-      'May',
-      'Jun',
-      'Jul',
-      'Aug',
-      'Sept',
-      'Oct',
-      'Nov',
-      'Dec',
-    ],
+  const currentYear = new Date().getFullYear();
+  const months = [
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
+    'May',
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sept',
+    'Oct',
+    'Nov',
+    'Dec',
+  ];
+  const values = [];
+  months.forEach((month, i) => {
+    getWorkout(currentYear, i);
+  });
 
+  const data = {
+    labels: months,
     datasets: [
       {
         label: 'workoutCount',
-        data: [jan, feb, mar, apr, may, jun, jul, aug, sep, oct, nov, dec],
+        data: values,
         backgroundColor: '#A7FF37',
         borderColor: '#green',
         borderWidth: 1,
@@ -74,7 +88,7 @@ const WorkoutBarChart = () => {
   };
 
   const options = { responsive: true, maintainAspectRatio: false };
-
+  console.log(values);
   return (
     <div className='w-11/12 h-full'>
       <Bar data={data} options={options} style={{}}></Bar>
