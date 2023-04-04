@@ -49,8 +49,15 @@ export default function Home() {
           <WorkoutBarChart />
         </div>
       </div>
-      <div className='h-1/2'>
-        <SuggestedWorkout />
+      <div className='flex justify-evenly items-center'>
+        <div className='h-1/2'>
+          <SuggestedWorkout />
+        </div>
+        <Link to='/intensity'>
+          <button className='regenerateWorkout w-2/3 p-6'>
+            Go to custom workout generator
+          </button>
+        </Link>
       </div>
       <button onClick={handleLogout} className='muscleGroupButton'>
         logout

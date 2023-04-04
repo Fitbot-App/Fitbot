@@ -40,13 +40,6 @@ export default function LandingPage() {
           Login / Sign Up
         </button>
       </div>
-      {/* <div className='landingIconsContainer'>
-          <div className='landingIcons'>
-            <FaRunning color='#A7FF37' size='96' />
-            <IoIosFitness color='#A7FF37' size='96' />
-            <FaSwimmer color='#A7FF37' size='96' />
-          </div>
-        </div> */}
     </div>
   );
 }

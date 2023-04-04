@@ -65,7 +65,7 @@ const Finalize = () => {
     setTimeout(() => {
       setSavedLoading(false);
       setSaved(true);
-    }, 3000);
+    }, 1500);
     await addDoc(collection(db, 'workouts'), {
       userId: myauth.currentUser.uid,
       workout: response,
@@ -169,18 +169,19 @@ const Finalize = () => {
                     }
                   });
                 })}
-                {loggedInUser.email && saved ? (
-                  <h2 className='savedMessage'>Workout Saved!</h2>
-                ) : savedLoading ? (
-                  <BeatLoader className='beatLoader' color='#FF3767' />
-                ) : (
-                  <button
-                    className='equipmentSkipButton'
-                    onClick={handleSaveWorkout}
-                  >
-                    Save Workout
-                  </button>
-                )}
+                {loggedInUser.email &&
+                  (savedLoading ? (
+                    <BeatLoader className='beatLoader' color='#FF3767' />
+                  ) : saved ? (
+                    <h1 className='savedMessage'>Workout Saved!</h1>
+                  ) : (
+                    <button
+                      className='equipmentSkipButton'
+                      onClick={handleSaveWorkout}
+                    >
+                      Save Workout
+                    </button>
+                  ))}
               </div>
             )
           ) : (

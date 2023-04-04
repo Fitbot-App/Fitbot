@@ -5,10 +5,12 @@ import { limit } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import GenerateWorkout from './GenerateWorkout';
+import { Link } from 'react-router-dom';
 
 const SuggestedWorkout = () => {
   const [suggestedWorkout, setSuggestedWorkout] = useState('');
   const [latestWorkout, setLatestWorkout] = useState('');
+  const [recentDate, setRecentDate] = useState('');
 
   const getWorkout = async () => {
     const myauth = getAuth();
@@ -22,6 +24,10 @@ const SuggestedWorkout = () => {
     try {
       const querySnapshot = await getDocs(q);
       const latestWorkout = querySnapshot.docs[0].data().workout;
+      const date = querySnapshot.docs[0].data().date.toDate();
+      setRecentDate(
+        `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`
+      );
       setLatestWorkout(latestWorkout);
       const res = await axios.post('http://localhost:3001/suggestedWorkout', {
         prompt: `Generate a new workout that exercises different muscle groups from the workout I did yesterday.
@@ -55,7 +61,7 @@ const SuggestedWorkout = () => {
     <div className='flex h-full'>
       <div className='suggestedWorkoutDiv'>
         <h1 className='pickExerciseTitle generatedResponse'>
-          Yesterdays Workout
+          {`Your Most Recent Workout (${recentDate})`}
         </h1>
         <div className='generatedResponse'>
           {latestWorkout &&
@@ -75,14 +81,11 @@ const SuggestedWorkout = () => {
         </div>
       </div>
       <div className='suggestedWorkoutDiv'>
-        <div className='flex'>
+        <div className='flex justify-between'>
           <h1 className='pickExerciseTitle generatedResponse'>
-            Suggested Workout
+            Today's Suggested Workout
           </h1>
-          <button
-            className='regenerateWorkout absolute right-10'
-            onClick={getWorkout}
-          >
+          <button className='regenerateWorkout' onClick={getWorkout}>
             Regenerate Workout
           </button>
         </div>
