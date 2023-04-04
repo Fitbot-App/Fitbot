@@ -763,5 +763,11 @@ margin: 15px;
   padding: 20px;
   border: 3px solid #A7FF37;
   border-radius: 32px;
-  background-color: #000000;
+  background-color: black;
+}
+
+
+.Mui-selected-custom:focus {
+  background-color: #A7FF37;
+  color: 'black';
 }
