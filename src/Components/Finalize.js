@@ -9,6 +9,8 @@ import Skeleton from '@mui/material/Skeleton';
 import { serverTimestamp, addDoc, collection } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
 import { db } from '../firebase';
+import { BeatLoader } from 'react-spinners';
+import { toHaveFormValues } from '@testing-library/jest-dom/dist/matchers';
 
 const Finalize = () => {
   const exercises = useSelector((state) => state.exercises.exercises);
@@ -18,6 +20,8 @@ const Finalize = () => {
   const [response, setResponse] = useState([]);
   const [finalized, setFinalized] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [savedLoading, setSavedLoading] = useState(false);
+  const [saved, setSaved] = useState(false);
 
   const handleSubmit = async (e) => {
     setLoading(true);
@@ -55,7 +59,13 @@ const Finalize = () => {
   };
 
   const myauth = getAuth();
+
   const handleSaveWorkout = async () => {
+    setSavedLoading(true);
+    setTimeout(() => {
+      setSavedLoading(false);
+      setSaved(true);
+    }, 3000);
     await addDoc(collection(db, 'workouts'), {
       userId: myauth.currentUser.uid,
       workout: response,
@@ -159,7 +169,11 @@ const Finalize = () => {
                     }
                   });
                 })}
-                {loggedInUser.email && (
+                {loggedInUser.email && saved ? (
+                  <h2 className='savedMessage'>Workout Saved!</h2>
+                ) : savedLoading ? (
+                  <BeatLoader className='beatLoader' color='#FF3767' />
+                ) : (
                   <button
                     className='equipmentSkipButton'
                     onClick={handleSaveWorkout}
@@ -186,7 +200,7 @@ const Finalize = () => {
               <div className='equipmentSkipButtonContainer'>
                 <div>
                   <input
-                    className='equipmentSelector generatedResponse'
+                    className='finalizeDuration generatedResponse'
                     placeholder='duration . . .'
                     value={duration}
                     onChange={(e) => setDuration(e.target.value)}

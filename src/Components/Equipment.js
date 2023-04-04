@@ -8,15 +8,35 @@ import { FaMinusCircle } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { setEquipment, removeEquipment } from '../slices/equipmentSlice';
 import logo from '../logo/Fitbot2.png';
+import Select from 'react-select';
+import Creatable from 'react-select/creatable';
 
 const Equipment = () => {
   const equipment = useSelector((state) => state.equipment.equipment);
   const [equipmentInput, setEquipmentInput] = useState('');
+  const [selectedOption, setSelectedOption] = useState(null);
   const [error, setError] = useState('');
   const dispatch = useDispatch();
 
-  function handleChange(e) {
-    setEquipmentInput(e.target.value);
+  const equipmentArray = [
+    'kettle bell',
+    'medicine ball',
+    'barbell',
+    'weight plates',
+    'dumbells',
+    'jump rope',
+    'elliptical',
+    'pull up bar',
+    'rowing machine',
+    'stationary bike',
+    'ski erg',
+    'ankle wights',
+  ];
+  const options = equipmentArray.map((opt) => ({ label: opt, value: opt }));
+
+  function handleChange(opt) {
+    setSelectedOption(opt);
+    setEquipmentInput(opt.value);
   }
 
   function handleRemove(item) {
@@ -28,8 +48,13 @@ const Equipment = () => {
       setError('Please enter an item of equipment');
       return;
     }
+    if (equipment.includes(equipmentInput)) {
+      setError('Item already selected');
+      return;
+    }
     setError('');
     dispatch(setEquipment(equipmentInput));
+    setSelectedOption(null);
     setEquipmentInput('');
   }
 
@@ -58,13 +83,14 @@ const Equipment = () => {
           <div>
             <h2 className='title mt-5'>Enter your equipment</h2>
             <div className='flex items-center justify-center mt-5'>
-              <input
-                className='equipmentSelector generatedResponse'
+              <Creatable
+                className='creatable generatedResponse'
+                options={options}
                 onChange={handleChange}
                 onKeyDown={handleKeypress}
-                value={equipmentInput}
-                placeholder='type an item of equipment . . .'
-              ></input>
+                value={selectedOption}
+                placeholder='Select an item...'
+              />
               <button
                 className='muscleGroupButton'
                 onClick={handleSetEquipment}
@@ -78,9 +104,9 @@ const Equipment = () => {
               </p>
             )}
             <div className='grid grid-cols-3 items-center m-5'>
-              {equipment.map((item) => {
+              {equipment.map((item, i) => {
                 return (
-                  <span className='equipmentItem'>
+                  <span className='equipmentItem' key={i}>
                     {item}
                     <button onClick={() => handleRemove(item)}>
                       <FaMinusCircle
