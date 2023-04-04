@@ -7,12 +7,10 @@ import { persistor } from '../app/store';
 import { clearExercises } from '../slices/chosenExercisesSlice';
 import { clearEquipment } from '../slices/equipmentSlice';
 import { clearIntensity } from '../slices/intensitySlice';
-import { getDoc, doc } from 'firebase/firestore';
-import { db } from '../firebase';
-import { getAuth } from 'firebase/auth';
 import SuggestedWorkout from './SuggestedWorkout';
 import logo from '../logo/Fitbot2.png';
 import WorkoutBarChart from './WorkoutBarChart';
+import Calendar from './Calendar';
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -34,7 +32,6 @@ export default function Home() {
   };
 
   const user = useSelector((state) => state.loggedInUser.loggedInUser);
-
   return (
     <div className='dashboardContainer'>
       <h1 className='text-5xl p-4 flex justify-center items-center generatedResponse'>
@@ -44,7 +41,9 @@ export default function Home() {
         <img width={70} src={logo} alt='FitBot' />
       </Link>
       <div className='calChartContainer'>
-        <div className='calContainerDiv'></div>
+        <div className='calContainerDiv bg-black'>
+          <Calendar />
+        </div>
         <div className='chartContainerDiv'>
           <WorkoutBarChart />
         </div>

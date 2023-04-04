@@ -4,7 +4,6 @@ import { db } from '../firebase';
 import { limit } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import GenerateWorkout from './GenerateWorkout';
 
 const SuggestedWorkout = () => {
   const [suggestedWorkout, setSuggestedWorkout] = useState('');
@@ -59,8 +58,8 @@ const SuggestedWorkout = () => {
         </h1>
         <div className='generatedResponse'>
           {latestWorkout &&
-            latestWorkout.map((part, i) => {
-              return part.split(':').map((item) => {
+            latestWorkout.map((part) => {
+              return part.split(':').map((item, i) => {
                 if (item.includes('Warm-Up') || item.includes('Part')) {
                   return (
                     <div key={i} className='font-bold text-xl pt-6'>
@@ -89,11 +88,15 @@ const SuggestedWorkout = () => {
         <div className='generatedResponse'>
           {suggestedWorkout &&
             suggestedWorkout.map((part) => {
-              return part.split(':').map((item) => {
+              return part.split(':').map((item, i) => {
                 if (item.includes('Warm-Up') || item.includes('Part')) {
-                  return <div className='font-bold text-xl pt-6'>{item}</div>;
+                  return (
+                    <div key={i} className='font-bold text-xl pt-6'>
+                      {item}
+                    </div>
+                  );
                 } else {
-                  return <li>{item}</li>;
+                  return <li key={i}>{item}</li>;
                 }
               });
             })}
