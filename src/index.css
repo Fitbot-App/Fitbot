@@ -27,6 +27,7 @@ body {
 
 #error {
   color: #FF3767;
+  font-family: Contrail One;;
 }
 
 .rightArrowIntensity {
@@ -577,17 +578,15 @@ color: #A7FF37;
   box-shadow: 0 0 2px #fff, 0 0 5px #A7FF37, 0 0 7px #A7FF37, 0 0 10px #A7FF37
 }
 
-.equipmentSelector {
+.creatable {
   padding-left: 10px;
   padding-right: 10px;
   margin: 10px;
-  border-radius: 3rem;
   height: 36px;
-  background-color: rgb(37, 37, 37);
-  border: solid #A7FF37;
   text-align: center;
-  width: 40%;
-}
+  color: black;
+} 
+
 
 .equipmentSkipButton{
   font-family: Contrail One;
@@ -633,7 +632,18 @@ color: #A7FF37;
   background-image: url("https://images.squarespace-cdn.com/content/v1/5d07f87f8ac0bf00019389a4/1638220970423-8M3TQBPVVO1PJ559SEFP/TN_Website_Bench.jpg?format=2500w");
     }
     
-
+.finalizeDuration {
+  padding-left: 10px;
+  padding-right: 10px;
+  margin: 10px;
+  border-radius: 3rem;
+  height: 36px;
+  background-color: rgb(37, 37, 37);
+  border: solid #A7FF37;
+  text-align: center;
+  color: #A7FF37;
+  width: 40%;
+}
 
 .finalizeResponseContainer{
     position: absolute;
@@ -663,6 +673,17 @@ color: #A7FF37;
   display: flex;
   flex-direction: column;
   color: #A7FF37;
+}
+
+.savedMessage{
+    font-family: Contrail One;
+    color: #FF3767;
+    font-size: 20px;
+    margin: 15px;
+}
+
+.beatLoader{
+margin: 15px;
 }
 
 /* Finalize Page */

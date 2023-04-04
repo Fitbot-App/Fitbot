@@ -6,9 +6,11 @@ import { setExercises } from '../slices/chosenExercisesSlice';
 import Box from '@mui/material/Box';
 import Skeleton from '@mui/material/Skeleton';
 import { IoMdAddCircle } from 'react-icons/io';
+import Creatable from 'react-select/creatable';
 
 function GenerateWorkout() {
-  const [selectedOption, setSelectedOption] = useState('none');
+  const [selectedOption, setSelectedOption] = useState(null);
+  const [muscleGroup, setMuscleGroup] = useState('');
   const [response, setResponse] = useState([]);
   const [loading, setLoading] = useState(false);
   const [selectedNone, setSelectedNone] = useState(false);
@@ -21,7 +23,8 @@ function GenerateWorkout() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (selectedOption === 'none') {
+    console.log(muscleGroup.length);
+    if (muscleGroup.length == 0) {
       setSelectedNone(true);
       return;
     }
@@ -29,9 +32,9 @@ function GenerateWorkout() {
     setLoading(true);
     try {
       const res = await axios.post('http://localhost:3001/generateWorkout', {
-        prompt: `My experience level with fitness is ${experience}. I am looking for a ${intensity} workout. 
+        prompt: `Do not include numbers or periods in the response to the following question - My experience level with fitness is ${experience}. I am looking for a ${intensity} workout. 
         I have access to the following equipment: ${equipment.join(', ')}.
-        Can you give me six exercises for my ${selectedOption}. Do not number the exercises. Include at least two calisthenic exercises. 
+        Can you give me six exercise names for my ${muscleGroup}? Do not number the exercises. Include at least two calisthenic exercises. 
         The format of the response should be a list of just the exercise names with a colon 
         after each exercise expcept for the last. Here's an example "Crunches:".`,
       });
@@ -51,6 +54,22 @@ function GenerateWorkout() {
     );
   }
 
+  function handleChange(opt) {
+    setSelectedOption(opt);
+    setMuscleGroup(opt.value);
+  }
+
+  const muscleGroupArray = [
+    'back',
+    'core',
+    'chest',
+    'legs',
+    'arms',
+    'shoulders',
+    'cardio',
+  ];
+  const options = muscleGroupArray.map((opt) => ({ label: opt, value: opt }));
+
   return (
     <div>
       <form className='muscleGroupForm' onSubmit={handleSubmit}>
@@ -58,25 +77,14 @@ function GenerateWorkout() {
           Choose Muscle Groups
         </h1>
         <div className='flex items-center'>
-          <select
-            className='muscleGroupSelector generatedResponse'
+          <Creatable
+            className='creatable generatedResponse'
+            options={options}
+            onChange={handleChange}
             value={selectedOption}
-            onChange={(e) => setSelectedOption(e.target.value)}
-          >
-            <option value='none'>Select an option</option>
-            <option value='back'>Back</option>
-            <option value='core'>Core</option>
-            <option value='chest'>Chest</option>
-            <option value='legs'>Legs</option>
-            <option value='arms'>Arms</option>
-            <option value='shoulders'>Shoulders</option>
-            <option value='cardio'>Cardio</option>
-          </select>
-          <button
-            className='muscleGroupButton'
-            type='submit'
-            disabled={!selectedOption}
-          >
+            placeholder={'Select an item...'}
+          />
+          <button className='muscleGroupButton' type='submit'>
             {response.length === 0 ? 'Generate' : 'Regenerate'}
           </button>
         </div>
