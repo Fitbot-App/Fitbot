@@ -32,9 +32,8 @@ function GenerateWorkout() {
     setLoading(true);
     try {
       const res = await axios.post('http://localhost:3001/generateWorkout', {
-        prompt: `Do not include numbers or periods in the response to the following question - My experience level with fitness is ${experience}. I am looking for a ${intensity} workout. 
+        prompt: `Do not include numbers or periods in the response to the following question. What are six exercises to target my ${muscleGroup}? 
         I have access to the following equipment: ${equipment.join(', ')}.
-        Can you give me six exercise names for my ${muscleGroup}? Do not number the exercises. Include at least two calisthenic exercises. 
         The format of the response should be a list of just the exercise names with a colon 
         after each exercise expcept for the last. Here's an example "Crunches:".`,
       });

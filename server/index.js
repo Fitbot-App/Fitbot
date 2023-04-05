@@ -19,7 +19,7 @@ app.post('/generateWorkout', async (req, res) => {
     model: 'text-davinci-003',
     prompt: prompt,
     max_tokens: 200,
-    temperature: 0.85,
+    temperature: 0.65,
   });
   res.send(completion.data.choices[0].text);
 });
@@ -30,7 +30,7 @@ app.post('/finalize', async (req, res) => {
     model: 'text-davinci-003',
     prompt: prompt,
     max_tokens: 200,
-    temperature: 0.85,
+    temperature: 0.65,
   });
   res.send(completion.data.choices[0].text);
 });

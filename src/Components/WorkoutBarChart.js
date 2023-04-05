@@ -100,6 +100,9 @@ const WorkoutBarChart = () => {
     scales: {
       y: {
         ticks: { color: '#A7FF37' },
+        min: 0,
+        max: 40,
+        stepSize: 5,
       },
       x: {
         ticks: { color: '#A7FF37' },
