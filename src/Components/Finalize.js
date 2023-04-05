@@ -28,7 +28,7 @@ const Finalize = () => {
     setLoading(true);
     setFinalized(true);
     try {
-      const res = await axios.post('http://localhost:3001/finalize', {
+      const res = await axios.post('/finalize', {
         prompt: `Can you generate a workout with the following exercises: ${exercises.join(
           ', '
         )} that will take around ${
