@@ -8,8 +8,9 @@ import { FaMinusCircle } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { setEquipment, removeEquipment } from '../slices/equipmentSlice';
 import logo from '../logo/Fitbot2.png';
-import Select from 'react-select';
 import Creatable from 'react-select/creatable';
+import { useAuth } from '../AuthContext';
+import Account from './Account';
 
 const Equipment = () => {
   const equipment = useSelector((state) => state.equipment.equipment);
@@ -64,6 +65,8 @@ const Equipment = () => {
     }
   };
 
+  const user = useAuth();
+
   return (
     <div className='equipmentContainer'>
       <div className='equipmentTransparentOverlay' />
@@ -71,6 +74,11 @@ const Equipment = () => {
       <Link className='cornerLogo' to='/'>
         <img width={70} src={logo} alt='FitBot' />
       </Link>
+      {user.currentUser && (
+        <div className='flex absolute top-6 left-6 z-20'>
+          <Account />
+        </div>
+      )}
       <div className='equipmentDivsContainer'>
         <Link to='/intensity'>
           <MdKeyboardDoubleArrowLeft

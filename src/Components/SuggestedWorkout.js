@@ -4,17 +4,17 @@ import { db } from '../firebase';
 import { limit } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import GenerateWorkout from './GenerateWorkout';
 import Box from '@mui/material/Box';
 import Skeleton from '@mui/material/Skeleton';
 
 const SuggestedWorkout = () => {
   const [suggestedWorkout, setSuggestedWorkout] = useState('');
+  const [loading, setLoading] = useState(false);
   const [latestWorkout, setLatestWorkout] = useState('');
   const [recentDate, setRecentDate] = useState('');
 
   const getWorkout = async () => {
-    setSuggestedWorkout('');
+    setLoading(true);
     const myauth = getAuth();
     const q = query(
       collection(db, 'workouts'),
@@ -44,19 +44,18 @@ const SuggestedWorkout = () => {
       cleanedResponse = cleanedResponse.split(';');
       cleanedResponse = cleanedResponse.filter((el) => el !== '');
       setSuggestedWorkout(cleanedResponse);
-      console.log(suggestedWorkout);
     } catch (error) {
       console.error(error);
     }
+    setLoading(false);
   };
 
   useEffect(() => {
     getWorkout();
-    console.log('USE EFFECT RAN');
   }, []);
 
   return (
-    <div className='flex h-full'>
+    <div className='flex h-full justify-between'>
       <div className='suggestedWorkoutDiv'>
         <h1 className='pickExerciseTitle generatedResponse'>
           {`Your Most Recent Workout (${recentDate})`}
@@ -87,7 +86,7 @@ const SuggestedWorkout = () => {
             Regenerate Workout
           </button>
         </div>
-        {suggestedWorkout.length < 1 ? (
+        {loading ? (
           <Box>
             <Skeleton
               style={{

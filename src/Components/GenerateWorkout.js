@@ -23,8 +23,7 @@ function GenerateWorkout() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(muscleGroup.length);
-    if (muscleGroup.length == 0) {
+    if (muscleGroup.length === 0) {
       setSelectedNone(true);
       return;
     }

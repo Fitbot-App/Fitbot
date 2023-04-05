@@ -10,7 +10,8 @@ import { serverTimestamp, addDoc, collection } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
 import { db } from '../firebase';
 import { BeatLoader } from 'react-spinners';
-import { toHaveFormValues } from '@testing-library/jest-dom/dist/matchers';
+import Account from './Account';
+import { useAuth } from '../AuthContext';
 
 const Finalize = () => {
   const exercises = useSelector((state) => state.exercises.exercises);
@@ -52,10 +53,8 @@ const Finalize = () => {
         `,
       });
       let cleanedResponse = res.data.replace(/^\./, '');
-      console.log(cleanedResponse);
       cleanedResponse = cleanedResponse.split(';');
       cleanedResponse = cleanedResponse.filter((el) => el !== '');
-      console.log(cleanedResponse);
       setResponse(cleanedResponse);
       setLoading(false);
     } catch (error) {
@@ -64,6 +63,7 @@ const Finalize = () => {
   };
 
   const myauth = getAuth();
+  const user = useAuth();
 
   const handleSaveWorkout = async () => {
     setSavedLoading(true);
@@ -85,6 +85,11 @@ const Finalize = () => {
       <Link className='cornerLogo' to='/'>
         <img width={70} src={logo} alt='FitBot' />
       </Link>
+      {user.currentUser && (
+        <div className='flex absolute top-6 left-6 z-20'>
+          <Account />
+        </div>
+      )}
       <div className='finalizeResponseContainer'>
         <Link to='/pickExercise'>
           <MdKeyboardDoubleArrowLeft

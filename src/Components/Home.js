@@ -1,37 +1,15 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { useAuth } from '../AuthContext';
-import { useDispatch, useSelector } from 'react-redux';
-import { removeUser } from '../slices/userSlice';
-import { persistor } from '../app/store';
-import { clearExercises } from '../slices/chosenExercisesSlice';
-import { clearEquipment } from '../slices/equipmentSlice';
-import { clearIntensity } from '../slices/intensitySlice';
+import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import SuggestedWorkout from './SuggestedWorkout';
 import logo from '../logo/Fitbot2.png';
 import WorkoutBarChart from './WorkoutBarChart';
 import Calendar from './Calendar';
+import Account from './Account';
 
 export default function Home() {
-  const dispatch = useDispatch();
-
-  const navigate = useNavigate();
-  const { logout } = useAuth();
-  const handleLogout = async () => {
-    try {
-      await logout();
-      persistor.purge();
-      dispatch(removeUser());
-      dispatch(clearExercises());
-      dispatch(clearEquipment());
-      dispatch(clearIntensity());
-      navigate('/');
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   const user = useSelector((state) => state.loggedInUser.loggedInUser);
+
   return (
     <div className='dashboardContainer'>
       <h1 className='text-5xl p-4 flex justify-center items-center generatedResponse'>
@@ -48,19 +26,12 @@ export default function Home() {
           <WorkoutBarChart />
         </div>
       </div>
-      <div className='flex justify-around items-center'>
-        <div className='h-2/3'>
-          <SuggestedWorkout />
-        </div>
-        <Link to='/intensity' className='text-center'>
-          <button className='regenerateWorkout w-2/3 p-6'>
-            Go to custom workout generator
-          </button>
-        </Link>
+      <div className='h-2/3'>
+        <SuggestedWorkout />
       </div>
-      <button onClick={handleLogout} className='muscleGroupButton'>
-        logout
-      </button>
+      <div className='flex absolute top-6 left-6'>
+        <Account buildWorkout={true} />
+      </div>
     </div>
   );
 }

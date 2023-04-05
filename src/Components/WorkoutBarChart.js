@@ -49,7 +49,6 @@ const WorkoutBarChart = () => {
       thisMonth = `${month}`;
     }
 
-    console.log('hello');
     const myauth = getAuth();
     const q = query(
       collection(db, 'workouts'),
@@ -67,7 +66,6 @@ const WorkoutBarChart = () => {
     }
   };
 
-  const currentYear = new Date().getFullYear();
   const months = [
     'Jan',
     'Feb',

@@ -724,10 +724,10 @@ margin: 15px;
 /* Home Page */
 
 .dashboardContainer{
-
-      background: radial-gradient(circle at center,#000000, #2c63fc );
-      background-size: 400% 400%;
-      animation: gradient 20s ease infinite;
+  padding: 30px;
+  background: radial-gradient(circle at center,#000000, #2c63fc );
+  background-size: 400% 400%;
+  animation: gradient 20s ease infinite;
 }
     @keyframes gradient {
       0% {
@@ -747,7 +747,6 @@ margin: 15px;
 .calChartContainer {
   display: grid;
   grid-template-columns: 1fr 2fr;
-  padding: 10px;
 }
 
 .chartContainerDiv {
