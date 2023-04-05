@@ -7,12 +7,12 @@ import {
 } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 import logo from '../logo/Fitbot2.png';
+import { useAuth } from '../AuthContext';
+import Account from './Account';
 
 const Intensity = () => {
   const intensity = useSelector((state) => state.intensity.intensity);
   const experience = useSelector((state) => state.intensity.experience);
-  console.log(intensity);
-  console.log(experience);
   const dispatch = useDispatch();
 
   const handleExperienceClick = (e) => {
@@ -23,6 +23,8 @@ const Intensity = () => {
     dispatch(setIntensity(e.target.value));
   };
 
+  const user = useAuth();
+
   return (
     <div className='intensityContainer'>
       <div className='intensityTransparentOverlay' />
@@ -32,6 +34,11 @@ const Intensity = () => {
         <img width={70} src={logo} alt='FitBot' className='cornerLogo' />
       </Link>
       <div className='intensityDivsContainer'>
+        {user.currentUser && (
+          <div className='flex absolute top-6 left-6 z-20'>
+            <Account />
+          </div>
+        )}
         <Link to='/'>
           <MdKeyboardDoubleArrowLeft
             className='leftArrowIntensity'
