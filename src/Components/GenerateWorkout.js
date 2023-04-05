@@ -7,6 +7,7 @@ import Box from '@mui/material/Box';
 import Skeleton from '@mui/material/Skeleton';
 import { IoMdAddCircle } from 'react-icons/io';
 import Creatable from 'react-select/creatable';
+import host from '../utils/host';
 
 function GenerateWorkout() {
   const [selectedOption, setSelectedOption] = useState(null);
@@ -15,8 +16,6 @@ function GenerateWorkout() {
   const [loading, setLoading] = useState(false);
   const [selectedNone, setSelectedNone] = useState(false);
 
-  const experience = useSelector((state) => state.intensity.experience);
-  const intensity = useSelector((state) => state.intensity.intensity);
   const equipment = useSelector((state) => state.equipment.equipment);
 
   const dispatch = useDispatch();
@@ -29,11 +28,11 @@ function GenerateWorkout() {
     }
     setSelectedNone(false);
     setLoading(true);
+
     try {
-      const res = await axios.post('/generateWorkout', {
-        prompt: `Do not include numbers or periods in the response to the following question - My experience level with fitness is ${experience}. I am looking for a ${intensity} workout. 
+      const res = await axios.post(`${host}/generateWorkout`, {
+        prompt: `Do not include numbers or periods in the response to the following question. What are six exercises to target my ${muscleGroup}? 
         I have access to the following equipment: ${equipment.join(', ')}.
-        Can you give me six exercise names for my ${muscleGroup}? Do not number the exercises. Include at least two calisthenic exercises. 
         The format of the response should be a list of just the exercise names with a colon 
         after each exercise expcept for the last. Here's an example "Crunches:".`,
       });
@@ -60,11 +59,20 @@ function GenerateWorkout() {
 
   const muscleGroupArray = [
     'back',
-    'core',
+    'abs',
     'chest',
-    'legs',
-    'arms',
+    'quads',
+    'hamstrings',
+    'calves',
+    'biceps',
+    'triceps',
+    'traps',
+    'forearms',
+    'lower back',
+    'upper back',
+    'neck',
     'shoulders',
+    'glutes',
     'cardio',
   ];
   const options = muscleGroupArray.map((opt) => ({ label: opt, value: opt }));

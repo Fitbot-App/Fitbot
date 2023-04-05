@@ -19,7 +19,7 @@ app.post('/generateWorkout', async (req, res) => {
     model: 'text-davinci-003',
     prompt: prompt,
     max_tokens: 200,
-    temperature: 0.85,
+    temperature: 0.65,
   });
   res.send(completion.data.choices[0].text);
 });
@@ -30,7 +30,7 @@ app.post('/finalize', async (req, res) => {
     model: 'text-davinci-003',
     prompt: prompt,
     max_tokens: 200,
-    temperature: 0.85,
+    temperature: 0.65,
   });
   res.send(completion.data.choices[0].text);
 });
@@ -49,7 +49,8 @@ app.post('/suggestedWorkout', async (req, res) => {
 
 // Start the server ////////////////////
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3001;
+
 app.listen(port, () => {
   console.log(`Server listening on port ${port}`);
   console.log(`http://localhost:${port}`);

@@ -12,10 +12,13 @@ import { db } from '../firebase';
 import { BeatLoader } from 'react-spinners';
 import Account from './Account';
 import { useAuth } from '../AuthContext';
+import host from '../utils/host';
 
 const Finalize = () => {
   const exercises = useSelector((state) => state.exercises.exercises);
   const loggedInUser = useSelector((state) => state.loggedInUser.loggedInUser);
+  const experience = useSelector((state) => state.intensity.experience);
+  const intensity = useSelector((state) => state.intensity.intensity);
 
   const [duration, setDuration] = useState('');
   const [response, setResponse] = useState([]);
@@ -23,22 +26,21 @@ const Finalize = () => {
   const [loading, setLoading] = useState(false);
   const [savedLoading, setSavedLoading] = useState(false);
   const [saved, setSaved] = useState(false);
-
   const handleSubmit = async (e) => {
     setLoading(true);
     setFinalized(true);
     try {
-      const res = await axios.post('/finalize', {
-        prompt: `Can you generate a workout with the following exercises: ${exercises.join(
-          ', '
-        )} that will take around ${
+      const res = await axios.post(`${host}/finalize`, {
+        prompt: `My experience level with fitness is ${experience}. I am looking for a ${intensity} workout. Can you generate a ${
           duration || '60'
-        } minutes to complete. Each exercise should only be used once in the entire workout. Duration should affect the amount of sets and reps per exercise. 
+        } minute workout that includes each of the following exercises only once: ${exercises.join(
+          ', '
+        )}. 
         The workout should always include a warmup that consists of easy calisthenics that will warm up the muscles used in these exercises: ${exercises.join(
           ', '
-        )} and easy cardio. 
+        )} and easy cardio. Do not include a cool down.
         The rest of the workout should be seperated into multiple parts with 1 to 4 excersises per part.
-         Here's an example of how the response should be formated - 
+        Here's an example of how the response should be formated - 
         Warm-Up: exercise (sets x reps); exercise (sets x reps); exercise (sets x reps); 
         Part-1: exercise (sets x reps); exercise (sets x reps); exercise (sets x reps); 
         ${
@@ -78,6 +80,7 @@ const Finalize = () => {
     });
   };
 
+  console.log(host);
   return (
     <div className='finalizeContainer'>
       <div className='equipmentTransparentOverlay' />
@@ -171,7 +174,11 @@ const Finalize = () => {
                 <div className='generatedResponse w-1/2 flex flex-col items-start'>
                   {response.map((part) => {
                     return part.split(':').map((item) => {
-                      if (item.includes('Warm-Up') || item.includes('Part')) {
+                      if (
+                        item.includes('Warm-Up') ||
+                        item.includes('Part') ||
+                        item.includes('Cool-Down')
+                      ) {
                         return (
                           <div className='font-bold text-xl pt-6 text-center'>
                             {item}
