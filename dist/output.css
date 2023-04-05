@@ -637,14 +637,14 @@ body {
   padding: 20px;
   margin-left: 5rem;
   margin-right: 5rem;
-  border: 5px solid #FF3767;
+  border: 5px solid #2c63fc;
   border-radius: 3rem;
   background-color: black;
   color: #A7FF37;
 }
 
 .landingButton:hover {
-  background-color: #FF3767;
+  background-color: #2c63fc;
   color: #A7FF37;
 }
 
@@ -659,7 +659,7 @@ body {
 
 .loginForm {
   height: 65vh;
-  border: 5px solid #FF3767;
+  border: 5px solid #2c63fc;
   width: 30%;
   display: flex;
   flex-direction: column;
@@ -745,14 +745,14 @@ body {
   margin: 3px;
   font-family: Contrail One;
   background-color: black;
-  color: #FF3767;
-  border: 2px solid #FF3767;
+  color: #2c63fc;
+  border: 2px solid #2c63fc;
   border-radius: 3rem;
   font-size: 20px;
 }
 
 .xButton:hover {
-  background-color: #FF3767;
+  background-color: #2c63fc;
   color: black;
 }
 
@@ -923,7 +923,7 @@ body {
   margin-left: 45px;
   margin-bottom: 10px;
   background-color: black;
-  border: 3px solid #FF3767;
+  border: 3px solid #2c63fc;
   border-radius: 32px;
   font-family: 'Contrail One';
   font-style: normal;
@@ -935,14 +935,14 @@ body {
 }
 
 .experienceBeginner:hover {
-  background-color: #FF3767;
+  background-color: #2c63fc;
   color: black;
 }
 
 /* .experienceBeginner:focus {
   background-color: black;
-  color: #FF3767;
-  box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #FF3767;
+  color: #2c63fc;
+  box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #2c63fc;
 } */
 
 .selectedIntensity {
@@ -951,7 +951,7 @@ body {
   height: 80px;
   margin-left: 45px;
   margin-bottom: 10px;
-  border: 3px solid #FF3767;
+  border: 3px solid #2c63fc;
   border-radius: 32px;
   font-family: 'Contrail One';
   font-style: normal;
@@ -960,8 +960,8 @@ body {
   line-height: 38px;
   text-align: center;
   background-color: black;
-  color: #FF3767;
-  box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #FF3767;
+  color: #2c63fc;
+  box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #2c63fc;
 }
 
 .selectedExperience {
@@ -970,7 +970,7 @@ body {
   height: 80px;
   margin-left: 45px;
   margin-bottom: 10px;
-  border: 3px solid #FF3767;
+  border: 3px solid #2c63fc;
   border-radius: 32px;
   font-family: 'Contrail One';
   font-style: normal;
@@ -979,8 +979,8 @@ body {
   line-height: 38px;
   text-align: center;
   background-color: black;
-  color: #FF3767;
-  box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #FF3767;
+  color: #2c63fc;
+  box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #2c63fc;
 }
 
 .experienceIntermediate{
@@ -992,7 +992,7 @@ body {
   margin-left: 45px;
   margin-bottom: 10px;
   background-color: black;
-  border: 3px solid #FF3767;
+  border: 3px solid #2c63fc;
   border-radius: 32px;
   font-family: 'Contrail One';
   font-style: normal;
@@ -1004,14 +1004,14 @@ body {
 }
 
 .experienceIntermediate:hover {
-  background-color: #FF3767;
+  background-color: #2c63fc;
   color: black;
 }
 
 .experienceIntermediate:focus {
   background-color: rgb(55, 47, 47);
-  color: #FF3767;
-  box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #FF3767;
+  color: #2c63fc;
+  box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #2c63fc;
 }
 
 .experienceAdvanced{
@@ -1022,7 +1022,7 @@ body {
   top: 615px;
   margin-left: 45px;
   background-color: black;
-  border: 3px solid #FF3767;
+  border: 3px solid #2c63fc;
   border-radius: 32px;
   font-family: 'Contrail One';
   font-style: normal;
@@ -1034,14 +1034,14 @@ body {
 }
 
 .experienceAdvanced:hover {
-  background-color: #FF3767;
+  background-color: #2c63fc;
   color: black;
 }
 
 .experienceAdvanced:focus {
   background-color: black;
-  color: #FF3767;
-  box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #FF3767;
+  color: #2c63fc;
+  box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #2c63fc;
 }
 
 .intensityEasy{
@@ -1053,7 +1053,7 @@ body {
   margin-left: 45px;
   margin-bottom: 10px;
   background-color: black;
-  border: 3px solid #FF3767;
+  border: 3px solid #2c63fc;
   border-radius: 32px;
   font-family: 'Contrail One';
   font-style: normal;
@@ -1065,14 +1065,14 @@ body {
 }
 
 .intensityEasy:hover {
-  background-color: #FF3767;
+  background-color: #2c63fc;
   color: black;
 }
 
 .intensityEasy:focus {
   background-color: black;
-  color: #FF3767;
-  box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #FF3767;
+  color: #2c63fc;
+  box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #2c63fc;
 }
 
 .intensityMedium{
@@ -1084,7 +1084,7 @@ body {
   margin-left: 45px;
   margin-bottom: 10px;
   background-color: black;
-  border: 3px solid #FF3767;
+  border: 3px solid #2c63fc;
   border-radius: 32px;
   font-family: 'Contrail One';
   font-style: normal;
@@ -1096,14 +1096,14 @@ body {
 }
 
 .intensityMedium:hover {
-  background-color: #FF3767;
+  background-color: #2c63fc;
   color: black;
 }
 
 .intensityMedium:focus {
   background-color: black;
-  color: #FF3767;
-  box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #FF3767;
+  color: #2c63fc;
+  box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #2c63fc;
 }
 
 .intensityHard{
@@ -1114,7 +1114,7 @@ body {
   top: 623px;
   margin-left: 45px;
   background-color: black;
-  border: 3px solid #FF3767;
+  border: 3px solid #2c63fc;
   border-radius: 32px;
   font-family: 'Contrail One';
   font-style: normal;
@@ -1126,14 +1126,14 @@ body {
 }
 
 .intensityHard:hover {
-  background-color: #FF3767;
+  background-color: #2c63fc;
   color: black;
 }
 
 .intensityHard:focus {
   background-color: black;
-  color: #FF3767;
-  box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #FF3767;
+  color: #2c63fc;
+  box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #2c63fc;
 }
 
 .rightArrowIntensity{

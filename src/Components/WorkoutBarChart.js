@@ -4,6 +4,7 @@ import {
   CategoryScale,
   LinearScale,
   Tooltip,
+  Title,
 } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
 import { collection, query, where, getDocs } from 'firebase/firestore';
@@ -11,7 +12,7 @@ import { getAuth } from 'firebase/auth';
 import { db } from '../firebase';
 import { useState, useEffect } from 'react';
 
-ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip);
+ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip, Title);
 
 const WorkoutBarChart = () => {
   const [values, setValues] = useState([]);
@@ -104,9 +105,15 @@ const WorkoutBarChart = () => {
         ticks: { color: '#A7FF37' },
       },
     },
+    plugins: {
+      title: {
+        display: true,
+        text: 'Workouts Completed by Month',
+      },
+    },
   };
   return (
-    <div className='w-11/12 h-full'>
+    <div className='flex w-11/12 h-full'>
       <Bar data={data} options={options}></Bar>
     </div>
   );

@@ -32,17 +32,22 @@ const Finalize = () => {
           ', '
         )} that will take around ${
           duration || '60'
-        } minutes to complete. Duration should affect the amount of sets and reps per exercise. 
+        } minutes to complete. Each exercise should only be used once in the entire workout. Duration should affect the amount of sets and reps per exercise. 
         The workout should always include a warmup that consists of easy calisthenics that will warm up the muscles used in these exercises: ${exercises.join(
           ', '
         )} and easy cardio. 
         The rest of the workout should be seperated into multiple parts with 1 to 4 excersises per part.
-        Each exercise should only be used once in the entire workout. Here's an example of how the response should be formated - 
+         Here's an example of how the response should be formated - 
         Warm-Up: exercise (sets x reps); exercise (sets x reps); exercise (sets x reps); 
         Part-1: exercise (sets x reps); exercise (sets x reps); exercise (sets x reps); 
-        Part-2: exercise (sets x reps); exercise (sets x reps); exercise (sets x reps);  
-        Part-3: exercise (sets x reps); exercise (sets x reps); exercise (sets x reps);
-
+        ${
+          duration >= 20 &&
+          'Part-2: exercise (sets x reps); exercise (sets x reps); exercise (sets x reps);'
+        } 
+        ${
+          duration >= 40 &&
+          'Part-3: exercise (sets x reps); exercise (sets x reps); exercise (sets x reps);'
+        }
         make sure there is a semicolon after every exercise.
         `,
       });
@@ -65,7 +70,7 @@ const Finalize = () => {
     setTimeout(() => {
       setSavedLoading(false);
       setSaved(true);
-    }, 3000);
+    }, 1500);
     await addDoc(collection(db, 'workouts'), {
       userId: myauth.currentUser.uid,
       workout: response,
@@ -157,30 +162,37 @@ const Finalize = () => {
                 />
               </Box>
             ) : (
-              <div className='generatedResponse'>
-                {response.map((part) => {
-                  return part.split(':').map((item) => {
-                    if (item.includes('Warm-Up') || item.includes('Part')) {
-                      return (
-                        <div className='font-bold text-xl pt-6'>{item}</div>
-                      );
-                    } else {
-                      return <li>{item}</li>;
-                    }
-                  });
-                })}
-                {loggedInUser.email && saved ? (
-                  <h2 className='savedMessage'>Workout Saved!</h2>
-                ) : savedLoading ? (
-                  <BeatLoader className='beatLoader' color='#FF3767' />
-                ) : (
-                  <button
-                    className='equipmentSkipButton'
-                    onClick={handleSaveWorkout}
-                  >
-                    Save Workout
-                  </button>
-                )}
+              <div className='w-full flex justify-center'>
+                <div className='generatedResponse w-1/2 flex flex-col items-start'>
+                  {response.map((part) => {
+                    return part.split(':').map((item) => {
+                      if (item.includes('Warm-Up') || item.includes('Part')) {
+                        return (
+                          <div className='font-bold text-xl pt-6 text-center'>
+                            {item}
+                          </div>
+                        );
+                      } else {
+                        return <li className='text-center'>{item}</li>;
+                      }
+                    });
+                  })}
+                  {loggedInUser.email &&
+                    (savedLoading ? (
+                      <BeatLoader className='beatLoader' color='#2c63fc' />
+                    ) : saved ? (
+                      <h1 className='savedMessage'>Workout Saved!</h1>
+                    ) : (
+                      <div>
+                        <button
+                          className='equipmentSkipButton'
+                          onClick={handleSaveWorkout}
+                        >
+                          Save Workout
+                        </button>
+                      </div>
+                    ))}
+                </div>
               </div>
             )
           ) : (

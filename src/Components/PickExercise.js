@@ -48,7 +48,7 @@ const PickExercise = () => {
                   {exercise}
                   <button onClick={() => handleRemove(exercise)}>
                     <FaMinusCircle
-                      color={'#FF3767'}
+                      color={'#2c63fc'}
                       size={17}
                       className='hover:scale-125 duration-150'
                     />
