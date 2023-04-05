@@ -30,7 +30,7 @@ function GenerateWorkout() {
     setSelectedNone(false);
     setLoading(true);
     try {
-      const res = await axios.post('http://localhost:3001/generateWorkout', {
+      const res = await axios.post('/generateWorkout', {
         prompt: `Do not include numbers or periods in the response to the following question - My experience level with fitness is ${experience}. I am looking for a ${intensity} workout. 
         I have access to the following equipment: ${equipment.join(', ')}.
         Can you give me six exercise names for my ${muscleGroup}? Do not number the exercises. Include at least two calisthenic exercises. 

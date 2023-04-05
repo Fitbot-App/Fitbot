@@ -31,7 +31,7 @@ const SuggestedWorkout = () => {
         `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`
       );
       setLatestWorkout(latestWorkout);
-      const res = await axios.post('http://localhost:3001/suggestedWorkout', {
+      const res = await axios.post('/suggestedWorkout', {
         prompt: `The response to the following question should be formated the same as the following: ${latestWorkout.join(
           ';'
         )}.Generate a new workout that exercises different muscle groups from the workout I did yesterday.
