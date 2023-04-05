@@ -4,17 +4,32 @@ import {
   CategoryScale,
   LinearScale,
   Tooltip,
-  Legend,
+  Title,
 } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
-import { collection, query, where, getDocs, orderBy } from 'firebase/firestore';
+import { collection, query, where, getDocs } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
 import { db } from '../firebase';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
-ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip);
+ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip, Title);
 
 const WorkoutBarChart = () => {
+  const [values, setValues] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const currentYear = new Date().getFullYear();
+      let promises = [];
+      for (let i = 0; i < 12; i++) {
+        promises.push(getWorkout(currentYear, i));
+      }
+      const results = await Promise.all(promises);
+      setValues(results);
+    };
+    fetchData();
+  }, []);
+
   const getWorkout = async (year, month) => {
     var thisYear = year;
     if (month < 10) {
@@ -22,20 +37,19 @@ const WorkoutBarChart = () => {
       if (month === 9) {
         var nextMonth = '10';
       } else {
-        var nextMonth = `0${month + 1}`;
+        nextMonth = `0${month + 1}`;
       }
     } else {
       if (month === 11) {
         thisYear = year + 1;
-        var nextMonth = '00';
+        nextMonth = '00';
       } else {
-        var nextMonth = `${month + 1}`;
+        nextMonth = `${month + 1}`;
       }
-      var thisMonth = `${month}`;
+      thisMonth = `${month}`;
     }
-    console.log(thisMonth, nextMonth);
-    console.log(thisYear);
 
+    console.log('hello');
     const myauth = getAuth();
     const q = query(
       collection(db, 'workouts'),
@@ -47,7 +61,6 @@ const WorkoutBarChart = () => {
     try {
       const querySnapshot = await getDocs(q);
       const workouts = querySnapshot.docs.length;
-      values.push(workouts);
       return workouts;
     } catch (e) {
       console.log(e);
@@ -69,29 +82,39 @@ const WorkoutBarChart = () => {
     'Nov',
     'Dec',
   ];
-  const values = [];
-  months.forEach((month, i) => {
-    getWorkout(currentYear, i);
-  });
 
   const data = {
     labels: months,
     datasets: [
       {
-        label: 'workoutCount',
         data: values,
         backgroundColor: '#A7FF37',
-        borderColor: '#green',
         borderWidth: 1,
       },
     ],
   };
 
-  const options = { responsive: true, maintainAspectRatio: false };
-  console.log(values);
+  const options = {
+    responsive: true,
+    maintainAspectRatio: false,
+    scales: {
+      y: {
+        ticks: { color: '#A7FF37' },
+      },
+      x: {
+        ticks: { color: '#A7FF37' },
+      },
+    },
+    plugins: {
+      title: {
+        display: true,
+        text: 'Workouts Completed by Month',
+      },
+    },
+  };
   return (
-    <div className='w-11/12 h-full'>
-      <Bar data={data} options={options} style={{}}></Bar>
+    <div className='flex w-11/12 h-full'>
+      <Bar data={data} options={options}></Bar>
     </div>
   );
 };

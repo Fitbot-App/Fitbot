@@ -5,7 +5,8 @@ import { limit } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import GenerateWorkout from './GenerateWorkout';
-import { Link } from 'react-router-dom';
+import Box from '@mui/material/Box';
+import Skeleton from '@mui/material/Skeleton';
 
 const SuggestedWorkout = () => {
   const [suggestedWorkout, setSuggestedWorkout] = useState('');
@@ -13,6 +14,7 @@ const SuggestedWorkout = () => {
   const [recentDate, setRecentDate] = useState('');
 
   const getWorkout = async () => {
+    setSuggestedWorkout('');
     const myauth = getAuth();
     const q = query(
       collection(db, 'workouts'),
@@ -30,16 +32,12 @@ const SuggestedWorkout = () => {
       );
       setLatestWorkout(latestWorkout);
       const res = await axios.post('http://localhost:3001/suggestedWorkout', {
-        prompt: `Generate a new workout that exercises different muscle groups from the workout I did yesterday.
+        prompt: `The response to the following question should be formated the same as the following: ${latestWorkout.join(
+          ';'
+        )}.Generate a new workout that exercises different muscle groups from the workout I did yesterday.
         For example, upper body exercises in yesterdays workout would require lower body exercises in the new workout, 
         and lower body exercises in yesterdays workout would require upper body exercises in the new workout. 
-        Yesterdays workout was the following: ${latestWorkout.join(
-          ';'
-        )}. Here's an example of how the response should be formated - 
-        Warm-Up: exercise (sets x reps); exercise (sets x reps); exercise (sets x reps); 
-        Part-1: exercise (sets x reps); exercise (sets x reps); exercise (sets x reps); 
-        Part-2: exercise (sets x reps); exercise (sets x reps); exercise (sets x reps);  
-        Part-3: exercise (sets x reps); exercise (sets x reps); exercise (sets x reps);
+        Yesterdays workout was the following: ${latestWorkout.join(';')}. 
 `,
       });
       let cleanedResponse = res.data.replace(/^\./, '');
@@ -65,8 +63,8 @@ const SuggestedWorkout = () => {
         </h1>
         <div className='generatedResponse'>
           {latestWorkout &&
-            latestWorkout.map((part, i) => {
-              return part.split(':').map((item) => {
+            latestWorkout.map((part) => {
+              return part.split(':').map((item, i) => {
                 if (item.includes('Warm-Up') || item.includes('Part')) {
                   return (
                     <div key={i} className='font-bold text-xl pt-6'>
@@ -89,18 +87,83 @@ const SuggestedWorkout = () => {
             Regenerate Workout
           </button>
         </div>
-        <div className='generatedResponse'>
-          {suggestedWorkout &&
-            suggestedWorkout.map((part) => {
-              return part.split(':').map((item) => {
-                if (item.includes('Warm-Up') || item.includes('Part')) {
-                  return <div className='font-bold text-xl pt-6'>{item}</div>;
-                } else {
-                  return <li>{item}</li>;
-                }
-              });
-            })}
-        </div>
+        {suggestedWorkout.length < 1 ? (
+          <Box>
+            <Skeleton
+              style={{
+                backgroundColor: '#a8ff3765',
+                margin: 15,
+                height: 40,
+              }}
+            />
+            <Skeleton
+              style={{
+                backgroundColor: '#a8ff3765',
+                margin: 15,
+                height: 40,
+              }}
+            />
+            <Skeleton
+              style={{
+                backgroundColor: '#a8ff3765',
+                margin: 15,
+                height: 40,
+              }}
+            />
+            <Skeleton
+              style={{
+                backgroundColor: '#a8ff3765',
+                margin: 15,
+                height: 40,
+              }}
+            />
+            <Skeleton
+              style={{
+                backgroundColor: '#a8ff3765',
+                margin: 15,
+                height: 40,
+              }}
+            />
+            <Skeleton
+              style={{
+                backgroundColor: '#a8ff3765',
+                margin: 15,
+                height: 40,
+              }}
+            />
+            <Skeleton
+              style={{
+                backgroundColor: '#a8ff3765',
+                margin: 15,
+                height: 40,
+              }}
+            />
+            <Skeleton
+              style={{
+                backgroundColor: '#a8ff3765',
+                margin: 15,
+                height: 40,
+              }}
+            />
+          </Box>
+        ) : (
+          <div className='generatedResponse'>
+            {suggestedWorkout &&
+              suggestedWorkout.map((part) => {
+                return part.split(':').map((item, i) => {
+                  if (item.includes('Warm-Up') || item.includes('Part')) {
+                    return (
+                      <div key={i} className='font-bold text-xl pt-6'>
+                        {item}
+                      </div>
+                    );
+                  } else {
+                    return <li key={i}>{item}</li>;
+                  }
+                });
+              })}
+          </div>
+        )}
       </div>
     </div>
   );
