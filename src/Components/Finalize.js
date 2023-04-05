@@ -10,6 +10,9 @@ import { serverTimestamp, addDoc, collection } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
 import { db } from '../firebase';
 import { BeatLoader } from 'react-spinners';
+import Account from './Account';
+import { useAuth } from '../AuthContext';
+import host from '../utils/host';
 
 const Finalize = () => {
   const exercises = useSelector((state) => state.exercises.exercises);
@@ -23,12 +26,11 @@ const Finalize = () => {
   const [loading, setLoading] = useState(false);
   const [savedLoading, setSavedLoading] = useState(false);
   const [saved, setSaved] = useState(false);
-
   const handleSubmit = async (e) => {
     setLoading(true);
     setFinalized(true);
     try {
-      const res = await axios.post('http://localhost:3001/finalize', {
+      const res = await axios.post(`${host}/finalize`, {
         prompt: `My experience level with fitness is ${experience}. I am looking for a ${intensity} workout. Can you generate a ${
           duration || '60'
         } minute workout that includes each of the following exercises only once: ${exercises.join(
@@ -53,10 +55,8 @@ const Finalize = () => {
         `,
       });
       let cleanedResponse = res.data.replace(/^\./, '');
-      console.log(cleanedResponse);
       cleanedResponse = cleanedResponse.split(';');
       cleanedResponse = cleanedResponse.filter((el) => el !== '');
-      console.log(cleanedResponse);
       setResponse(cleanedResponse);
       setLoading(false);
     } catch (error) {
@@ -65,6 +65,7 @@ const Finalize = () => {
   };
 
   const myauth = getAuth();
+  const user = useAuth();
 
   const handleSaveWorkout = async () => {
     setSavedLoading(true);
@@ -79,6 +80,7 @@ const Finalize = () => {
     });
   };
 
+  console.log(host);
   return (
     <div className='finalizeContainer'>
       <div className='equipmentTransparentOverlay' />
@@ -86,6 +88,11 @@ const Finalize = () => {
       <Link className='cornerLogo' to='/'>
         <img width={70} src={logo} alt='FitBot' />
       </Link>
+      {user.currentUser && (
+        <div className='flex absolute top-6 left-6 z-20'>
+          <Account />
+        </div>
+      )}
       <div className='finalizeResponseContainer'>
         <Link to='/pickExercise'>
           <MdKeyboardDoubleArrowLeft

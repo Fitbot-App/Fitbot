@@ -4,17 +4,18 @@ import { db } from '../firebase';
 import { limit } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import GenerateWorkout from './GenerateWorkout';
 import Box from '@mui/material/Box';
 import Skeleton from '@mui/material/Skeleton';
+import host from '../utils/host';
 
 const SuggestedWorkout = () => {
   const [suggestedWorkout, setSuggestedWorkout] = useState('');
+  const [loading, setLoading] = useState(false);
   const [latestWorkout, setLatestWorkout] = useState('');
   const [recentDate, setRecentDate] = useState('');
 
   const getWorkout = async () => {
-    setSuggestedWorkout('');
+    setLoading(true);
     const myauth = getAuth();
     const q = query(
       collection(db, 'workouts'),
@@ -31,7 +32,7 @@ const SuggestedWorkout = () => {
         `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`
       );
       setLatestWorkout(latestWorkout);
-      const res = await axios.post('http://localhost:3001/suggestedWorkout', {
+      const res = await axios.post(`${host}/suggestedWorkout`, {
         prompt: `The response to the following question should be formated the same as the following: ${latestWorkout.join(
           ';'
         )}.Generate a new workout that exercises different muscle groups from the workout I did yesterday.
@@ -44,19 +45,18 @@ const SuggestedWorkout = () => {
       cleanedResponse = cleanedResponse.split(';');
       cleanedResponse = cleanedResponse.filter((el) => el !== '');
       setSuggestedWorkout(cleanedResponse);
-      console.log(suggestedWorkout);
     } catch (error) {
       console.error(error);
     }
+    setLoading(false);
   };
 
   useEffect(() => {
     getWorkout();
-    console.log('USE EFFECT RAN');
   }, []);
 
   return (
-    <div className='flex h-full'>
+    <div className='flex h-full justify-between'>
       <div className='suggestedWorkoutDiv'>
         <h1 className='pickExerciseTitle generatedResponse'>
           {`Your Most Recent Workout (${recentDate})`}
@@ -87,7 +87,7 @@ const SuggestedWorkout = () => {
             Regenerate Workout
           </button>
         </div>
-        {suggestedWorkout.length < 1 ? (
+        {loading ? (
           <Box>
             <Skeleton
               style={{

@@ -9,6 +9,8 @@ import {
 import { Link } from 'react-router-dom';
 import { FaMinusCircle } from 'react-icons/fa';
 import logo from '../logo/Fitbot2.png';
+import { useAuth } from '../AuthContext';
+import Account from './Account';
 
 const PickExercise = () => {
   const { exercises } = useSelector((state) => state);
@@ -18,6 +20,7 @@ const PickExercise = () => {
   function handleRemove(exercise) {
     dispatch(removeExercise(exercise));
   }
+  const user = useAuth();
 
   return (
     <div className='pickExerciseContainer'>
@@ -27,6 +30,11 @@ const PickExercise = () => {
         <Link className='cornerLogo' to='/'>
           <img width={70} src={logo} alt='FitBot' />
         </Link>
+        {user.currentUser && (
+          <div className='flex absolute top-6 left-6 z-20'>
+            <Account />
+          </div>
+        )}
         <Link to='/equipment'>
           <MdKeyboardDoubleArrowLeft
             className='leftArrowIntensity'
