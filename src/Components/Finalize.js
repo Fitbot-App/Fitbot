@@ -27,7 +27,7 @@ const Finalize = () => {
   const [savedLoading, setSavedLoading] = useState(false);
   const [saved, setSaved] = useState(false);
 
-  console.log(process.env.OPENAI_API_KEY);
+  console.log(process.env);
   const handleSubmit = async (e) => {
     setLoading(true);
     setFinalized(true);
