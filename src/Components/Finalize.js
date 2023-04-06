@@ -26,6 +26,8 @@ const Finalize = () => {
   const [loading, setLoading] = useState(false);
   const [savedLoading, setSavedLoading] = useState(false);
   const [saved, setSaved] = useState(false);
+
+  console.log(process.env.OPENAI_API_KEY);
   const handleSubmit = async (e) => {
     setLoading(true);
     setFinalized(true);
@@ -80,7 +82,10 @@ const Finalize = () => {
     });
   };
 
-  console.log(host);
+  console.log('here', host);
+
+  console.log(process.env.OPENAI_API_KEY);
+
   return (
     <div className='finalizeContainer'>
       <div className='equipmentTransparentOverlay' />
