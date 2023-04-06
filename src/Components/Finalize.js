@@ -80,7 +80,7 @@ const Finalize = () => {
       date: serverTimestamp(),
     });
   };
-  console.log('here');
+
   return (
     <div className='finalizeContainer'>
       <div className='equipmentTransparentOverlay' />
