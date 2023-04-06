@@ -26,7 +26,8 @@ const Finalize = () => {
   const [loading, setLoading] = useState(false);
   const [savedLoading, setSavedLoading] = useState(false);
   const [saved, setSaved] = useState(false);
-  console.log(process.env.OPENAI_API_KEY);
+  console.log('OPENAI API KEY', process.env.OPENAI_API_KEY);
+  console.log('SCOTTs TEST', process.env.SCOTT);
 
   const handleSubmit = async (e) => {
     setLoading(true);
