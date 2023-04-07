@@ -32,6 +32,9 @@ const Equipment = () => {
     'stationary bike',
     'ski erg',
     'ankle wights',
+    'treadmill',
+    'cable machine',
+    'bands',
   ];
   const options = equipmentArray.map((opt) => ({ label: opt, value: opt }));
 
@@ -128,16 +131,6 @@ const Equipment = () => {
               })}
             </div>
           </div>
-          {/* <div className='equipmentSkipButtonContainer'>
-            <button
-              className='equipmentSkipButton'
-              onClick={() => {
-                navigate('/pickExercise');
-              }}
-            >
-              Skip
-            </button>
-          </div> */}
         </div>
         <Link to='/pickExercise'>
           <MdKeyboardDoubleArrowRight

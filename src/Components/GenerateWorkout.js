@@ -29,6 +29,8 @@ function GenerateWorkout() {
     setSelectedNone(false);
     setLoading(true);
 
+    console.log('API KEY', process.env.OPENAI_API_KEY);
+
     try {
       const res = await axios.post(
         `${host}/generateWorkout`,
