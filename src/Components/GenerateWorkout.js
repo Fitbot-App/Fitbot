@@ -29,8 +29,6 @@ function GenerateWorkout() {
     setSelectedNone(false);
     setLoading(true);
 
-    console.log('API KEY', process.env.OPENAI_API_KEY);
-
     try {
       const res = await axios.post(
         `${host}/generateWorkout`,
@@ -42,7 +40,7 @@ function GenerateWorkout() {
         },
         {
           headers: {
-            Authorization: `Bearer ${process.env.NEXT_PUBLIC_OPENAI_API_KEY}`,
+            Authorization: `Bearer ${process.env.REACT_APP_OPENAI_API_KEY}`,
           },
         }
       );

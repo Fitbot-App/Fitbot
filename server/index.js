@@ -9,8 +9,10 @@ app.use(bodyParser.json());
 app.use(cors());
 
 const configuration = new Configuration({
-  apiKey: process.env.NEXT_PUBLIC_OPENAI_API_KEY,
+  apiKey: process.env.REACT_APP_OPENAI_API_KEY,
 });
+
+console.log('SERVER KEY', process.env.REACT_APP_OPENAI_API_KEY);
 
 const openai = new OpenAIApi(configuration);
 app.post('/generateWorkout', async (req, res) => {
