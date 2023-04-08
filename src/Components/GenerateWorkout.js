@@ -31,7 +31,7 @@ function GenerateWorkout() {
 
     try {
       const res = await axios.post(
-        `${host}/generateWorkout`,
+        `${host}/pickExercise`,
         {
           prompt: `Do not include numbers or periods in the response to the following question. What are six exercises to target my ${muscleGroup}? 
         I have access to the following equipment: ${equipment.join(', ')}.

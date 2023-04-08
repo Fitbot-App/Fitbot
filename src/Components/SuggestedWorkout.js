@@ -33,7 +33,7 @@ const SuggestedWorkout = () => {
       );
       setLatestWorkout(latestWorkout);
       const res = await axios.post(
-        `${host}/suggestedWorkout`,
+        `${host}/home`,
         {
           prompt: `The response to the following question should be formated the same as the following: ${latestWorkout.join(
             ';'
