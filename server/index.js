@@ -15,7 +15,7 @@ const configuration = new Configuration({
 console.log('SERVER KEY', process.env.REACT_APP_OPENAI_API_KEY);
 
 const openai = new OpenAIApi(configuration);
-app.post('/generateWorkout', async (req, res) => {
+app.post('/pickExercise', async (req, res) => {
   const { prompt } = req.body;
   const completion = await openai.createCompletion({
     model: 'text-davinci-003',
@@ -37,7 +37,7 @@ app.post('/finalize', async (req, res) => {
   res.send(completion.data.choices[0].text);
 });
 
-app.post('/suggestedWorkout', async (req, res) => {
+app.post('/home', async (req, res) => {
   const { prompt } = req.body;
   const completion = await openai.createCompletion({
     model: 'text-davinci-003',
