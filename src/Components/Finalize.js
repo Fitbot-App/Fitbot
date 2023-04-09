@@ -26,7 +26,6 @@ const Finalize = () => {
   const [loading, setLoading] = useState(false);
   const [savedLoading, setSavedLoading] = useState(false);
   const [saved, setSaved] = useState(false);
-  console.log('OPENAI API KEY', process.env.REACT_APP_OPENAI_API_KEY);
 
   const handleSubmit = async (e) => {
     setLoading(true);

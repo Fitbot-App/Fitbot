@@ -12,8 +12,6 @@ const configuration = new Configuration({
   apiKey: process.env.REACT_APP_OPENAI_API_KEY,
 });
 
-console.log('SERVER KEY', process.env.REACT_APP_OPENAI_API_KEY);
-
 const openai = new OpenAIApi(configuration);
 app.post('/pickExercise', async (req, res) => {
   const { prompt } = req.body;
