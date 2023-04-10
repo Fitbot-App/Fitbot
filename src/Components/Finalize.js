@@ -32,7 +32,7 @@ const Finalize = () => {
     setFinalized(true);
     try {
       const res = await axios.post(
-        `${host}/finalize`,
+        `${host}/api/pickExercise`,
         {
           prompt: `My experience level with fitness is ${experience}. I am looking for a ${intensity} workout. Can you generate a ${
             duration || '60'
