@@ -89,7 +89,7 @@ const SuggestedWorkout = () => {
       <div className='suggestedWorkoutDiv'>
         <div className='flex justify-between'>
           <h1 className='pickExerciseTitle generatedResponse'>
-            Today's Suggested Workout
+            Next Suggested Workout
           </h1>
           <button className='regenerateWorkout' onClick={getWorkout}>
             Regenerate Workout

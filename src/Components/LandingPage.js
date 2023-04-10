@@ -3,8 +3,11 @@ import React from 'react';
 import { BsLightning } from 'react-icons/bs';
 import { useNavigate } from 'react-router-dom';
 import logo from '../logo/FitBot.png';
+import { useAuth } from '../AuthContext';
 
 export default function LandingPage() {
+  const user = useAuth();
+
   const navigate = useNavigate();
   return (
     <div className='landingContainer'>
@@ -25,16 +28,20 @@ export default function LandingPage() {
             navigate('/intensity');
           }}
         >
-          Continue as Guest
+          New Workout
         </button>
         <BsLightning color='#A7FF37' size={60} className='z-[2]' />
         <button
           className='landingButton'
           onClick={() => {
-            navigate('/Login');
+            if (user.currentUser) {
+              navigate('/home');
+            } else {
+              navigate('/Login');
+            }
           }}
         >
-          Login / Sign Up
+          {user.currentUser ? 'Dashboard' : 'Login / Sign Up'}
         </button>
       </div>
     </div>
