@@ -197,7 +197,7 @@ const Finalize = () => {
                       }
                     });
                   })}
-                  {loggedInUser.email &&
+                  {user.currentUser &&
                     (savedLoading ? (
                       <BeatLoader className='beatLoader' color='#2c63fc' />
                     ) : saved ? (
