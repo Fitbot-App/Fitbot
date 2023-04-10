@@ -30,7 +30,7 @@ function GenerateWorkout() {
     setLoading(true);
 
     try {
-      const res = await axios.get(
+      const res = await axios.post(
         `${host}/pickExercise`,
         {
           prompt: `Do not include numbers or periods in the response to the following question. What are six exercises to target my ${muscleGroup}? 
