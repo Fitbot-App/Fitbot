@@ -134,7 +134,7 @@ const Equipment = () => {
         </div>
         <Link to='/pickExercise'>
           <MdKeyboardDoubleArrowRight
-            className='rightArrowIntensity'
+            className={`rightArrowIntensity ${equipment.length ? 'pulse' : ''}`}
             color='#A7FF37'
             size='70'
           />

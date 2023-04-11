@@ -15,35 +15,13 @@ const configuration = new Configuration({
 });
 
 const openai = new OpenAIApi(configuration);
-app.post('/pickExercise', async (req, res) => {
+app.post('/api/openaiReq', async (req, res) => {
   const { prompt } = req.body;
   const completion = await openai.createCompletion({
     model: 'text-davinci-003',
     prompt: prompt,
     max_tokens: 200,
     temperature: 0.65,
-  });
-  res.send(completion.data.choices[0].text);
-});
-
-app.post('/finalize', async (req, res) => {
-  const { prompt } = req.body;
-  const completion = await openai.createCompletion({
-    model: 'text-davinci-003',
-    prompt: prompt,
-    max_tokens: 200,
-    temperature: 0.65,
-  });
-  res.send(completion.data.choices[0].text);
-});
-
-app.post('/home', async (req, res) => {
-  const { prompt } = req.body;
-  const completion = await openai.createCompletion({
-    model: 'text-davinci-003',
-    prompt: prompt,
-    max_tokens: 200,
-    temperature: 0.85,
   });
   res.send(completion.data.choices[0].text);
 });

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { MdKeyboardDoubleArrowLeft } from 'react-icons/md';
+import { FaUndo } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import logo from '../logo/Fitbot2.png';
 import axios from 'axios';
@@ -20,7 +21,7 @@ const Finalize = () => {
   const experience = useSelector((state) => state.intensity.experience);
   const intensity = useSelector((state) => state.intensity.intensity);
 
-  const [duration, setDuration] = useState('');
+  const [duration, setDuration] = useState(null);
   const [response, setResponse] = useState([]);
   const [finalized, setFinalized] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -28,14 +29,15 @@ const Finalize = () => {
   const [saved, setSaved] = useState(false);
 
   const handleSubmit = async (e) => {
+    console.log('HERE', duration);
     setLoading(true);
     setFinalized(true);
     try {
       const res = await axios.post(
         `${host}/api/openaiReq`,
         {
-          prompt: `My experience level with fitness is ${experience}. I am looking for a ${intensity} workout. Can you generate a ${
-            duration || '60'
+          prompt: `My experience level with fitness is ${experience}. I am looking for a ${intensity} workout. Make a ${
+            duration ? duration : '60'
           } minute workout that includes each of the following exercises only once: ${exercises.join(
             ', '
           )}. 
@@ -178,42 +180,51 @@ const Finalize = () => {
                 />
               </Box>
             ) : (
-              <div className='w-full flex justify-center'>
-                <div className='generatedResponse w-1/2 flex flex-col items-start'>
-                  {response.map((part) => {
-                    return part.split(':').map((item) => {
-                      if (
-                        item.includes('Warm-Up') ||
-                        item.includes('Part') ||
-                        item.includes('Cool-Down')
-                      ) {
-                        return (
-                          <div className='font-bold text-xl pt-6 text-center'>
-                            {item}
-                          </div>
-                        );
-                      } else {
-                        return <li className='text-center'>{item}</li>;
-                      }
-                    });
-                  })}
-                  {user.currentUser &&
-                    (savedLoading ? (
-                      <BeatLoader className='beatLoader' color='#2c63fc' />
-                    ) : saved ? (
-                      <h1 className='savedMessage'>Workout Saved!</h1>
-                    ) : (
-                      <div>
-                        <button
-                          className='equipmentSkipButton'
-                          onClick={handleSaveWorkout}
-                        >
-                          Save Workout
-                        </button>
-                      </div>
-                    ))}
+              <>
+                <div className='ml-3 mt-3' onClick={() => setFinalized(false)}>
+                  <FaUndo
+                    className='hover:rotate-[-45deg] hover:scale-110 duration-150'
+                    color='#2c63fc'
+                    size='25'
+                  />
                 </div>
-              </div>
+                <div className='w-full flex justify-center'>
+                  <div className='generatedResponse w-fit flex flex-col items-start'>
+                    {response.map((part) => {
+                      return part.split(':').map((item) => {
+                        if (
+                          item.includes('Warm-Up') ||
+                          item.includes('Part') ||
+                          item.includes('Cool-Down')
+                        ) {
+                          return (
+                            <div className='font-bold text-xl pt-6 text-center'>
+                              {item}
+                            </div>
+                          );
+                        } else {
+                          return <li className='text-center'>{item}</li>;
+                        }
+                      });
+                    })}
+                    {user.currentUser &&
+                      (savedLoading ? (
+                        <BeatLoader className='beatLoader' color='#2c63fc' />
+                      ) : saved ? (
+                        <h1 className='savedMessage'>Workout Saved!</h1>
+                      ) : (
+                        <div>
+                          <button
+                            className='equipmentSkipButton'
+                            onClick={handleSaveWorkout}
+                          >
+                            Save Workout
+                          </button>
+                        </div>
+                      ))}
+                  </div>
+                </div>
+              </>
             )
           ) : (
             <div>
@@ -222,9 +233,9 @@ const Finalize = () => {
                 <div className='grid grid-cols-3 items-center m-5'>
                   {exercises.map((item, i) => {
                     return (
-                      <span key={i} className='equipmentItem'>
+                      <p key={i} className='equipmentItem'>
                         {item}
-                      </span>
+                      </p>
                     );
                   })}
                 </div>
