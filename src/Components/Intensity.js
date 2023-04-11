@@ -16,11 +16,19 @@ const Intensity = () => {
   const dispatch = useDispatch();
 
   const handleExperienceClick = (e) => {
-    dispatch(setExperience(e.target.value));
+    if (experience === e.target.value) {
+      dispatch(setExperience(''));
+    } else {
+      dispatch(setExperience(e.target.value));
+    }
   };
 
   const handleIntensityClick = (e) => {
-    dispatch(setIntensity(e.target.value));
+    if (intensity === e.target.value) {
+      dispatch(setIntensity(''));
+    } else {
+      dispatch(setIntensity(e.target.value));
+    }
   };
 
   const user = useAuth();
@@ -120,7 +128,9 @@ const Intensity = () => {
         </div>
         <Link to='/equipment'>
           <MdKeyboardDoubleArrowRight
-            className='rightArrowIntensity'
+            className={`rightArrowIntensity ${
+              intensity && experience ? 'pulse' : ''
+            }`}
             color='#A7FF37'
             size='70'
           />

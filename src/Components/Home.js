@@ -19,7 +19,7 @@ export default function Home() {
         <img width={70} src={logo} alt='FitBot' />
       </Link>
       <div className='calChartContainer'>
-        <div className='calContainerDiv bg-black'>
+        <div className='calContainerDiv'>
           <Calendar />
         </div>
         <div className='chartContainerDiv'>
