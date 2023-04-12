@@ -30,20 +30,12 @@ function GenerateWorkout() {
     setLoading(true);
 
     try {
-      const res = await axios.post(
-        `${host}/api/openaiReq`,
-        {
-          prompt: `Do not include numbers or periods in the response to the following question. What are six exercises to target my ${muscleGroup}? 
+      const res = await axios.post(`${host}/api/openaiReq`, {
+        prompt: `Do not include numbers or periods in the response to the following question. What are six exercises to target my ${muscleGroup}? 
         I have access to the following equipment: ${equipment.join(', ')}.
         The format of the response should be a list of just the exercise names with a colon 
         after each exercise expcept for the last. Here's an example "Crunches:".`,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${process.env.REACT_APP_OPENAI_API_KEY}`,
-          },
-        }
-      );
+      });
       setResponse(res.data.split(':'));
       setLoading(false);
     } catch (error) {
@@ -90,6 +82,10 @@ function GenerateWorkout() {
         <h1 className='pickExerciseTitle generatedResponse'>
           Choose Muscle Groups
         </h1>
+        <p className='helperMessage'>
+          Select a muscle group from the dropdown and hit 'generate' to get a
+          list of workouts that target your desired muscle group.
+        </p>
         <div className='flex items-center'>
           <Creatable
             className='creatableMuscleGroup'

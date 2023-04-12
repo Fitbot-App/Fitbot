@@ -33,14 +33,12 @@ const Finalize = () => {
     setLoading(true);
     setFinalized(true);
     try {
-      const res = await axios.post(
-        `${host}/api/openaiReq`,
-        {
-          prompt: `My experience level with fitness is ${experience}. I am looking for a ${intensity} workout. Make a ${
-            duration ? duration : '60'
-          } minute workout that includes each of the following exercises only once: ${exercises.join(
-            ', '
-          )}. 
+      const res = await axios.post(`${host}/api/openaiReq`, {
+        prompt: `My experience level with fitness is ${experience}. I am looking for a ${intensity} workout. Make a ${
+          duration ? duration : '60'
+        } minute workout that includes each of the following exercises only once: ${exercises.join(
+          ', '
+        )}. 
         The workout should always include a warmup that consists of easy calisthenics that will warm up the muscles used in these exercises: ${exercises.join(
           ', '
         )} and easy cardio. Do not include a cool down.
@@ -58,13 +56,7 @@ const Finalize = () => {
         }
         make sure there is a semicolon after every exercise.
         `,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${process.env.REACT_APP_OPENAI_API_KEY}`,
-          },
-        }
-      );
+      });
       let cleanedResponse = res.data.replace(/^\./, '');
       cleanedResponse = cleanedResponse.split(';');
       cleanedResponse = cleanedResponse.filter((el) => el !== '');
