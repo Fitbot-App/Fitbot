@@ -9,6 +9,8 @@ import { getDocs, where, query, collection } from 'firebase/firestore';
 import { db } from '../firebase';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
+import { IoIosCloseCircleOutline } from 'react-icons/io';
+
 const style = {
   position: 'absolute',
   top: '50%',
@@ -123,34 +125,60 @@ export default function Calendar() {
         <Box sx={style} className='overflow-auto suggestedWorkoutDiv'>
           {workouts.length ? (
             <>
-              <div className='text-5xl text-center'>Workouts</div>
+              <div className='text-5xl text-center font-["Contrail_One"]'>
+                Workouts
+              </div>
+              <button
+                className='w-fit absolute top-4 right-4'
+                onClick={handleClose}
+              >
+                <IoIosCloseCircleOutline color='#A7FF37' size='30' />
+              </button>
               <div id='modal-modal-description' sx={{ mt: 2 }}>
                 {workouts.split(',').map((part) => {
                   return part.split(':').map((item, i) => {
                     if (item.includes('Warm-Up')) {
                       return (
                         <>
-                          <hr className='border-[#A7FF37] mt-5' />
-                          <div key={i} className='font-bold text-xl pt-6'>
+                          <hr className='border-[#2c63fc] mt-5 border-2' />
+                          <div
+                            key={i}
+                            className='font-bold text-xl pt-6 font-["Contrail_One"]'
+                          >
                             {item}
                           </div>
                         </>
                       );
                     } else if (item.includes('Part')) {
                       return (
-                        <div key={i} className='font-bold text-xl pt-6'>
+                        <div
+                          key={i}
+                          className='font-bold text-xl pt-6 font-["Contrail_One"]'
+                        >
                           {item}
                         </div>
                       );
                     } else {
-                      return <li key={i}>{item}</li>;
+                      return (
+                        <li key={i} className='font-["Contrail_One"]'>
+                          {item}
+                        </li>
+                      );
                     }
                   });
                 })}
               </div>
             </>
           ) : (
-            <div className='text-center'>No workouts for this day</div>
+            <>
+              <button
+                className='w-fit absolute top-4 right-4'
+                onClick={handleClose}
+              >
+                <IoIosCloseCircleOutline color='#A7FF37' size='30' />
+              </button>
+              <div className='text-center'>No workouts for this day</div>
+            </>
           )}
         </Box>
       </Modal>

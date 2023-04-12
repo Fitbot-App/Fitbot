@@ -1,4 +1,12 @@
-import { collection, query, where, getDocs, orderBy } from 'firebase/firestore';
+import {
+  collection,
+  query,
+  where,
+  getDocs,
+  orderBy,
+  addDoc,
+} from 'firebase/firestore';
+import { serverTimestamp } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
 import { db } from '../firebase';
 import { limit } from 'firebase/firestore';
@@ -6,13 +14,33 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Box from '@mui/material/Box';
 import Skeleton from '@mui/material/Skeleton';
+import { BeatLoader } from 'react-spinners';
 import host from '../utils/host';
+import { useAuth } from '../AuthContext';
 
 const SuggestedWorkout = () => {
   const [suggestedWorkout, setSuggestedWorkout] = useState('');
+  const [savedLoading, setSavedLoading] = useState(false);
+  const [saved, setSaved] = useState(false);
   const [loading, setLoading] = useState(false);
   const [latestWorkout, setLatestWorkout] = useState('');
   const [recentDate, setRecentDate] = useState('');
+
+  const myauth = useAuth();
+
+  const handleSaveWorkout = async () => {
+    setSavedLoading(true);
+    setTimeout(() => {
+      setSavedLoading(false);
+      setSaved(true);
+    }, 1500);
+    await addDoc(collection(db, 'workouts'), {
+      userId: myauth.currentUser.uid,
+      workout: suggestedWorkout,
+      date: serverTimestamp(),
+    });
+    getWorkout();
+  };
 
   const getWorkout = async () => {
     setLoading(true);
@@ -57,6 +85,7 @@ const SuggestedWorkout = () => {
       console.error(error);
     }
     setLoading(false);
+    setSaved(false);
   };
 
   useEffect(() => {
@@ -80,7 +109,7 @@ const SuggestedWorkout = () => {
                     </div>
                   );
                 } else {
-                  return <li key={i}>{item}</li>;
+                  return <li key={i}>{item.replace(/\.$/, '')}</li>;
                 }
               });
             })}
@@ -166,12 +195,27 @@ const SuggestedWorkout = () => {
                       </div>
                     );
                   } else {
-                    return <li key={i}>{item}</li>;
+                    return <li key={i}>{item.replace(/\.$/, '')}</li>;
                   }
                 });
               })}
           </div>
         )}
+        {!loading &&
+          (savedLoading ? (
+            <BeatLoader className='beatLoader' color='#2c63fc' />
+          ) : saved ? (
+            <h1 className='savedMessage'>Workout Saved!</h1>
+          ) : (
+            <div>
+              <button
+                className='equipmentSkipButton'
+                onClick={handleSaveWorkout}
+              >
+                Save Workout
+              </button>
+            </div>
+          ))}
       </div>
     </div>
   );
