@@ -29,7 +29,6 @@ const Finalize = () => {
   const [saved, setSaved] = useState(false);
 
   const handleSubmit = async (e) => {
-    console.log('HERE', duration);
     setLoading(true);
     setFinalized(true);
     try {
@@ -231,7 +230,7 @@ const Finalize = () => {
               </>
             )
           ) : (
-            <div>
+            <div className='flex flex-col justify-center items-center'>
               <div>
                 <h2 className='title mt-5'>Your Excersises</h2>
                 <div className='grid grid-cols-3 items-center m-5'>
@@ -254,10 +253,10 @@ const Finalize = () => {
                   ></input>
                   <span className='generatedResponse'>minutes (optional)</span>
                 </div>
-                <button className='equipmentSkipButton' onClick={handleSubmit}>
-                  Finalize
-                </button>
               </div>
+              <button className='finalizeButton' onClick={handleSubmit}>
+                Finalize
+              </button>
             </div>
           )}
         </div>
