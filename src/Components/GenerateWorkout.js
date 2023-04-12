@@ -66,22 +66,21 @@ function GenerateWorkout() {
   }
 
   const muscleGroupArray = [
-    'back',
-    'abs',
-    'chest',
-    'quads',
-    'hamstrings',
-    'calves',
-    'biceps',
-    'triceps',
-    'traps',
-    'forearms',
-    'lower back',
-    'upper back',
-    'neck',
-    'shoulders',
-    'glutes',
-    'cardio',
+    'Abs',
+    'Biceps',
+    'Calves',
+    'Cardio',
+    'Chest',
+    'Forearms',
+    'Glutes',
+    'Hamstrings',
+    'Lower Back',
+    'Neck',
+    'Quads',
+    'Shoulders',
+    'Triceps',
+    'Traps',
+    'Upper Back',
   ];
   const options = muscleGroupArray.map((opt) => ({ label: opt, value: opt }));
 
@@ -93,7 +92,7 @@ function GenerateWorkout() {
         </h1>
         <div className='flex items-center'>
           <Creatable
-            className='creatable generatedResponse'
+            className='creatableMuscleGroup'
             options={options}
             onChange={handleChange}
             value={selectedOption}

@@ -203,7 +203,11 @@ const Finalize = () => {
                             </div>
                           );
                         } else {
-                          return <li className='text-center'>{item}</li>;
+                          return (
+                            <li className='text-center'>
+                              {item.replace(/\.$/, '')}
+                            </li>
+                          );
                         }
                       });
                     })}

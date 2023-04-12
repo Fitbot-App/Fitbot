@@ -1,75 +1,167 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   MdKeyboardDoubleArrowRight,
   MdKeyboardDoubleArrowLeft,
 } from 'react-icons/md';
-import { FaMinusCircle } from 'react-icons/fa';
+import { collection, query, where, getDocs } from 'firebase/firestore';
+import { getAuth } from 'firebase/auth';
+import { db } from '../firebase';
+import { IoMdAddCircle } from 'react-icons/io';
+import { BsFillCheckCircleFill } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
-import { setEquipment, removeEquipment } from '../slices/equipmentSlice';
+import {
+  setEquipment,
+  removeEquipment,
+  clearEquipment,
+} from '../slices/equipmentSlice';
 import logo from '../logo/Fitbot2.png';
-import Creatable from 'react-select/creatable';
 import { useAuth } from '../AuthContext';
 import Account from './Account';
+import ModalCreateGym from './ModalCreateGym';
+import Select from 'react-select';
 
 const Equipment = () => {
   const equipment = useSelector((state) => state.equipment.equipment);
   const [equipmentInput, setEquipmentInput] = useState('');
-  const [selectedOption, setSelectedOption] = useState(null);
+  const [equipmentArray, setEquipmentArray] = useState([
+    'Ankle Weights',
+    'Bands',
+    'Barbell',
+    'Cable Machine',
+    'Dumbells',
+    'Elliptical',
+    'Jump Rope',
+    'Kettle Bell',
+    'Medicine Ball',
+    'Pull Up Bar',
+    'Rowing Machine',
+    'Ski Erg',
+    'Stationary Bike',
+    'Treadmill',
+    'Weight Plates',
+  ]);
   const [error, setError] = useState('');
+  const [gyms, setGyms] = useState([]);
+  const [savedGym, setSavedGym] = useState(false);
+  const [gymUpdate, setGymUpdate] = useState(false);
+  const [currentSavedGym, setCurrentSavedGym] = useState({});
   const dispatch = useDispatch();
 
-  const equipmentArray = [
-    'kettle bell',
-    'medicine ball',
-    'barbell',
-    'weight plates',
-    'dumbells',
-    'jump rope',
-    'elliptical',
-    'pull up bar',
-    'rowing machine',
-    'stationary bike',
-    'ski erg',
-    'ankle wights',
-    'treadmill',
-    'cable machine',
-    'bands',
-  ];
-  const options = equipmentArray.map((opt) => ({ label: opt, value: opt }));
+  // const options = equipmentArray.map((opt) => ({ label: opt, value: opt }));
 
-  function handleChange(opt) {
-    setSelectedOption(opt);
-    setEquipmentInput(opt.value);
+  function handleChange(e) {
+    setEquipmentInput(e.target.value);
   }
 
   function handleRemove(item) {
     dispatch(removeEquipment(item));
   }
 
-  function handleSetEquipment() {
-    if (equipmentInput === '') {
-      setError('Please enter an item of equipment');
+  function handleSetEquipment(item) {
+    savedGym && setGymUpdate(true);
+    dispatch(setEquipment(item));
+  }
+
+  function handleAddEquipment() {
+    if (equipmentInput.length < 1) {
+      setError('Please create an item');
       return;
     }
-    if (equipment.includes(equipmentInput)) {
-      setError('Item already selected');
+    if (equipmentArray.includes(equipmentInput)) {
+      setError('Equipment already exists');
       return;
     }
     setError('');
-    dispatch(setEquipment(equipmentInput));
-    setSelectedOption(null);
+    const temp = [...equipmentArray, equipmentInput];
+    setEquipmentArray(temp);
     setEquipmentInput('');
   }
 
   const handleKeypress = (e) => {
     if (e.key === 'Enter') {
-      handleSetEquipment();
+      if (equipmentInput.length < 1) {
+        setError('Please create an item');
+        return;
+      }
+      if (equipmentArray.includes(equipmentInput)) {
+        setError('Equipment already exists');
+        return;
+      }
+      setError('');
+      const temp = [...equipmentArray, equipmentInput];
+      setEquipmentArray(temp);
+      setEquipmentInput('');
     }
+  };
+
+  const getGyms = async () => {
+    const myauth = getAuth();
+    const userId = myauth.currentUser.uid;
+    const q = query(collection(db, 'gyms'), where('userId', '==', userId));
+    const querySnapshot = await getDocs(q);
+
+    const gyms = [];
+    querySnapshot.forEach((doc) => {
+      gyms.push(doc.data());
+    });
+    return gyms;
+  };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const results = await getGyms();
+      setGyms(results);
+
+      return results;
+    };
+    dispatch(clearEquipment());
+    fetchData();
+  }, []);
+
+  let options = gyms.map((gym) => ({ label: gym.name, value: gym.name }));
+  options = [{ label: 'Custom', value: 'Custom' }, ...options];
+
+  console.log('OPTIONS', options);
+
+  const handleGymChange = (e) => {
+    if (e.target.value === 'Custom') {
+      setEquipmentArray([
+        'Ankle Weights',
+        'Bands',
+        'Barbell',
+        'Cable Machine',
+        'Dumbells',
+        'Elliptical',
+        'Jump Rope',
+        'Kettle Bell',
+        'Medicine Ball',
+        'Pull Up Bar',
+        'Rowing Machine',
+        'Ski Erg',
+        'Stationary Bike',
+        'Treadmill',
+        'Weight Plates',
+      ]);
+      setCurrentSavedGym({});
+      dispatch(clearEquipment());
+      setSavedGym(false);
+      return;
+    }
+
+    const gym = gyms.find((gym) => gym.name === e.target.value);
+    gym.equipment.forEach((item) => {
+      handleSetEquipment(item);
+    });
+    setCurrentSavedGym(gym);
+    setSavedGym(true);
+    setEquipmentArray(gym.equipment);
   };
 
   const user = useAuth();
 
+  console.log('Current saved gym', currentSavedGym.equipment);
+  console.log('Equipment array', equipment);
   return (
     <div className='equipmentContainer'>
       <div className='equipmentTransparentOverlay' />
@@ -92,22 +184,33 @@ const Equipment = () => {
         </Link>
         <div className='equipmentDiv'>
           <div>
-            <h2 className='title mt-5'>Enter your equipment</h2>
+            <h2 className='title mt-5'>Select your equipment</h2>
             <div className='flex items-center justify-center mt-5'>
-              <Creatable
+              <input
                 className='creatable generatedResponse'
-                options={options}
                 onChange={handleChange}
                 onKeyDown={handleKeypress}
-                value={selectedOption}
-                placeholder='Select an item...'
+                value={equipmentInput}
+                placeholder='Create an item...'
               />
               <button
                 className='muscleGroupButton'
-                onClick={handleSetEquipment}
+                onClick={handleAddEquipment}
               >
                 Add
               </button>
+              {/* <Select
+                className='gymSelect'
+                onChange={handleGymChange}
+                options={options}
+                placeholder={'select one of your gyms...'}
+              /> */}
+              <select className='gymSelect' onChange={handleGymChange}>
+                <option value='Custom'> Custom</option>
+                {gyms.map((gym) => {
+                  return <option value={gym.name}>{gym.name}</option>;
+                })}
+              </select>
             </div>
             {error && (
               <p id='error' className='text-center'>
@@ -115,20 +218,44 @@ const Equipment = () => {
               </p>
             )}
             <div className='grid grid-cols-3 items-center m-5'>
-              {equipment.map((item, i) => {
+              {equipmentArray.map((item, i) => {
                 return (
-                  <span className='equipmentItem' key={i}>
-                    {item}
-                    <button onClick={() => handleRemove(item)}>
-                      <FaMinusCircle
-                        color={'#2c63fc'}
-                        size={17}
-                        className='hover:scale-125 duration-150'
-                      />
-                    </button>
-                  </span>
+                  <>
+                    {equipment.includes(item) ? (
+                      <span className='equipmentItemSelected' key={i}>
+                        {item}
+                        <button onClick={() => handleRemove(item)}>
+                          <BsFillCheckCircleFill
+                            color={'#A7FF37'}
+                            size={17}
+                            className='hover:scale-125 duration-150'
+                          />
+                        </button>
+                      </span>
+                    ) : (
+                      <span className='equipmentItem' key={i}>
+                        {item}
+                        <button onClick={() => handleSetEquipment(item)}>
+                          <IoMdAddCircle
+                            color={'#2c63fc'}
+                            size={17}
+                            className='hover:scale-125 duration-150'
+                          />
+                        </button>
+                      </span>
+                    )}
+                  </>
                 );
               })}
+            </div>
+            <div className='flex justify-center items-center pb-5'>
+              {user.currentUser && !savedGym ? (
+                <ModalCreateGym equipment={equipment} />
+              ) : (
+                gymUpdate && (
+                  <button className='createGymButton'>update gym</button>
+                )
+              )}
             </div>
           </div>
         </div>

@@ -392,6 +392,7 @@ body {
   font-size: 20px;
   padding-left: 10px;
   padding-right: 10px;
+  margin-left: 10px;
 }
 
 .muscleGroupButton:hover {
@@ -582,6 +583,7 @@ color: #A7FF37;
   border: 3px solid #A7FF37;
   border-radius: 32px;
   z-index: 2;
+  overflow: scroll;
   box-shadow: 0 0 12px rgb(191, 191, 191);
   background-color: rgba(0, 0, 0, 0.818);
 }
@@ -604,14 +606,44 @@ color: #A7FF37;
   background-color: #000000;
 }
 
+.equipmentItemSelected {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #A7FF37;
+  font-family: 'Contrail One';
+  margin: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border: 2px solid #A7FF37;
+  border-radius: 32px;
+  text-align: center;
+  box-shadow: 0 0 2px #fff, 0 0 5px #A7FF37, 0 0 7px #A7FF37, 0 0 10px #A7FF37;
+  background-color: #000000;
+}
+
 .creatable {
   padding-left: 10px;
   padding-right: 10px;
   margin: 10px;
   height: 36px;
   text-align: center;
-  color: black;
+  background-color: #000000;
+  border-color: #A7FF37;
+  border-radius: 32px;
+  font-family: Contrail One;
 } 
+
+.creatableMuscleGroup {
+    padding-left: 10px;
+    padding-right: 10px;
+    margin: 10px;
+    height: 36px;
+    text-align: center;
+    border-radius: 32px;
+}
 
 
 .equipmentSkipButton{
@@ -641,6 +673,36 @@ color: #A7FF37;
  align-items: center;
 }
 
+.createGymButton {
+  font-family: 'Contrail One';
+  height: 36px;
+  background-color: black;
+  color: #A7FF37;
+  border: 2px solid #A7FF37;
+  border-radius: 3rem;
+  font-size: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-left: 10px;
+}
+
+.createGymButton:hover {
+  background-color: #A7FF37;
+  border: 2px solid #A7FF37;
+  color: black;
+}
+
+.gymSelect{
+  margin-left: 15px;
+  font-family: Contrail One;
+  color:rgba(0, 0, 0, 0.818)
+}
+
+#gymError {
+  color: #2c63fc;
+  font-family: 'Contrail One';
+  padding-top: 10px;
+}
 /* Equipment Selection Page */
 
 /* Finalize Page */
