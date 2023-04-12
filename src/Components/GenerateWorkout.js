@@ -8,6 +8,7 @@ import Skeleton from '@mui/material/Skeleton';
 import { IoMdAddCircle } from 'react-icons/io';
 import Creatable from 'react-select/creatable';
 import host from '../utils/host';
+import CustomTooltip from './Tooltip';
 
 function GenerateWorkout() {
   const [selectedOption, setSelectedOption] = useState(null);
@@ -87,9 +88,14 @@ function GenerateWorkout() {
   return (
     <div>
       <form className='muscleGroupForm' onSubmit={handleSubmit}>
-        <h1 className='pickExerciseTitle generatedResponse'>
-          Choose Muscle Groups
-        </h1>
+        <span className='pickExerciseTitle flex items-center pickExerciseTitle generatedResponse'>
+          Choose Muscle Groups{' '}
+          <CustomTooltip
+            text={
+              "Select a muscle group from the dropdown and hit 'generate' to get a list of workouts that target your desired muscle group."
+            }
+          />
+        </span>
         <div className='flex items-center'>
           <Creatable
             className='creatableMuscleGroup'

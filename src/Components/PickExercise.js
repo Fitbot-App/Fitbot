@@ -12,6 +12,7 @@ import logo from '../logo/Fitbot2.png';
 import { useAuth } from '../AuthContext';
 import Account from './Account';
 import ModalWarning from './ModalWarning';
+import CustomTooltip from './Tooltip';
 
 const PickExercise = () => {
   const { exercises } = useSelector((state) => state);
@@ -49,7 +50,16 @@ const PickExercise = () => {
           </div>
         </div>
         <div className='selectedExercises generatedResponse'>
-          <h1 className='pickExerciseTitle'>Selected Exercises</h1>
+          <div className='flex justify-center items-center'>
+            <span className='pickExerciseTitle flex items-center'>
+              Selected Exercises
+              <CustomTooltip
+                text={
+                  'The Exercises you choose from the "Choose Muscle Group" section will appear here. These excersises will be included when you generate your workout in the next step.'
+                }
+              />
+            </span>
+          </div>
           {exercises.exercises.map((exercise, idx) => {
             return (
               <div key={idx} className='singleGeneratedExercise'>

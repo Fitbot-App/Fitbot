@@ -17,11 +17,10 @@ import host from '../utils/host';
 
 const Finalize = () => {
   const exercises = useSelector((state) => state.exercises.exercises);
-  const loggedInUser = useSelector((state) => state.loggedInUser.loggedInUser);
   const experience = useSelector((state) => state.intensity.experience);
   const intensity = useSelector((state) => state.intensity.intensity);
 
-  const [duration, setDuration] = useState(null);
+  const [duration, setDuration] = useState('');
   const [response, setResponse] = useState([]);
   const [finalized, setFinalized] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -251,11 +250,11 @@ const Finalize = () => {
                     value={duration}
                     onChange={(e) => setDuration(e.target.value)}
                   ></input>
-                  <span className='generatedResponse'>minutes (optional)</span>
+                  <span className='generatedResponse'>minutes</span>
                 </div>
               </div>
               <button className='finalizeButton' onClick={handleSubmit}>
-                Finalize
+                Generate my Workout!
               </button>
             </div>
           )}
