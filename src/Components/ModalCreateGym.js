@@ -108,7 +108,7 @@ export default function ModalCreateGym({ equipment }) {
                 className='equipmentSkipButton'
                 onClick={() => handleSaveGym(equipment)}
               >
-                Save Workout
+                Save Gym
               </button>
             </div>
           )}
