@@ -19,8 +19,13 @@ import logo from '../logo/Fitbot2.png';
 import { useAuth } from '../AuthContext';
 import Account from './Account';
 import ModalCreateGym from './ModalCreateGym';
+
+import { FaQuestionCircle } from 'react-icons/fa';
+import { Tooltip } from 'react-tooltip';
+
 import ModalWarning from './ModalWarning';
 import CustomTooltip from './Tooltip';
+
 
 const Equipment = () => {
   const equipment = useSelector((state) => state.equipment.equipment);

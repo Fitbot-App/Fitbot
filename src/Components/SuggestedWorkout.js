@@ -60,23 +60,15 @@ const SuggestedWorkout = () => {
         `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`
       );
       setLatestWorkout(latestWorkout);
-      const res = await axios.post(
-        `${host}/api/openaiReq`,
-        {
-          prompt: `The response to the following question should be formated the same as the following: ${latestWorkout.join(
-            ';'
-          )}.Generate a new workout that exercises different muscle groups from the workout I did yesterday.
+      const res = await axios.post(`${host}/api/openaiReq`, {
+        prompt: `The response to the following question should be formated the same as the following: ${latestWorkout.join(
+          ';'
+        )}.Generate a new workout that exercises different muscle groups from the workout I did yesterday.
         For example, upper body exercises in yesterdays workout would require lower body exercises in the new workout, 
         and lower body exercises in yesterdays workout would require upper body exercises in the new workout. 
         Yesterdays workout was the following: ${latestWorkout.join(';')}. 
 `,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${process.env.REACT_APP_OPENAI_API_KEY}`,
-          },
-        }
-      );
+      });
       let cleanedResponse = res.data.replace(/^\./, '');
       cleanedResponse = cleanedResponse.split(';');
       cleanedResponse = cleanedResponse.filter((el) => el !== '');
