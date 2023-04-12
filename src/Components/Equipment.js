@@ -22,6 +22,7 @@ import ModalCreateGym from './ModalCreateGym';
 import { FaQuestionCircle } from 'react-icons/fa';
 import { Tooltip } from 'react-tooltip';
 import ModalWarning from './ModalWarning';
+import CustomTooltip from './Tooltip';
 
 const Equipment = () => {
   const equipment = useSelector((state) => state.equipment.equipment);
@@ -41,7 +42,6 @@ const Equipment = () => {
   const [gyms, setGyms] = useState([]);
   const [savedGym, setSavedGym] = useState(false);
   const [gymUpdate, setGymUpdate] = useState(false);
-  const [currentSavedGym, setCurrentSavedGym] = useState({});
 
   const dispatch = useDispatch();
 
@@ -134,7 +134,7 @@ const Equipment = () => {
         'Stationary Bike',
         'Weight Plates',
       ]);
-      setCurrentSavedGym({});
+
       dispatch(clearEquipment());
       setSavedGym(false);
       return;
@@ -144,7 +144,6 @@ const Equipment = () => {
     gym.equipment.forEach((item) => {
       handleSetEquipment(item);
     });
-    setCurrentSavedGym(gym);
     setSavedGym(true);
     setEquipmentArray(gym.equipment);
   };
@@ -173,9 +172,15 @@ const Equipment = () => {
         </Link>
         <div className='equipmentDiv'>
           <div>
-            <div className='flex items-center justify-center gap-5'>
-              <h2 className='title mt-5'>Select your equipment</h2>
-              <FaQuestionCircle color='#2c63fc' size={20} />
+            <div className='flex justify-center items-center mt-5'>
+              <span className='title flex items-center'>
+                Select your equipment
+                <CustomTooltip
+                  text={
+                    'Choose some equipment that you have available to use. You may also add any additional equipment that is not already present in the list of options. Do this by typing into the "add new equipment" input area and pressing the "Add" button. If you are a logged in user, you also have the option to add all of your selected equipment to a savable gym.'
+                  }
+                />
+              </span>
             </div>
             <div className='flex items-center justify-center mt-5'>
               {user.currentUser && (
