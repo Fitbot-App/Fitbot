@@ -32,7 +32,7 @@ export default function Calendar() {
   const handleClose = () => setOpen(false);
 
   const user = useAuth();
-  const uid = user.currentUser.uid;
+  const uid = user.currentUser?.uid;
 
   const today = new Date();
   const todayStr = `${today.getFullYear()}-${
