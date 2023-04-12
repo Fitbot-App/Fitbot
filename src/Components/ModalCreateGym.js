@@ -61,9 +61,9 @@ export default function ModalCreateGym({ equipment }) {
   };
 
   return (
-    <div className='flex flex-col'>
+    <div className='flex flex-col items-center'>
       <button onClick={handleOpen} className='createGymButton'>
-        Create Gym
+        Save selected equipment
       </button>
       <p id='gymError'>{equipmentArr.length > 0 ? null : error}</p>
       <Modal

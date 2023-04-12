@@ -19,8 +19,12 @@ import logo from '../logo/Fitbot2.png';
 import { useAuth } from '../AuthContext';
 import Account from './Account';
 import ModalCreateGym from './ModalCreateGym';
+
 import { FaQuestionCircle } from 'react-icons/fa';
 import { Tooltip } from 'react-tooltip';
+
+import ModalWarning from './ModalWarning';
+
 
 const Equipment = () => {
   const equipment = useSelector((state) => state.equipment.equipment);
@@ -32,14 +36,8 @@ const Equipment = () => {
     'Cable Machine',
     'Dumbells',
     'Elliptical',
-    'Jump Rope',
     'Kettle Bell',
     'Medicine Ball',
-    'Pull Up Bar',
-    'Rowing Machine',
-    'Ski Erg',
-    'Stationary Bike',
-    'Treadmill',
     'Weight Plates',
   ]);
   const [error, setError] = useState('');
@@ -67,7 +65,7 @@ const Equipment = () => {
 
   function handleAddEquipment() {
     if (equipmentInput.length < 1) {
-      setError('Please create an item');
+      setError('Please enter equipment');
       return;
     }
     if (equipmentArray.includes(equipmentInput)) {
@@ -83,7 +81,7 @@ const Equipment = () => {
   const handleKeypress = (e) => {
     if (e.key === 'Enter') {
       if (equipmentInput.length < 1) {
-        setError('Please create an item');
+        setError('Please enter equipment');
         return;
       }
       if (equipmentArray.includes(equipmentInput)) {
@@ -111,20 +109,18 @@ const Equipment = () => {
   };
 
   useEffect(() => {
-    const fetchData = async () => {
-      const results = await getGyms();
-      setGyms(results);
+    const user = getAuth();
+    if (user.currentUser) {
+      const fetchData = async () => {
+        const results = await getGyms();
+        setGyms(results);
 
-      return results;
-    };
-    dispatch(clearEquipment());
-    fetchData();
+        return results;
+      };
+      dispatch(clearEquipment());
+      fetchData();
+    }
   }, []);
-
-  let options = gyms.map((gym) => ({ label: gym.name, value: gym.name }));
-  options = [{ label: 'Custom', value: 'Custom' }, ...options];
-
-  console.log('OPTIONS', options);
 
   const handleGymChange = (e) => {
     if (e.target.value === 'Custom') {
@@ -135,14 +131,10 @@ const Equipment = () => {
         'Cable Machine',
         'Dumbells',
         'Elliptical',
-        'Jump Rope',
         'Kettle Bell',
         'Medicine Ball',
         'Pull Up Bar',
-        'Rowing Machine',
-        'Ski Erg',
         'Stationary Bike',
-        'Treadmill',
         'Weight Plates',
       ]);
       setCurrentSavedGym({});
@@ -162,8 +154,6 @@ const Equipment = () => {
 
   const user = useAuth();
 
-  console.log('Current saved gym', currentSavedGym.equipment);
-  console.log('Equipment array', equipment);
   return (
     <div className='equipmentContainer'>
       <div className='equipmentTransparentOverlay' />
@@ -191,31 +181,18 @@ const Equipment = () => {
               <FaQuestionCircle color='#2c63fc' size={20} />
             </div>
             <div className='flex items-center justify-center mt-5'>
-              <input
-                className='creatable generatedResponse'
-                onChange={handleChange}
-                onKeyDown={handleKeypress}
-                value={equipmentInput}
-                placeholder='Create an item...'
-              />
-              <button
-                className='muscleGroupButton'
-                onClick={handleAddEquipment}
-              >
-                Add
-              </button>
-              {/* <Select
-                className='gymSelect'
-                onChange={handleGymChange}
-                options={options}
-                placeholder={'select one of your gyms...'}
-              /> */}
-              <select className='gymSelect' onChange={handleGymChange}>
-                <option value='Custom'> Custom</option>
-                {gyms.map((gym) => {
-                  return <option value={gym.name}>{gym.name}</option>;
-                })}
-              </select>
+              {user.currentUser && (
+                <select className='gymSelect' onChange={handleGymChange}>
+                  <option value='Custom'> Custom</option>
+                  {gyms.map((gym, i) => {
+                    return (
+                      <option key={i} value={gym.name}>
+                        {gym.name}
+                      </option>
+                    );
+                  })}
+                </select>
+              )}
             </div>
             {error && (
               <p id='error' className='text-center'>
@@ -225,7 +202,7 @@ const Equipment = () => {
             <div className='grid grid-cols-3 items-center m-5'>
               {equipmentArray.map((item, i) => {
                 return (
-                  <>
+                  <React.Fragment key={i}>
                     {equipment.includes(item) ? (
                       <span className='equipmentItemSelected' key={i}>
                         {item}
@@ -249,9 +226,22 @@ const Equipment = () => {
                         </button>
                       </span>
                     )}
-                  </>
+                  </React.Fragment>
                 );
               })}
+              <input
+                className='creatable generatedResponse'
+                onChange={handleChange}
+                onKeyDown={handleKeypress}
+                value={equipmentInput}
+                placeholder='Add new equipment...'
+              />
+              <button
+                className='equipmentAddButton'
+                onClick={handleAddEquipment}
+              >
+                Add
+              </button>
             </div>
             <div className='flex justify-center items-center pb-5'>
               {user.currentUser && !savedGym ? (
@@ -264,13 +254,19 @@ const Equipment = () => {
             </div>
           </div>
         </div>
-        <Link to='/pickExercise'>
-          <MdKeyboardDoubleArrowRight
-            className={`rightArrowIntensity ${equipment.length ? 'pulse' : ''}`}
-            color='#A7FF37'
-            size='70'
-          />
-        </Link>
+        {equipment.length ? (
+          <Link to='/pickExercise'>
+            <MdKeyboardDoubleArrowRight
+              className={`rightArrowIntensity ${
+                equipment.length ? 'pulse' : ''
+              }`}
+              color='#A7FF37'
+              size='70'
+            />
+          </Link>
+        ) : (
+          <ModalWarning />
+        )}
       </div>
     </div>
   );

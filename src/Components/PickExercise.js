@@ -11,6 +11,7 @@ import { FaMinusCircle } from 'react-icons/fa';
 import logo from '../logo/Fitbot2.png';
 import { useAuth } from '../AuthContext';
 import Account from './Account';
+import ModalWarning from './ModalWarning';
 
 const PickExercise = () => {
   const { exercises } = useSelector((state) => state);
@@ -69,15 +70,19 @@ const PickExercise = () => {
             );
           })}
         </div>
-        <Link to='/finalize'>
-          <MdKeyboardDoubleArrowRight
-            className={`rightArrowIntensity ${
-              exercises.exercises.length ? 'pulse' : ''
-            }`}
-            color='#A7FF37'
-            size='70'
-          />
-        </Link>
+        {exercises.exercises.length ? (
+          <Link to='/finalize'>
+            <MdKeyboardDoubleArrowRight
+              className={`rightArrowIntensity ${
+                exercises.exercises.length ? 'pulse' : ''
+              }`}
+              color='#A7FF37'
+              size='70'
+            />
+          </Link>
+        ) : (
+          <ModalWarning pick={true} />
+        )}
       </div>
     </div>
   );
