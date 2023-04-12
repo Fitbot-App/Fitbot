@@ -50,6 +50,9 @@ const PickExercise = () => {
         </div>
         <div className='selectedExercises generatedResponse'>
           <h1 className='pickExerciseTitle'>Selected Exercises</h1>
+          <p className='helperMessage'>
+            The Exercises you want to include in your workout will appear here.
+          </p>
           {exercises.exercises.map((exercise, idx) => {
             return (
               <div key={idx} className='singleGeneratedExercise'>

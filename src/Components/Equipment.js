@@ -19,7 +19,12 @@ import logo from '../logo/Fitbot2.png';
 import { useAuth } from '../AuthContext';
 import Account from './Account';
 import ModalCreateGym from './ModalCreateGym';
+
+import { FaQuestionCircle } from 'react-icons/fa';
+import { Tooltip } from 'react-tooltip';
+
 import ModalWarning from './ModalWarning';
+
 
 const Equipment = () => {
   const equipment = useSelector((state) => state.equipment.equipment);
@@ -40,6 +45,7 @@ const Equipment = () => {
   const [savedGym, setSavedGym] = useState(false);
   const [gymUpdate, setGymUpdate] = useState(false);
   const [currentSavedGym, setCurrentSavedGym] = useState({});
+
   const dispatch = useDispatch();
 
   // const options = equipmentArray.map((opt) => ({ label: opt, value: opt }));
@@ -170,7 +176,10 @@ const Equipment = () => {
         </Link>
         <div className='equipmentDiv'>
           <div>
-            <h2 className='title mt-5'>Select your equipment</h2>
+            <div className='flex items-center justify-center gap-5'>
+              <h2 className='title mt-5'>Select your equipment</h2>
+              <FaQuestionCircle color='#2c63fc' size={20} />
+            </div>
             <div className='flex items-center justify-center mt-5'>
               {user.currentUser && (
                 <select className='gymSelect' onChange={handleGymChange}>
