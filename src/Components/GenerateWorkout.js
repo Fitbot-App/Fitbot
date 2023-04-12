@@ -96,7 +96,7 @@ function GenerateWorkout() {
             options={options}
             onChange={handleChange}
             value={selectedOption}
-            placeholder={'Select an item...'}
+            placeholder={'Muscle groups...'}
           />
           <button className='muscleGroupButton' type='submit'>
             {response.length === 0 ? 'Generate' : 'Regenerate'}
