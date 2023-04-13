@@ -116,20 +116,22 @@ const Equipment = () => {
   useEffect(() => {
     dispatch(clearEquipment());
     const myauth = getAuth();
-    const userId = myauth.currentUser.uid;
-    const q = query(collection(db, 'gyms'), where('userId', '==', userId));
-    const unsubscribe = onSnapshot(q, (querySnapshot) => {
-      const gyms = [];
-      querySnapshot.forEach((doc) => {
-        const gymId = doc.ref.id;
-        gyms.push({ ...doc.data(), gymId });
+    if (myauth.currentUser) {
+      const userId = myauth.currentUser?.uid;
+      const q = query(collection(db, 'gyms'), where('userId', '==', userId));
+      const unsubscribe = onSnapshot(q, (querySnapshot) => {
+        const gyms = [];
+        querySnapshot.forEach((doc) => {
+          const gymId = doc.ref.id;
+          gyms.push({ ...doc.data(), gymId });
+        });
+        setGyms(gyms);
       });
-      setGyms(gyms);
-    });
 
-    return () => {
-      unsubscribe();
-    };
+      return () => {
+        unsubscribe();
+      };
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -295,21 +297,26 @@ const Equipment = () => {
                 </span>
               </div>
             </div>
-            <div className='flex justify-center items-center pb-5'>
-              {user.currentUser && !savedGym ? (
-                <ModalCreateGym equipment={equipment} />
-              ) : (
-                [...selectedGym.equipment].sort().join('') !==
-                  [...equipment].sort().join('') &&
-                (updatePending ? (
-                  <BeatLoader className='beatLoader' color='#A7FF37' />
+            {user.currentUser && (
+              <div className='flex justify-center items-center pb-5'>
+                {user.currentUser && !savedGym ? (
+                  <ModalCreateGym equipment={equipment} />
                 ) : (
-                  <button className='createGymButton' onClick={handleUpdateGym}>
-                    Update gym
-                  </button>
-                ))
-              )}
-            </div>
+                  [...selectedGym.equipment].sort().join('') !==
+                    [...equipment].sort().join('') &&
+                  (updatePending ? (
+                    <BeatLoader className='beatLoader' color='#A7FF37' />
+                  ) : (
+                    <button
+                      className='createGymButton'
+                      onClick={handleUpdateGym}
+                    >
+                      Update gym
+                    </button>
+                  ))
+                )}
+              </div>
+            )}
           </div>
         </div>
         {equipment.length ? (
