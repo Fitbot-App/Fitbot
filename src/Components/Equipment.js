@@ -4,7 +4,7 @@ import {
   MdKeyboardDoubleArrowRight,
   MdKeyboardDoubleArrowLeft,
 } from 'react-icons/md';
-import { collection, query, where, getDocs } from 'firebase/firestore';
+import { collection, query, where, onSnapshot } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
 import { db } from '../firebase';
 import { IoMdAddCircle } from 'react-icons/io';
@@ -44,8 +44,6 @@ const Equipment = () => {
   const [gymUpdate, setGymUpdate] = useState(false);
 
   const dispatch = useDispatch();
-
-  // const options = equipmentArray.map((opt) => ({ label: opt, value: opt }));
 
   function handleChange(e) {
     setEquipmentInput(e.target.value);
@@ -92,31 +90,22 @@ const Equipment = () => {
     }
   };
 
-  const getGyms = async () => {
+  useEffect(() => {
+    dispatch(clearEquipment());
     const myauth = getAuth();
     const userId = myauth.currentUser.uid;
     const q = query(collection(db, 'gyms'), where('userId', '==', userId));
-    const querySnapshot = await getDocs(q);
-
-    const gyms = [];
-    querySnapshot.forEach((doc) => {
-      gyms.push(doc.data());
+    const unsubscribe = onSnapshot(q, (querySnapshot) => {
+      const gyms = [];
+      querySnapshot.forEach((doc) => {
+        gyms.push(doc.data());
+      });
+      setGyms(gyms);
     });
-    return gyms;
-  };
 
-  useEffect(() => {
-    const user = getAuth();
-    if (user.currentUser) {
-      const fetchData = async () => {
-        const results = await getGyms();
-        setGyms(results);
-
-        return results;
-      };
-      dispatch(clearEquipment());
-      fetchData();
-    }
+    return () => {
+      unsubscribe();
+    };
   }, []);
 
   const handleGymChange = (e) => {
