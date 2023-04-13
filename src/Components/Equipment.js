@@ -4,6 +4,7 @@ import {
   MdKeyboardDoubleArrowRight,
   MdKeyboardDoubleArrowLeft,
 } from 'react-icons/md';
+import { FaUndo } from 'react-icons/fa';
 import {
   collection,
   query,
@@ -135,25 +136,33 @@ const Equipment = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const handleGymChange = (e) => {
-    if (e.target.value === 'Custom') {
-      setEquipmentArray([
-        'Ankle Weights',
-        'Bands',
-        'Barbell',
-        'Cable Machine',
-        'Dumbells',
-        'Elliptical',
-        'Kettle Bell',
-        'Medicine Ball',
-        'Pull Up Bar',
-        'Stationary Bike',
-        'Weight Plates',
-      ]);
+  const handleGoBack = () => {
+    setEquipmentArray([
+      'Ankle Weights',
+      'Bands',
+      'Barbell',
+      'Cable Machine',
+      'Dumbells',
+      'Elliptical',
+      'Kettle Bell',
+      'Medicine Ball',
+      'Pull Up Bar',
+      'Stationary Bike',
+      'Weight Plates',
+    ]);
 
-      dispatch(clearEquipment());
-      setSavedGym(false);
-      setSelectedGym({});
+    dispatch(clearEquipment());
+    setSavedGym(false);
+    return;
+  };
+
+  const handleGymChange = (e) => {
+    if (e === 'Custom') {
+      handleGoBack();
+      return;
+    }
+    if (e.target.value === 'Custom') {
+      handleGoBack();
       return;
     }
 
@@ -188,6 +197,21 @@ const Equipment = () => {
           />
         </Link>
         <div className='equipmentDiv'>
+          {savedGym && (
+            <span
+              className='ml-6 mt-6 absolute'
+              onClick={() => {
+                handleGymChange('Custom');
+              }}
+            >
+              <FaUndo
+                className='hover:rotate-[-45deg] hover:scale-110 duration-150'
+                color='#2c63fc'
+                size='25'
+              />
+            </span>
+          )}
+
           <div>
             <div className='flex justify-center items-center mt-5'>
               <span className='title flex items-center'>
