@@ -55,7 +55,7 @@ const PickExercise = () => {
               Selected Exercises
               <CustomTooltip
                 text={
-                  'The Exercises you choose from the "Choose Muscle Group" section will appear here. These excersises will be included when you generate your workout in the next step.'
+                  'The exercises you chose to include in your workout will appear below.'
                 }
               />
             </span>
