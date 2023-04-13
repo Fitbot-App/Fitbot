@@ -4,16 +4,26 @@ import {
   MdKeyboardDoubleArrowRight,
   MdKeyboardDoubleArrowLeft,
 } from 'react-icons/md';
-import { collection, query, where, onSnapshot } from 'firebase/firestore';
+import {
+  collection,
+  query,
+  where,
+  onSnapshot,
+  setDoc,
+  doc,
+  getDoc,
+} from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
 import { db } from '../firebase';
 import { IoMdAddCircle } from 'react-icons/io';
 import { BsFillCheckCircleFill } from 'react-icons/bs';
+import { BeatLoader } from 'react-spinners';
 import { Link } from 'react-router-dom';
 import {
   setEquipment,
   removeEquipment,
   clearEquipment,
+  setAllEquipment,
 } from '../slices/equipmentSlice';
 import logo from '../logo/Fitbot2.png';
 import { useAuth } from '../AuthContext';
@@ -42,6 +52,8 @@ const Equipment = () => {
   const [gyms, setGyms] = useState([]);
   const [savedGym, setSavedGym] = useState(false);
   const [gymUpdate, setGymUpdate] = useState(false);
+  const [selectedGym, setSelectedGym] = useState({});
+  const [updatePending, setUpdatePending] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -90,6 +102,19 @@ const Equipment = () => {
     }
   };
 
+  const handleUpdateGym = async () => {
+    setUpdatePending(true);
+    const gymRef = doc(db, 'gyms', selectedGym.gymId);
+    setDoc(gymRef, { equipment: equipment }, { merge: true });
+    const docSnap = await getDoc(gymRef);
+    const gym = docSnap.data();
+    setTimeout(() => {
+      setUpdatePending(false);
+      dispatch(setAllEquipment(gym.equipment));
+      setEquipmentArray(gym.equipment);
+    }, 1000);
+  };
+
   useEffect(() => {
     dispatch(clearEquipment());
     const myauth = getAuth();
@@ -98,7 +123,8 @@ const Equipment = () => {
     const unsubscribe = onSnapshot(q, (querySnapshot) => {
       const gyms = [];
       querySnapshot.forEach((doc) => {
-        gyms.push(doc.data());
+        const gymId = doc.ref.id;
+        gyms.push({ ...doc.data(), gymId });
       });
       setGyms(gyms);
     });
@@ -106,6 +132,7 @@ const Equipment = () => {
     return () => {
       unsubscribe();
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleGymChange = (e) => {
@@ -126,13 +153,14 @@ const Equipment = () => {
 
       dispatch(clearEquipment());
       setSavedGym(false);
+      setSelectedGym({});
       return;
     }
 
     const gym = gyms.find((gym) => gym.name === e.target.value);
-    gym.equipment.forEach((item) => {
-      handleSetEquipment(item);
-    });
+    setSelectedGym(gym);
+
+    dispatch(setAllEquipment(gym.equipment));
     setSavedGym(true);
     setEquipmentArray(gym.equipment);
   };
@@ -238,9 +266,14 @@ const Equipment = () => {
               {user.currentUser && !savedGym ? (
                 <ModalCreateGym equipment={equipment} />
               ) : (
-                gymUpdate && (
-                  <button className='createGymButton'>update gym</button>
-                )
+                gymUpdate &&
+                (updatePending ? (
+                  <BeatLoader className='beatLoader' color='#A7FF37' />
+                ) : (
+                  <button className='createGymButton' onClick={handleUpdateGym}>
+                    Update gym
+                  </button>
+                ))
               )}
             </div>
           </div>

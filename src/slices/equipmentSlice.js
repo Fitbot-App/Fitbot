@@ -13,6 +13,9 @@ export const equipmentSlice = createSlice({
     setEquipment: (state, action) => {
       state.equipment.push(action.payload);
     },
+    setAllEquipment: (state, action) => {
+      state.equipment = action.payload;
+    },
     removeEquipment: (state, action) => {
       state.equipment = state.equipment.filter((item) => {
         return action.payload !== item;
@@ -25,8 +28,12 @@ export const equipmentSlice = createSlice({
 });
 
 // Action creators
-export const { setEquipment, removeEquipment, clearEquipment } =
-  equipmentSlice.actions;
+export const {
+  setEquipment,
+  removeEquipment,
+  clearEquipment,
+  setAllEquipment,
+} = equipmentSlice.actions;
 
 // Reducer
 export default equipmentSlice.reducer;
