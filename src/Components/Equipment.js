@@ -30,8 +30,6 @@ import logo from '../logo/Fitbot2.png';
 import { useAuth } from '../AuthContext';
 import Account from './Account';
 import ModalCreateGym from './ModalCreateGym';
-import { FaQuestionCircle } from 'react-icons/fa';
-import { Tooltip } from 'react-tooltip';
 import ModalWarning from './ModalWarning';
 import CustomTooltip from './Tooltip';
 
@@ -226,6 +224,11 @@ const Equipment = () => {
             <div className='flex items-center justify-center mt-5'>
               {user.currentUser && (
                 <select className='gymSelect' onChange={handleGymChange}>
+                  {!savedGym && (
+                    <option value='none' selected disabled hidden>
+                      Use one of your gyms...
+                    </option>
+                  )}
                   <option value='Custom'> Custom</option>
                   {gyms.map((gym, i) => {
                     return (
