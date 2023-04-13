@@ -14,6 +14,7 @@ import { BeatLoader } from 'react-spinners';
 import Account from './Account';
 import { useAuth } from '../AuthContext';
 import host from '../utils/host';
+import CustomTooltip from './Tooltip';
 
 const Finalize = () => {
   const exercises = useSelector((state) => state.exercises.exercises);
@@ -171,13 +172,16 @@ const Finalize = () => {
               </Box>
             ) : (
               <>
-                <div className='ml-3 mt-3' onClick={() => setFinalized(false)}>
+                <span
+                  className='ml-3 mt-3 absolute'
+                  onClick={() => setFinalized(false)}
+                >
                   <FaUndo
                     className='hover:rotate-[-45deg] hover:scale-110 duration-150'
                     color='#2c63fc'
                     size='25'
                   />
-                </div>
+                </span>
                 <div className='w-full flex justify-center'>
                   <div className='generatedResponse w-fit flex flex-col items-start'>
                     {response.map((part) => {
@@ -207,13 +211,16 @@ const Finalize = () => {
                       ) : saved ? (
                         <h1 className='savedMessage'>Workout Saved!</h1>
                       ) : (
-                        <div>
-                          <button
-                            className='equipmentSkipButton'
-                            onClick={handleSaveWorkout}
-                          >
-                            Save Workout
-                          </button>
+                        <div className='flex justify-center items-center'>
+                          <span className='pickExerciseTitle flex items-center'>
+                            <button
+                              className='equipmentSkipButton'
+                              onClick={handleSaveWorkout}
+                            >
+                              Save Workout
+                            </button>
+                            <CustomTooltip text='By saving this workout, you will have access to it on on your dashboard. You will also get a custom next workout suggestion on your dashboard' />
+                          </span>
                         </div>
                       ))}
                   </div>

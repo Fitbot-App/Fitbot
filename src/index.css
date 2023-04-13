@@ -672,7 +672,8 @@ color: #A7FF37;
     font-size: 20px;
     padding-left: 10px;
     padding-right: 10px;
-    margin: 15px;
+    margin-top: 15px;
+    margin-bottom: 15px;
 }
 
 .equipmentSkipButton:hover {
