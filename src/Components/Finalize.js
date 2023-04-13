@@ -180,6 +180,7 @@ const Finalize = () => {
                     className='hover:rotate-[-45deg] hover:scale-110 duration-150'
                     color='#2c63fc'
                     size='25'
+                    onClick={() => setSaved(false)}
                   />
                 </span>
                 <div className='w-full flex justify-center'>
