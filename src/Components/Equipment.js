@@ -65,7 +65,6 @@ const Equipment = () => {
   }
 
   function handleSetEquipment(item) {
-    savedGym && setGymUpdate(true);
     dispatch(setEquipment(item));
   }
 
@@ -240,11 +239,7 @@ const Equipment = () => {
                 </select>
               )}
             </div>
-            {error && (
-              <p id='error' className='text-center'>
-                {error}
-              </p>
-            )}
+
             <div className='grid grid-cols-3 items-center m-5'>
               {equipmentArray.map((item, i) => {
                 return (
@@ -275,25 +270,37 @@ const Equipment = () => {
                   </React.Fragment>
                 );
               })}
-              <input
-                className='creatable generatedResponse'
-                onChange={handleChange}
-                onKeyDown={handleKeypress}
-                value={equipmentInput}
-                placeholder='Add new equipment...'
-              />
-              <button
-                className='equipmentAddButton'
-                onClick={handleAddEquipment}
-              >
-                Add
-              </button>
+              <div className='flex m-2'>
+                <span>
+                  <input
+                    className='creatable generatedResponse'
+                    onChange={handleChange}
+                    onKeyDown={handleKeypress}
+                    value={equipmentInput}
+                    placeholder='Add new equipment...'
+                  />
+                  {error && (
+                    <p id='error' className='text-center'>
+                      {error}
+                    </p>
+                  )}
+                </span>
+                <span className='flex justify-center items-center ml-2'>
+                  <IoMdAddCircle
+                    color={'#A7FF37'}
+                    size={30}
+                    className='hover:scale-125 duration-150'
+                    onClick={handleAddEquipment}
+                  />
+                </span>
+              </div>
             </div>
             <div className='flex justify-center items-center pb-5'>
               {user.currentUser && !savedGym ? (
                 <ModalCreateGym equipment={equipment} />
               ) : (
-                gymUpdate &&
+                [...selectedGym.equipment].sort().join('') !==
+                  [...equipment].sort().join('') &&
                 (updatePending ? (
                   <BeatLoader className='beatLoader' color='#A7FF37' />
                 ) : (
