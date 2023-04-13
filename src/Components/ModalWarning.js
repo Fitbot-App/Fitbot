@@ -71,9 +71,8 @@ export default function ModalWarning({ pick }) {
               }}
               className='equipmentModalWarning'
             >
-              Are you sure you want to continue without adding the equipment you
-              would would like to use? Results may vary without specifying in
-              this step!
+              Are you sure you want to continue without adding any equipment?
+              Results may vary without specifying in this step!
             </Typography>
           )}
           <div className='flex justify-around'>
