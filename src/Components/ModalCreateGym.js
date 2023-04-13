@@ -33,6 +33,8 @@ export default function ModalCreateGym({ equipment }) {
     if (equipment.length < 1) {
       setError('Choose equipment first');
       return;
+    } else {
+      setError('');
     }
     setOpen(true);
   };
