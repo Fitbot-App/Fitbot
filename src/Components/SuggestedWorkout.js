@@ -17,6 +17,7 @@ import Skeleton from '@mui/material/Skeleton';
 import { BeatLoader } from 'react-spinners';
 import host from '../utils/host';
 import { useAuth } from '../AuthContext';
+import CustomTooltip from './Tooltip';
 
 const SuggestedWorkout = () => {
   const [suggestedWorkout, setSuggestedWorkout] = useState('');
@@ -199,13 +200,14 @@ const SuggestedWorkout = () => {
           ) : saved ? (
             <h1 className='savedMessage'>Workout Saved!</h1>
           ) : (
-            <div>
+            <div className='flex justify-start items-center'>
               <button
                 className='equipmentSkipButton'
                 onClick={handleSaveWorkout}
               >
                 Save Workout
               </button>
+              <CustomTooltip text='By saving this workout, you will have access to it on on your dashboard. You will also get a custom next workout suggestion here.' />
             </div>
           ))}
       </div>
