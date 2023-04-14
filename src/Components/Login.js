@@ -10,7 +10,6 @@ import { db } from '../firebase';
 import { AiOutlineLock, AiOutlineMail } from 'react-icons/ai';
 import { TbHandFinger, TbHandTwoFingers } from 'react-icons/tb';
 import { IoMdArrowBack } from 'react-icons/io';
-import logo from '../logo/Fitbot2.png';
 export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -93,9 +92,6 @@ export default function Login() {
   return (
     <div className='loginContainer'>
       <div className='transparentOverlay' />
-      <Link to='/'>
-        <img width={70} src={logo} alt='FitBot' className='cornerLogo' />
-      </Link>
       <Link to='/' className='goBack'>
         <IoMdArrowBack color='#A7FF37' size='30' />
       </Link>
