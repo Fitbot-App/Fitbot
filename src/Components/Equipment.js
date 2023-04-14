@@ -183,7 +183,7 @@ const Equipment = () => {
         <img width={70} src={logo} alt='FitBot' />
       </Link>
       {user.currentUser && (
-        <div className='flex absolute top-6 left-6 z-20'>
+        <div className='flex absolute top-6 right-6 z-20'>
           <Account />
         </div>
       )}
@@ -191,7 +191,7 @@ const Equipment = () => {
         <Link to='/intensity'>
           <MdKeyboardDoubleArrowLeft
             className='leftArrowIntensity'
-            color='#A7FF37'
+            color='black'
             size='70'
           />
         </Link>
@@ -239,6 +239,26 @@ const Equipment = () => {
                     );
                   })}
                 </select>
+              )}
+              {user.currentUser && (
+                <div className='flex justify-center items-center'>
+                  {user.currentUser && !savedGym ? (
+                    <ModalCreateGym equipment={equipment} />
+                  ) : (
+                    [...selectedGym.equipment].sort().join('') !==
+                      [...equipment].sort().join('') &&
+                    (updatePending ? (
+                      <BeatLoader className='beatLoader' color='#A7FF37' />
+                    ) : (
+                      <button
+                        className='createGymButton'
+                        onClick={handleUpdateGym}
+                      >
+                        Update gym
+                      </button>
+                    ))
+                  )}
+                </div>
               )}
             </div>
 
@@ -297,26 +317,6 @@ const Equipment = () => {
                 </span>
               </div>
             </div>
-            {user.currentUser && (
-              <div className='flex justify-center items-center pb-5'>
-                {user.currentUser && !savedGym ? (
-                  <ModalCreateGym equipment={equipment} />
-                ) : (
-                  [...selectedGym.equipment].sort().join('') !==
-                    [...equipment].sort().join('') &&
-                  (updatePending ? (
-                    <BeatLoader className='beatLoader' color='#A7FF37' />
-                  ) : (
-                    <button
-                      className='createGymButton'
-                      onClick={handleUpdateGym}
-                    >
-                      Update gym
-                    </button>
-                  ))
-                )}
-              </div>
-            )}
           </div>
         </div>
         {equipment.length ? (
@@ -325,7 +325,7 @@ const Equipment = () => {
               className={`rightArrowIntensity ${
                 equipment.length ? 'pulse' : ''
               }`}
-              color='#A7FF37'
+              color='black'
               size='70'
             />
           </Link>

@@ -29,7 +29,7 @@ export default function Home() {
       <div className='h-2/3'>
         <SuggestedWorkout />
       </div>
-      <div className='flex absolute top-6 left-6'>
+      <div className='flex absolute top-6 right-6'>
         <Account buildWorkout={true} />
       </div>
     </div>

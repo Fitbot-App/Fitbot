@@ -30,7 +30,7 @@ export default function ModalWarning({ pick }) {
   return (
     <div>
       <MdKeyboardDoubleArrowRight
-        color='#A7FF37'
+        color='black'
         size='70'
         onClick={handleOpen}
         className={'rightArrowIntensity'}

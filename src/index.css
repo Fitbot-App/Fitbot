@@ -34,12 +34,16 @@ body {
   position: absolute;
   z-index: 2;
   right: 30px;
+  background-color: #2c63fc;
+  border-radius: 100%;
   }
 
 .leftArrowIntensity {
   position: absolute;
   z-index: 2;
   left: 30px;
+  background-color: #A7FF37;
+  border-radius: 100%;
 }
 
 .rightArrowIntensity:hover {
@@ -309,7 +313,7 @@ body {
 .cornerLogo {
   position: absolute;
   top: 20px;
-  right: 20px;
+  left: 20px;
   z-index: 20;
 }
 
@@ -750,20 +754,20 @@ color: #A7FF37;
 
 .createGymButton {
   font-family: 'Contrail One';
-  height: 36px;
+  height: 30px;
   background-color: black;
-  color: #A7FF37;
-  border: 2px solid #A7FF37;
+  color: #2c63fc;
+  border: 2px solid #2c63fc;
   border-radius: 3rem;
-  font-size: 20px;
+  font-size: 16px;
   padding-left: 10px;
   padding-right: 10px;
   margin-left: 10px;
 }
 
 .createGymButton:hover {
-  background-color: #A7FF37;
-  border: 2px solid #A7FF37;
+  background-color: #2c63fc;
+  border: 2px solid #2c63fc;
   color: black;
 }
 
@@ -778,7 +782,8 @@ color: #A7FF37;
 #gymError {
   color: #2c63fc;
   font-family: 'Contrail One';
-  padding-top: 10px;
+  font-size: small;
+  margin-left: 10px;
 }
 /* Equipment Selection Page */
 
@@ -960,16 +965,18 @@ margin: 15px;
 
 .pulse {
   animation: pulse 1s infinite;
+  background-color: #ff00a6;
+  box-shadow: 0 0 40px rgb(255, 255, 255);
 }
 
 @keyframes pulse {
 
   0%,
   100% {
-    transform: translateX(5px)
+    transform: translateX(10px)
   }
 
   50% {
-    transform: translateX(10px)
+    transform: translateX(20px)
   }
 }
