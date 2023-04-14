@@ -33,10 +33,10 @@ export default function Account({ buildWorkout }) {
   };
   return (
     <Menu>
-      <Menu.Button className='flex w-full justify-center items-center h-10 rounded-md bg-[#A7FF37] px-4 py-4 text-sm font-medium text-black hover:bg-[#A7FF37] focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75'>
-        <CgProfile className='mr-2' /> Options
+      <Menu.Button className='flex ml-4 w-full justify-center items-center h-10 rounded-md bg-[#A7FF37] px-4 py-4 text-sm font-medium text-black hover:bg-[#A7FF37] focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75'>
+        <CgProfile className='m-2' /> Options
         <ChevronDownIcon
-          className='ml-2 -mr-1 h-5 w-5 text-black hover:scale-110'
+          className='ml-2 mr-1 h-5 w-5 text-black hover:scale-110'
           aria-hidden='true'
         />
       </Menu.Button>

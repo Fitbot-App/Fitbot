@@ -43,14 +43,14 @@ const Intensity = () => {
       </Link>
       <div className='intensityDivsContainer'>
         {user.currentUser && (
-          <div className='flex absolute top-6 left-6 z-20'>
+          <div className='flex absolute top-6 right-6 z-20'>
             <Account />
           </div>
         )}
         <Link to='/'>
           <MdKeyboardDoubleArrowLeft
             className='leftArrowIntensity'
-            color='#A7FF37'
+            color='black'
             size='70'
           />
         </Link>
@@ -131,7 +131,7 @@ const Intensity = () => {
             className={`rightArrowIntensity ${
               intensity && experience ? 'pulse' : ''
             }`}
-            color='#A7FF37'
+            color='black'
             size='70'
           />
         </Link>

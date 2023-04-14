@@ -33,14 +33,14 @@ const PickExercise = () => {
           <img width={70} src={logo} alt='FitBot' />
         </Link>
         {user.currentUser && (
-          <div className='flex absolute top-6 left-6 z-20'>
+          <div className='flex absolute top-6 right-6 z-20'>
             <Account />
           </div>
         )}
         <Link to='/equipment'>
           <MdKeyboardDoubleArrowLeft
             className='leftArrowIntensity'
-            color='#A7FF37'
+            color='black'
             size='70'
           />
         </Link>
@@ -83,7 +83,7 @@ const PickExercise = () => {
               className={`rightArrowIntensity ${
                 exercises.exercises.length ? 'pulse' : ''
               }`}
-              color='#A7FF37'
+              color='black'
               size='70'
             />
           </Link>
