@@ -12,6 +12,9 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../AuthContext';
 import { persistor } from '../app/store';
+import { IoIosFitness, IoMdOptions } from 'react-icons/io';
+import { BsGraphUp } from 'react-icons/bs';
+import { BiLogOut } from 'react-icons/bi';
 
 export default function Account({ buildWorkout }) {
   const { logout } = useAuth();
@@ -34,7 +37,7 @@ export default function Account({ buildWorkout }) {
   return (
     <Menu>
       <Menu.Button className='flex ml-4 w-full justify-center items-center h-10 rounded-md bg-[#A7FF37] px-4 py-4 text-sm font-medium text-black hover:bg-[#A7FF37] focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75'>
-        <CgProfile className='m-2' /> Options
+        <IoMdOptions className='m-2' /> Options
         <ChevronDownIcon
           className='ml-2 mr-1 h-5 w-5 text-black hover:scale-110'
           aria-hidden='true'
@@ -61,12 +64,12 @@ export default function Account({ buildWorkout }) {
                     } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
                   >
                     {active ? (
-                      <ProfileActiveIcon
+                      <IoIosFitness
                         className='mr-2 h-5 w-5'
                         aria-hidden='true'
                       />
                     ) : (
-                      <ProfileInactiveIcon
+                      <IoIosFitness
                         className='mr-2 h-5 w-5'
                         aria-hidden='true'
                       />
@@ -85,15 +88,9 @@ export default function Account({ buildWorkout }) {
                     } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
                   >
                     {active ? (
-                      <ProfileActiveIcon
-                        className='mr-2 h-5 w-5'
-                        aria-hidden='true'
-                      />
+                      <BsGraphUp className='mr-2 h-5 w-5' aria-hidden='true' />
                     ) : (
-                      <ProfileInactiveIcon
-                        className='mr-2 h-5 w-5'
-                        aria-hidden='true'
-                      />
+                      <BsGraphUp className='mr-2 h-5 w-5' aria-hidden='true' />
                     )}
                     Dashboard
                   </Link>
@@ -109,15 +106,9 @@ export default function Account({ buildWorkout }) {
                   } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
                 >
                   {active ? (
-                    <LogoutActiveIcon
-                      className='mr-2 h-5 w-5'
-                      aria-hidden='true'
-                    />
+                    <BiLogOut className='mr-2 h-5 w-5' aria-hidden='true' />
                   ) : (
-                    <LogoutInactiveIcon
-                      className='mr-2 h-5 w-5'
-                      aria-hidden='true'
-                    />
+                    <BiLogOut className='mr-2 h-5 w-5' aria-hidden='true' />
                   )}
                   Log Out
                 </button>
