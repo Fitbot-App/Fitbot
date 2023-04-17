@@ -34,7 +34,7 @@ body {
   position: absolute;
   z-index: 2;
   right: 30px;
-  background-color: #2c63fc;
+  background-color: #a8ff377a;
   border-radius: 100%;
   }
 
@@ -965,7 +965,7 @@ margin: 15px;
 
 .pulse {
   animation: pulse 1s infinite;
-  background-color: #ff00a6;
+  background-color: #A7FF37;
   box-shadow: 0 0 40px rgb(255, 255, 255);
 }
 
