@@ -133,7 +133,7 @@ function GenerateWorkout() {
             return item ? (
               <div key={index} className='singleGeneratedExercise'>
                 <span className='singleExercise'>
-                  {item}
+                  {item.replace(/\.$/, '')}
                   <button onClick={() => addExercise(item)}>
                     <IoMdAddCircle
                       color={'#A7FF37'}

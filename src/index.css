@@ -61,87 +61,76 @@ body {
 
 /* Landing page styles */
 
-.landingContainer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+@media only screen and (min-width: 701px) {
+  .landingContainer {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  }
+  
+  .landingTransparentOverlay {
+      background-color: rgb(0 0 0 / 0.7);
+      opacity: 0.7;
+      position: 'absolute';
+      top: 0;
+      bottom: 0;
+      right: 0;
+      height: 100vh;
+      width: 100%;
+      z-index: 2;
+  }
+
+  .landingLogoContainer {
+      background-color: black;
+      height: 100vh;
+      width: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      left: 0;
+      top: 0;
+      z-index: 2;
+  }
+
+  .landingButtonsContainer {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-image: url('https://images.saymedia-content.com/.image/ar_1:1%2Cc_fill%2Ccs_srgb%2Cfl_progressive%2Cq_auto:eco%2Cw_1200/MTg5NzYxMTgxNjQzMTg3OTAw/the-philosophy-behind-bikram-yoga.jpg');
+      background-size: cover;
+      height: 100vh;
+      width: 50%;
+      position: absolute;
+      right: 0;
+      top: 0;
+  }
+  .landingButton {
+    font-family: 'Contrail One';
+    font-size: 20px;
+    padding: 15px;
+    margin-left: 5rem;
+    margin-right: 5rem;
+    border: 2px solid #2c63fc;
+    border-radius: 3rem;
+    background-color: black;
+    color: #A7FF37;
+    z-index: 2;
+  }
+  
+  .landingButton:hover {
+    background-color: #2c63fc;
+    color: #A7FF37;
+  }
 }
 
-.landingTitle {
-  font-family: 'Contrail One';
-  font-size: 96px; 
-  text-align: center; 
-  color: #A7FF37;
+@media only screen and (max-width: 700px) {
+
 }
 
-.landingIconsContainer {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  margin-top: 40px
-}
 
-.landingIcons {
-  display: flex;
-  justify-content: space-between;
-  width: 40%;
-}
 
-.landingTransparentOverlay {
-  background-color: rgb(0 0 0 / 0.7);
-  opacity: 0.7;
-  position: 'absolute';
-  top: 0;
-  bottom: 0;
-  right: 0;
-  height: 100vh;
-  width: 100%;
-  z-index: 2;
-}
 
-.landingLogoContainer {
-  background-color: black;
-  height: 100vh;
-  width: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  left: 0;
-  top: 0;
-  z-index: 2;
-}
-
-.landingButtonsContainer {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-image: url('https://images.saymedia-content.com/.image/ar_1:1%2Cc_fill%2Ccs_srgb%2Cfl_progressive%2Cq_auto:eco%2Cw_1200/MTg5NzYxMTgxNjQzMTg3OTAw/the-philosophy-behind-bikram-yoga.jpg');
-  background-size: cover;
-  height: 100vh;
-  width: 50%;
-  position: absolute;
-  right: 0;
-  top: 0;
-}
-
-.landingButton {
-  font-family: 'Contrail One';
-  font-size: 20px;
-  padding: 15px;
-  margin-left: 5rem;
-  margin-right: 5rem;
-  border: 2px solid #2c63fc;
-  border-radius: 3rem;
-  background-color: black;
-  color: #A7FF37;
-  z-index: 2;
-}
-
-.landingButton:hover {
-  background-color: #2c63fc;
-  color: #A7FF37;
-}
 
 /* Login in page styles */
 
