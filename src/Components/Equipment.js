@@ -45,6 +45,8 @@ const Equipment = () => {
     'Elliptical',
     'Kettle Bell',
     'Medicine Ball',
+    'Pull Up Bar',
+    'Stationary Bike',
     'Weight Plates',
   ]);
   const [error, setError] = useState('');
