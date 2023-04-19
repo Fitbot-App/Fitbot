@@ -11,20 +11,62 @@ import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import { IoIosCloseCircleOutline } from 'react-icons/io';
 
-const style = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: 500,
-  height: 500,
-  bgcolor: 'black',
-  border: '2px solid #A7FF37',
-  boxShadow: 24,
-  p: 4,
-};
-
 export default function Calendar() {
+  const useMediaQuery = (width) => {
+    const [targetReached, setTargetReached] = React.useState(false);
+
+    const updateTarget = React.useCallback((e) => {
+      if (e.matches) {
+        setTargetReached(true);
+      } else {
+        setTargetReached(false);
+      }
+    }, []);
+
+    React.useEffect(() => {
+      const media = window.matchMedia(`(max-width: ${width}px)`);
+      media.addListener(updateTarget);
+
+      // Check on mount (callback is not called until a change occurs)
+      if (media.matches) {
+        setTargetReached(true);
+      }
+
+      return () => media.removeListener(updateTarget);
+    }, [width, updateTarget]);
+
+    return targetReached;
+  };
+
+  const isBreakpoint = useMediaQuery(600);
+  let style;
+
+  isBreakpoint
+    ? (style = {
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        width: 350,
+        height: 350,
+        transform: 'translate(-50%, -50%)',
+        bgcolor: 'black',
+        border: '2px solid #A7FF37',
+        boxShadow: 24,
+        p: 4,
+      })
+    : (style = {
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        width: 500,
+        height: 500,
+        transform: 'translate(-50%, -50%)',
+        bgcolor: 'black',
+        border: '2px solid #A7FF37',
+        boxShadow: 24,
+        p: 4,
+      });
+
   const [open, setOpen] = React.useState(false);
   const [workouts, setWorkouts] = React.useState([]);
 
@@ -87,6 +129,7 @@ export default function Calendar() {
                 value={value}
                 onChange={(newValue) => handleDateChange(newValue)}
                 sx={{
+                  width: '100%',
                   svg: { color: '#A7FF37' },
                   span: { color: '#A7FF37' },
                   button: {
@@ -125,29 +168,24 @@ export default function Calendar() {
         <Box sx={style} className='overflow-auto suggestedWorkoutDiv'>
           {workouts.length ? (
             <>
-              <div className='text-5xl text-center font-["Contrail_One"]'>
-                Workouts
-              </div>
+              <div className='workoutModalTitle'>Workouts</div>
               <button
                 className='w-fit absolute top-4 right-4'
                 onClick={handleClose}
               >
                 <IoIosCloseCircleOutline color='#A7FF37' size='30' />
               </button>
-              <div id='modal-modal-description' sx={{ mt: 2 }}>
+              <div sx={{ mt: 2 }}>
                 {workouts.split(',').map((part) => {
                   return part.split(':').map((item, i) => {
                     if (item.includes('Warm-Up')) {
                       return (
-                        <>
+                        <React.Fragment key={i}>
                           <hr className='border-[#2c63fc] mt-5 border-2' />
-                          <div
-                            key={i}
-                            className='font-bold text-xl pt-6 font-["Contrail_One"]'
-                          >
+                          <div className='font-bold text-xl pt-6 font-["Contrail_One"]'>
                             {item}
                           </div>
-                        </>
+                        </React.Fragment>
                       );
                     } else if (item.includes('Part')) {
                       return (
