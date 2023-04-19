@@ -12,7 +12,7 @@ export default function Home() {
 
   return (
     <div className='dashboardContainer'>
-      <h1 className='text-5xl p-4 flex justify-center items-center generatedResponse'>
+      <h1 className='dashboardTitle generatedResponse'>
         {user.firstName}'s Dashboard
       </h1>
       <Link className='cornerLogo' to='/'>
