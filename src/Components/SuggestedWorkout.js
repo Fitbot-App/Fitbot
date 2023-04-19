@@ -86,7 +86,7 @@ const SuggestedWorkout = () => {
   }, []);
 
   return (
-    <div className='flex h-full justify-between'>
+    <div className='dashboardWorkouts'>
       <div className='suggestedWorkoutDiv'>
         <h1 className='pickExerciseTitle generatedResponse'>
           {`Your Most Recent Workout (${recentDate})`}
@@ -109,7 +109,7 @@ const SuggestedWorkout = () => {
         </div>
       </div>
       <div className='suggestedWorkoutDiv'>
-        <div className='flex justify-between'>
+        <div className='suggestedWorkoutTitleButtonDiv'>
           <h1 className='pickExerciseTitle generatedResponse'>
             Next Suggested Workout
           </h1>
