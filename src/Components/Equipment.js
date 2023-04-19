@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   MdKeyboardDoubleArrowRight,
@@ -115,6 +115,34 @@ const Equipment = () => {
     }, 1000);
   };
 
+  const useMediaQuery = (width) => {
+    const [targetReached, setTargetReached] = useState(false);
+
+    const updateTarget = useCallback((e) => {
+      if (e.matches) {
+        setTargetReached(true);
+      } else {
+        setTargetReached(false);
+      }
+    }, []);
+
+    useEffect(() => {
+      const media = window.matchMedia(`(max-width: ${width}px)`);
+      media.addListener(updateTarget);
+
+      // Check on mount (callback is not called until a change occurs)
+      if (media.matches) {
+        setTargetReached(true);
+      }
+
+      return () => media.removeListener(updateTarget);
+    }, [width, updateTarget]);
+
+    return targetReached;
+  };
+
+  const isBreakpoint = useMediaQuery(600);
+
   useEffect(() => {
     dispatch(clearEquipment());
     const myauth = getAuth();
@@ -190,13 +218,15 @@ const Equipment = () => {
         </div>
       )}
       <div className='equipmentDivsContainer'>
-        <Link to='/intensity'>
-          <MdKeyboardDoubleArrowLeft
-            className='leftArrowIntensity'
-            color='black'
-            size='70'
-          />
-        </Link>
+        {isBreakpoint ? null : (
+          <Link to='/intensity'>
+            <MdKeyboardDoubleArrowLeft
+              className='leftArrowIntensity'
+              color='black'
+              size='70'
+            />
+          </Link>
+        )}
         <div className='equipmentDiv'>
           {savedGym && (
             <span
@@ -264,7 +294,7 @@ const Equipment = () => {
               )}
             </div>
 
-            <div className='grid grid-cols-3 items-center m-5'>
+            <div className='equipmentItemDiv'>
               {equipmentArray.map((item, i) => {
                 return (
                   <React.Fragment key={i}>
@@ -321,7 +351,7 @@ const Equipment = () => {
             </div>
           </div>
         </div>
-        {equipment.length ? (
+        {isBreakpoint ? null : equipment.length ? (
           <Link to='/pickExercise'>
             <MdKeyboardDoubleArrowRight
               className={`rightArrowIntensity ${
