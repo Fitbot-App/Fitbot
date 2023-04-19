@@ -7,6 +7,8 @@ import { useAuth } from '../AuthContext';
 import { getAuth } from 'firebase/auth';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { db } from '../firebase';
+import { clearIntensity } from '../slices/intensitySlice';
+import { clearExercises } from '../slices/chosenExercisesSlice';
 import { AiOutlineLock, AiOutlineMail } from 'react-icons/ai';
 import { TbHandFinger, TbHandTwoFingers } from 'react-icons/tb';
 import { IoMdArrowBack } from 'react-icons/io';
@@ -35,7 +37,8 @@ export default function Login() {
       }
       try {
         await signup(email, password);
-
+        dispatch(clearIntensity());
+        dispatch(clearExercises());
         navigate('/home');
         setEmail('');
         setPassword('');
@@ -68,6 +71,9 @@ export default function Login() {
     } else {
       try {
         await login(email, password);
+        dispatch(clearIntensity());
+        dispatch(clearExercises());
+        console.log();
         const myauth = getAuth();
         const userDocSnap = await getDoc(
           doc(db, 'users', myauth.currentUser.uid)
