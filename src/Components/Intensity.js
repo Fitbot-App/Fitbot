@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom';
 import logo from '../logo/Fitbot2.png';
 import { useAuth } from '../AuthContext';
 import Account from './Account';
+import { useEffect, useState, useCallback } from 'react';
 
 const Intensity = () => {
   const intensity = useSelector((state) => state.intensity.intensity);
@@ -33,6 +34,34 @@ const Intensity = () => {
 
   const user = useAuth();
 
+  const useMediaQuery = (width) => {
+    const [targetReached, setTargetReached] = useState(false);
+
+    const updateTarget = useCallback((e) => {
+      if (e.matches) {
+        setTargetReached(true);
+      } else {
+        setTargetReached(false);
+      }
+    }, []);
+
+    useEffect(() => {
+      const media = window.matchMedia(`(max-width: ${width}px)`);
+      media.addListener(updateTarget);
+
+      // Check on mount (callback is not called until a change occurs)
+      if (media.matches) {
+        setTargetReached(true);
+      }
+
+      return () => media.removeListener(updateTarget);
+    }, [width, updateTarget]);
+
+    return targetReached;
+  };
+
+  const isBreakpoint = useMediaQuery(600);
+
   return (
     <div className='intensityContainer'>
       <div className='intensityTransparentOverlay' />
@@ -47,13 +76,15 @@ const Intensity = () => {
             <Account />
           </div>
         )}
-        <Link to='/'>
-          <MdKeyboardDoubleArrowLeft
-            className='leftArrowIntensity'
-            color='black'
-            size='70'
-          />
-        </Link>
+        {isBreakpoint ? null : (
+          <Link to='/'>
+            <MdKeyboardDoubleArrowLeft
+              className='leftArrowIntensity'
+              color='black'
+              size='70'
+            />
+          </Link>
+        )}
         <div className='intensityDiv'>
           <h2 className='title'>Set Your Experience Level</h2>
           <button
@@ -126,15 +157,38 @@ const Intensity = () => {
             Hard
           </button>
         </div>
-        <Link to='/equipment'>
-          <MdKeyboardDoubleArrowRight
-            className={`rightArrowIntensity ${
-              intensity && experience ? 'pulse' : ''
-            }`}
-            color='black'
-            size='70'
-          />
-        </Link>
+        {isBreakpoint && (
+          <>
+            <Link to='/equipment'>
+              <MdKeyboardDoubleArrowRight
+                className={`rightArrowIntensity ${
+                  intensity && experience ? 'pulse' : ''
+                }`}
+                color='black'
+                size='70'
+              />
+            </Link>
+
+            <Link to='/'>
+              <MdKeyboardDoubleArrowLeft
+                className='leftArrowIntensity'
+                color='black'
+                size='70'
+              />
+            </Link>
+          </>
+        )}
+        {isBreakpoint ? null : (
+          <Link to='/equipment'>
+            <MdKeyboardDoubleArrowRight
+              className={`rightArrowIntensity ${
+                intensity && experience ? 'pulse' : ''
+              }`}
+              color='black'
+              size='70'
+            />
+          </Link>
+        )}
       </div>
     </div>
   );

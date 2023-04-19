@@ -492,337 +492,724 @@ body {
 }
 
 /* Intensity and skill level page */
+@media (min-width: 600px) {
+  .intensityTransparentOverlay {
+      background-color: rgb(0 0 0 / 0.7);
+      opacity: 0.7;
+      position: 'absolute';
+      top: 0;
+      bottom: 0;
+      right: 0;
+      z-index: 2;
+      right: 0;
+      height: 100vh;
+      width: 100%;
+    }
+    .intensityContainer {
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      background-image: url("https://images.squarespace-cdn.com/content/v1/5e81f296eca8656d4cc7f9ac/1625218190083-45ABEW5ZJG5BIZRCS5O6/SwiftGym036_sr.jpg?format=2500w");
+      background-size: cover;
+      position: absolute;
+    }
 
-.intensityTransparentOverlay{
-  background-color: rgb(0 0 0 / 0.7);
-  opacity: 0.7;
-  position: 'absolute';
-  top: 0;
-  bottom: 0;
-  right: 0;
-  z-index: 2;
-  right: 0;
-  height: 100vh;
-  width: 100%;
+    .intensityDiv {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: center;
+      box-sizing: border-box;
+      width: 30%;
+      height: 70%;
+      background-color: rgba(0, 0, 0, 0.818);
+      border: 3px solid #A7FF37;
+      border-radius: 32px;
+      box-shadow: 0 0 12px rgb(191, 191, 191);
+      z-index: 2;
+    }
+
+    .intensityDivsContainer {
+      position: absolute;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+    }
+    .intesityTitle {
+      color: white;
+      display: flex;
+      width: 100vw;
+      justify-content: center;
+      position: absolute;
+      z-index: 20;
+      font-size: 52px;
+      top: 0;
+      margin-top: 10px;
+      font-family: 'Contrail One';
+      color: #A7FF37;
+    }
+
+    .title {
+      text-align: center;
+      font-family: 'Contrail One';
+      font-size: 30px;
+      color: #A7FF37;
+    }
+
+    .intensityButton {
+      width: 70%;
+      height: 20%;
+      margin-bottom: 10px;
+      border: 2px solid #2c63fc;
+      border-radius: 20px;
+      font-family: 'Contrail One';
+      font-size: 30px;
+      background-color: #000000;
+      color: #A7FF37;
+    }
+
+    .intensityButtonSelected {
+      width: 70%;
+      height: 20%;
+      margin-bottom: 10px;
+      border: 3px solid #2c63fc;
+      border-radius: 20px;
+      font-family: 'Contrail One';
+      font-size: 30px;
+      color: #2c63fc;
+      background-color: #000000;
+      box-shadow: 0 0 2px #fff, 0 0 5px #2c63fc, 0 0 7px #2c63fc, 0 0 10px #2c63fc;
+    }  
+
+    .intensityButton:hover {
+      background-color: #2c63fc;
+      color: black;
+    }
+
+    .rightArrowIntensity {
+        position: absolute;
+        z-index: 2;
+        right: 30px;
+        background-color: #a8ff377a;
+        border-radius: 100%;
+    }
+    
+    .leftArrowIntensity {
+        position: absolute;
+        z-index: 2;
+        left: 30px;
+        background-color: #A7FF37;
+        border-radius: 100%;
+    }
 }
 
-.intensityContainer {
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  background-image: url("https://images.squarespace-cdn.com/content/v1/5e81f296eca8656d4cc7f9ac/1625218190083-45ABEW5ZJG5BIZRCS5O6/SwiftGym036_sr.jpg?format=2500w");
-  background-size: cover;
-  position: absolute;
+@media (max-width: 600px) {
+  .intensityTransparentOverlay {
+      background-color: rgb(0 0 0 / 0.7);
+      opacity: 0.7;
+      position: 'absolute';
+      top: 0;
+      bottom: 0;
+      right: 0;
+      z-index: 2;
+      right: 0;
+      height: 130vh;
+      width: 100%;
+    }
+  
+    .intensityContainer {
+      width: 100vw;
+      height: 130vh;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      background-image: url("https://images.squarespace-cdn.com/content/v1/5e81f296eca8656d4cc7f9ac/1625218190083-45ABEW5ZJG5BIZRCS5O6/SwiftGym036_sr.jpg?format=2500w");
+      background-size: cover;
+      position: absolute;
+    }
+  
+    .intensityDiv {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: center;
+      box-sizing: border-box;
+      padding: 1rem;
+      width: 80%;
+      height: 70%;
+      background-color: rgba(0, 0, 0, 0.818);
+      border: 3px solid #A7FF37;
+      border-radius: 32px;
+      margin-bottom: 20px;
+      box-shadow: 0 0 12px rgb(191, 191, 191);
+      z-index: 2;
+    }
+  
+    .intensityDivsContainer {
+      position: absolute;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      top: 180px;
+      justify-content: space-around;
+      align-items: center;
+    }
+  
+    .intesityTitle {
+      color: white;
+      display: flex;
+      width: 100vw;
+      justify-content: center;
+      position: absolute;
+      z-index: 20;
+      font-size: 52px;
+      top: 80px;
+      margin-top: 10px;
+      font-family: 'Contrail One';
+      color: #A7FF37;
+    }
+  
+    .title {
+      text-align: center;
+      font-family: 'Contrail One';
+      font-size: 30px;
+      color: #A7FF37;
+    }
+  
+    .intensityButton {
+      width: 70%;
+      height: 20%;
+      margin-bottom: 10px;
+      border: 2px solid #2c63fc;
+      border-radius: 20px;
+      font-family: 'Contrail One';
+      font-size: 25px;
+      background-color: #000000;
+      color: #A7FF37;
+    }
+  
+    .intensityButtonSelected {
+      width: 70%;
+      height: 20%;
+      margin-bottom: 10px;
+      border: 3px solid #2c63fc;
+      border-radius: 20px;
+      font-family: 'Contrail One';
+      font-size: 30px;
+      color: #2c63fc;
+      background-color: #000000;
+      box-shadow: 0 0 2px #fff, 0 0 5px #2c63fc, 0 0 7px #2c63fc, 0 0 10px #2c63fc;
+    }
+  
+    .intensityButton:hover {
+      background-color: #2c63fc;
+      color: black;
+    }
+
+    .rightArrowIntensity {
+        position: absolute;
+        z-index: 2;
+        margin-right: 60px;
+        background-color: #a8ff377a;
+        border-radius: 100%;
+    }
+    
+    .leftArrowIntensity {
+        position: absolute;
+        z-index: 2;
+        margin-left: 60px;
+        background-color: #A7FF37;
+        border-radius: 100%;
+    }
 }
 
-.intensityDiv{
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-  box-sizing: border-box;
-  width: 30%;
-  height: 70%;
-  background-color: rgba(0, 0, 0, 0.818);
-  border: 3px solid #A7FF37;
-  border-radius: 32px;
-  box-shadow: 0 0 12px rgb(191, 191, 191);
-  z-index: 2;
-}
-
-.intensityDivsContainer {
-  position: absolute;
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-}
-
-.intesityTitle{
-color:white;
-display: flex;
- width: 100vw;
-justify-content:center;
-position: absolute ;
-z-index:20 ;
-font-size: 52px;
-top: 0;
-margin-top: 10px;
-font-family: 'Contrail One';
-color: #A7FF37;
-}
-
-.title{
-  text-align: center;
-  font-family: 'Contrail One';
-  font-size: 30px;
-  color: #A7FF37;
-}
-
-.intensityButton{
-  width: 70%;
-  height: 20%;
-  margin-bottom: 10px;
-  border: 2px solid #2c63fc;
-  border-radius: 20px;
-  font-family: 'Contrail One';
-  font-size: 30px;
-  background-color: #000000;
-  color: #A7FF37;
-}
-
-.intensityButtonSelected {
-  width: 70%;
-  height: 20%;
-  margin-bottom: 10px;
-  border: 3px solid #2c63fc;
-  border-radius: 20px;
-  font-family: 'Contrail One';
-  font-size: 30px;
-  color: #2c63fc;
-  background-color: #000000;
-  box-shadow: 0 0 2px #fff, 0 0 5px #2c63fc, 0 0 7px #2c63fc, 0 0 10px #2c63fc;
- }
-
-.intensityButton:hover {
-  background-color: #2c63fc;
-  color: black;
-}
 
 /* Equipment Selection Page */
-.equipmentContainer {
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  background-image: url("https://i.pinimg.com/originals/a3/1d/e3/a31de3187c7fa939a863f4b8593ef1de.jpg");
-  background-size: cover;
-  position: absolute;
+
+@media (min-width: 600px) {
+  .equipmentContainer {
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      background-image: url("https://i.pinimg.com/originals/a3/1d/e3/a31de3187c7fa939a863f4b8593ef1de.jpg");
+      background-size: cover;
+      position: absolute;
+    }
+  
+    .equipmentTransparentOverlay {
+      background-color: rgba(18, 18, 18, 0.7);
+      opacity: 0.7;
+      position: 'absolute';
+      top: 0;
+      bottom: 0;
+      right: 0;
+      z-index: 2;
+      right: 0;
+      height: 100vh;
+      width: 100%;
+    }
+  
+    .equipmentDivsContainer {
+      position: absolute;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+    }
+  
+    .equipmentDiv {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-sizing: border-box;
+      margin-top: 100px;
+      padding-bottom: 5%;
+      width: 50%;
+      background-color: black;
+      border: 3px solid #A7FF37;
+      border-radius: 32px;
+      z-index: 2;
+      overflow: scroll;
+      box-shadow: 0 0 12px rgb(191, 191, 191);
+      background-color: rgba(0, 0, 0, 0.818);
+    }
+
+   .equipmentItemDiv{
+     display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    align-items: center;
+    margin: 5px;
+   }
+
+    .equipmentItem {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #A7FF37;
+      font-family: 'Contrail One';
+      margin: 10px;
+      padding-left: 10px;
+      padding-right: 10px;
+      padding-top: 5px;
+      padding-bottom: 5px;
+      border: 2px solid #2c63fc;
+      border-radius: 32px;
+      text-align: center;
+      box-shadow: 0 0 2px #fff, 0 0 5px #2c63fc, 0 0 7px #2c63fc, 0 0 10px #2c63fc;
+      background-color: #000000;
+    }
+  
+    .equipmentItemSelected {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #A7FF37;
+      font-family: 'Contrail One';
+      margin: 10px;
+      padding-left: 10px;
+      padding-right: 10px;
+      padding-top: 5px;
+      padding-bottom: 5px;
+      border: 2px solid #A7FF37;
+      border-radius: 32px;
+      text-align: center;
+      box-shadow: 0 0 2px #fff, 0 0 5px #A7FF37, 0 0 7px #A7FF37, 0 0 10px #A7FF37;
+      background-color: #000000;
+    }
+  
+    .creatable {
+      padding-left: 10px;
+      padding-right: 10px;
+      height: 36px;
+      text-align: center;
+      background-color: #000000;
+      border-color: #A7FF37;
+      border-radius: 32px;
+      font-family: Contrail One;
+    }
+  
+    .creatableMuscleGroup {
+      padding-left: 10px;
+      padding-right: 10px;
+      margin: 10px;
+      height: 36px;
+      text-align: center;
+      border-radius: 32px;
+      font-family: Contrail One;
+    }
+  
+  
+    .equipmentSkipButton {
+      font-family: 'Contrail One';
+      height: 36px;
+      background-color: black;
+      color: #2c63fc;
+      border: 2px solid #2c63fc;
+      border-radius: 3rem;
+      font-size: 20px;
+      padding-left: 10px;
+      padding-right: 10px;
+      margin-top: 15px;
+      margin-bottom: 15px;
+    }
+  
+    .equipmentSkipButton:hover {
+      background-color: #2c63fc;
+      color: black;
+      scale: 110%;
+      transition-duration: 400ms;
+    }
+  
+    .equipmentModalContinueButton {
+      font-family: 'Contrail One';
+      height: 36px;
+      background-color: black;
+      color: #2c63fc;
+      border: 2px solid #2c63fc;
+      border-radius: 3rem;
+      font-size: 20px;
+      padding-left: 10px;
+      padding-right: 10px;
+      margin: 15px;
+  
+    }
+  
+    .equipmentModalContinueButton:hover {
+      background-color: #2c63fc;
+      color: black;
+      scale: 110%;
+      transition-duration: 400ms;
+    }
+  
+    .equipmentModalBackButton {
+      font-family: 'Contrail One';
+      height: 36px;
+      background-color: black;
+      color: #A7FF37;
+      border: 2px solid #A7FF37;
+      border-radius: 3rem;
+      font-size: 20px;
+      padding-left: 10px;
+      padding-right: 10px;
+      margin: 15px;
+  
+    }
+  
+    .equipmentModalBackButton:hover {
+      background-color: #A7FF37;
+      color: black;
+      scale: 110%;
+      transition-duration: 400ms;
+    }
+  
+    .equipmentAddButton {
+      font-family: 'Contrail One';
+      background-color: black;
+      color: #A7FF37;
+      border: 2px solid #A7FF37;
+      border-radius: 3rem;
+      font-size: 15px;
+      padding-left: 5px;
+      padding-right: 5px;
+      margin-left: 10px;
+    }
+  
+    .equipmentAddButton:hover {
+      background-color: #A7FF37;
+      border: 2px solid #A7FF37;
+      color: black;
+    }
+  
+    .equipmentSkipButtonContainer {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+    }
+  
+    .createGymButton {
+      font-family: 'Contrail One';
+      height: 30px;
+      background-color: black;
+      color: #2c63fc;
+      border: 2px solid #2c63fc;
+      border-radius: 3rem;
+      font-size: 16px;
+      padding-left: 10px;
+      padding-right: 10px;
+      margin-left: 10px;
+    }
+  
+    .createGymButton:hover {
+      background-color: #2c63fc;
+      border: 2px solid #2c63fc;
+      color: black;
+    }
+  
+    .gymSelect {
+      margin-left: 15px;
+      border-radius: 20px;
+      padding: 5px;
+      font-family: Contrail One;
+      color: rgba(0, 0, 0, 0.818)
+    }
+  
+    #gymError {
+      color: #2c63fc;
+      font-family: 'Contrail One';
+      font-size: small;
+      margin-left: 10px;
+    }
 }
 
-.equipmentTransparentOverlay {
-  background-color: rgba(18, 18, 18, 0.7);
-  opacity: 0.7;
-  position: 'absolute';
-  top: 0;
-  bottom: 0;
-  right: 0;
-  z-index: 2;
-  right: 0;
-  height: 100vh;
-  width: 100%;
+@media (max-width: 600px){
+  .equipmentContainer {
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      background-image: url("https://i.pinimg.com/originals/a3/1d/e3/a31de3187c7fa939a863f4b8593ef1de.jpg");
+      background-size: cover;
+      position: absolute;
+    }
+  
+    .equipmentTransparentOverlay {
+      background-color: rgba(18, 18, 18, 0.7);
+      opacity: 0.7;
+      position: 'absolute';
+      top: 0;
+      bottom: 0;
+      right: 0;
+      z-index: 2;
+      right: 0;
+      height: 100vh;
+      width: 100%;
+    }
+  
+    .equipmentDivsContainer {
+      position: absolute;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+    }
+  
+    .equipmentDiv {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-sizing: border-box;
+      margin-top: 400px;
+      padding-bottom: 5%;
+      width: 80%;
+      background-color: black;
+      border: 3px solid #A7FF37;
+      border-radius: 32px;
+      z-index: 2;
+      overflow: scroll;
+      box-shadow: 0 0 12px rgb(191, 191, 191);
+      background-color: rgba(0, 0, 0, 0.818);
+    }
+
+    .equipmentItemDiv {
+      display: grid;
+      grid-template-columns: repeat(1, minmax(0, 1fr));
+      align-items: center;
+      margin: 5px;
+    }
+  
+    .equipmentItem {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #A7FF37;
+      font-family: 'Contrail One';
+      margin: 10px;
+      padding-left: 10px;
+      padding-right: 10px;
+      padding-top: 5px;
+      padding-bottom: 5px;
+      border: 2px solid #2c63fc;
+      border-radius: 32px;
+      text-align: center;
+      box-shadow: 0 0 2px #fff, 0 0 5px #2c63fc, 0 0 7px #2c63fc, 0 0 10px #2c63fc;
+      background-color: #000000;
+    }
+  
+    .equipmentItemSelected {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #A7FF37;
+      font-family: 'Contrail One';
+      margin: 10px;
+      padding-left: 10px;
+      padding-right: 10px;
+      padding-top: 5px;
+      padding-bottom: 5px;
+      border: 2px solid #A7FF37;
+      border-radius: 32px;
+      text-align: center;
+      box-shadow: 0 0 2px #fff, 0 0 5px #A7FF37, 0 0 7px #A7FF37, 0 0 10px #A7FF37;
+      background-color: #000000;
+    }
+  
+    .creatable {
+      padding-left: 10px;
+      padding-right: 10px;
+      height: 36px;
+      text-align: center;
+      background-color: #000000;
+      border-color: #A7FF37;
+      border-radius: 32px;
+      font-family: Contrail One;
+    }
+  
+    .creatableMuscleGroup {
+      padding-left: 10px;
+      padding-right: 10px;
+      margin: 10px;
+      height: 36px;
+      text-align: center;
+      border-radius: 32px;
+      font-family: Contrail One;
+    }
+  
+    .equipmentSkipButton {
+      font-family: 'Contrail One';
+      height: 36px;
+      background-color: black;
+      color: #2c63fc;
+      border: 2px solid #2c63fc;
+      border-radius: 3rem;
+      font-size: 20px;
+      padding-left: 10px;
+      padding-right: 10px;
+      margin-top: 15px;
+      margin-bottom: 15px;
+    }
+  
+    .equipmentSkipButton:hover {
+      background-color: #2c63fc;
+      color: black;
+      scale: 110%;
+      transition-duration: 400ms;
+    }
+  
+    .equipmentModalContinueButton {
+      font-family: 'Contrail One';
+      height: 36px;
+      background-color: black;
+      color: #2c63fc;
+      border: 2px solid #2c63fc;
+      border-radius: 3rem;
+      font-size: 20px;
+      padding-left: 10px;
+      padding-right: 10px;
+      margin: 15px;
+  
+    }
+  
+    .equipmentModalContinueButton:hover {
+      background-color: #2c63fc;
+      color: black;
+      scale: 110%;
+      transition-duration: 400ms;
+    }
+  
+    .equipmentModalBackButton {
+      font-family: 'Contrail One';
+      height: 36px;
+      background-color: black;
+      color: #A7FF37;
+      border: 2px solid #A7FF37;
+      border-radius: 3rem;
+      font-size: 20px;
+      padding-left: 10px;
+      padding-right: 10px;
+      margin: 15px;
+  
+    }
+  
+    .equipmentModalBackButton:hover {
+      background-color: #A7FF37;
+      color: black;
+      scale: 110%;
+      transition-duration: 400ms;
+    }
+  
+    .equipmentAddButton {
+      font-family: 'Contrail One';
+      background-color: black;
+      color: #A7FF37;
+      border: 2px solid #A7FF37;
+      border-radius: 3rem;
+      font-size: 15px;
+      padding-left: 5px;
+      padding-right: 5px;
+      margin-left: 10px;
+    }
+  
+    .equipmentAddButton:hover {
+      background-color: #A7FF37;
+      border: 2px solid #A7FF37;
+      color: black;
+    }
+  
+    .equipmentSkipButtonContainer {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+    }
+  
+    .createGymButton {
+      font-family: 'Contrail One';
+      height: 30px;
+      background-color: black;
+      color: #2c63fc;
+      border: 2px solid #2c63fc;
+      border-radius: 3rem;
+      font-size: 16px;
+      padding-left: 10px;
+      padding-right: 10px;
+      margin-left: 10px;
+    }
+  
+    .createGymButton:hover {
+      background-color: #2c63fc;
+      border: 2px solid #2c63fc;
+      color: black;
+    }
+  
+    .gymSelect {
+      margin-left: 15px;
+      border-radius: 20px;
+      padding: 5px;
+      font-family: Contrail One;
+      color: rgba(0, 0, 0, 0.818)
+    }
+  
+    #gymError {
+      color: #2c63fc;
+      font-family: 'Contrail One';
+      font-size: small;
+      margin-left: 10px;
+    }
 }
 
-.equipmentDivsContainer {
-  position: absolute;
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-}
-
-.equipmentDiv {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  box-sizing: border-box;
-  margin-top: 100px;
-  padding-bottom: 5%;
-  width: 50%;
-  background-color: black;
-  border: 3px solid #A7FF37;
-  border-radius: 32px;
-  z-index: 2;
-  overflow: scroll;
-  box-shadow: 0 0 12px rgb(191, 191, 191);
-  background-color: rgba(0, 0, 0, 0.818);
-}
-
-.equipmentItem {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  color:#A7FF37;
-  font-family: 'Contrail One';
-  margin: 10px;
-  padding-left: 10px;
-  padding-right: 10px;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  border: 2px solid #2c63fc;
-  border-radius: 32px;
-  text-align: center;
-  box-shadow: 0 0 2px #fff, 0 0 5px #2c63fc, 0 0 7px #2c63fc, 0 0 10px #2c63fc;
-  background-color: #000000;
-}
-
-.equipmentItemSelected {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  color: #A7FF37;
-  font-family: 'Contrail One';
-  margin: 10px;
-  padding-left: 10px;
-  padding-right: 10px;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  border: 2px solid #A7FF37;
-  border-radius: 32px;
-  text-align: center;
-  box-shadow: 0 0 2px #fff, 0 0 5px #A7FF37, 0 0 7px #A7FF37, 0 0 10px #A7FF37;
-  background-color: #000000;
-}
-
-.creatable {
-  padding-left: 10px;
-  padding-right: 10px;
-  height: 36px;
-  text-align: center;
-  background-color: #000000;
-  border-color: #A7FF37;
-  border-radius: 32px;
-  font-family: Contrail One;
-} 
-
-.creatableMuscleGroup {
-    padding-left: 10px;
-    padding-right: 10px;
-    margin: 10px;
-    height: 36px;
-    text-align: center;
-    border-radius: 32px;
-    font-family: Contrail One;
-}
-
-
-.equipmentSkipButton{
-  font-family: 'Contrail One';
-    height: 36px;
-    background-color: black;
-    color: #2c63fc;
-    border: 2px solid #2c63fc;
-    border-radius: 3rem;
-    font-size: 20px;
-    padding-left: 10px;
-    padding-right: 10px;
-    margin-top: 15px;
-    margin-bottom: 15px;
-}
-
-.equipmentSkipButton:hover {
-  background-color: #2c63fc;
-    color: black;
-    scale: 110%;
-    transition-duration: 400ms;
-}
-
-.equipmentModalContinueButton {
-  font-family: 'Contrail One';
-  height: 36px;
-  background-color: black;
-  color: #2c63fc;
-  border: 2px solid #2c63fc;
-  border-radius: 3rem;
-  font-size: 20px;
-  padding-left: 10px;
-  padding-right: 10px;
-  margin: 15px;
-
-}
-
-.equipmentModalContinueButton:hover {
-  background-color: #2c63fc;
-  color: black;
-  scale: 110%;
-  transition-duration: 400ms;
-}
-
-.equipmentModalBackButton {
-  font-family: 'Contrail One';
-  height: 36px;
-  background-color: black;
-  color: #A7FF37;
-  border: 2px solid #A7FF37;
-  border-radius: 3rem;
-  font-size: 20px;
-  padding-left: 10px;
-  padding-right: 10px;
-  margin: 15px;
-
-}
-
-.equipmentModalBackButton:hover {
-  background-color: #A7FF37;
-  color: black;
-  scale: 110%;
-  transition-duration: 400ms;
-}
-
-.equipmentAddButton {
-  font-family: 'Contrail One';
-  background-color: black;
-  color: #A7FF37;
-  border: 2px solid #A7FF37;
-  border-radius: 3rem;
-  font-size: 15px;
-  padding-left: 5px;
-  padding-right: 5px;
-  margin-left: 10px;
-}
-
-.equipmentAddButton:hover {
-  background-color: #A7FF37;
-  border: 2px solid #A7FF37;
-  color: black;
-}
-
-.equipmentSkipButtonContainer{
- display: flex;
- justify-content: space-around;
- align-items: center;
-}
-
-.createGymButton {
-  font-family: 'Contrail One';
-  height: 30px;
-  background-color: black;
-  color: #2c63fc;
-  border: 2px solid #2c63fc;
-  border-radius: 3rem;
-  font-size: 16px;
-  padding-left: 10px;
-  padding-right: 10px;
-  margin-left: 10px;
-}
-
-.createGymButton:hover {
-  background-color: #2c63fc;
-  border: 2px solid #2c63fc;
-  color: black;
-}
-
-.gymSelect{
-  margin-left: 15px;
-  border-radius: 20px;
-  padding: 5px;
-  font-family: Contrail One;
-  color:rgba(0, 0, 0, 0.818)
-}
-
-#gymError {
-  color: #2c63fc;
-  font-family: 'Contrail One';
-  font-size: small;
-  margin-left: 10px;
-}
 /* Equipment Selection Page */
 
 /* Finalize Page */
