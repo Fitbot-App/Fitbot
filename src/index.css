@@ -55,92 +55,129 @@ body {
   scale: 110%;
 }
 
-.landingPageLogo {
-  margin-top: 30px;
-}
-
 /* Landing page styles */
 
-.landingContainer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+/* Large Screen */
+@media (min-width: 601px) {
+  .landingContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .landingPageLogo {
+    margin-top: 30px;
+  }
+
+  .landingTransparentOverlay {
+    background-color: rgb(0 0 0 / 0.7);
+    opacity: 0.7;
+    position: 'absolute';
+    top: 0;
+    bottom: 0;
+    right: 0;
+    height: 100vh;
+    width: 100%;
+    z-index: 2;
+  }
+
+  .landingLogoContainer {
+    background-color: black;
+    height: 100vh;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 2;
+  }
+
+  .landingButtonsContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url('https://images.saymedia-content.com/.image/ar_1:1%2Cc_fill%2Ccs_srgb%2Cfl_progressive%2Cq_auto:eco%2Cw_1200/MTg5NzYxMTgxNjQzMTg3OTAw/the-philosophy-behind-bikram-yoga.jpg');
+    background-size: cover;
+    height: 100vh;
+    width: 50%;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+
+  .landingButton {
+    font-family: 'Contrail One';
+    font-size: 20px;
+    padding: 15px;
+    margin-left: 5rem;
+    margin-right: 5rem;
+    border: 2px solid #2c63fc;
+    border-radius: 3rem;
+    background-color: black;
+    color: #A7FF37;
+    z-index: 2;
+  }
+
+  .landingButton:hover {
+    background-color: #2c63fc;
+    color: #A7FF37;
+  }
 }
 
-.landingTitle {
-  font-family: 'Contrail One';
-  font-size: 96px; 
-  text-align: center; 
-  color: #A7FF37;
-}
+/* Small Screen */
+@media (max-width: 600px) {
+  .landingContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; 
+  }
 
-.landingIconsContainer {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  margin-top: 40px
-}
+  .landingLogoContainer {
+    background-color: black;
+    height: 40%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
-.landingIcons {
-  display: flex;
-  justify-content: space-between;
-  width: 40%;
-}
+  .landingPageLogo {
+    max-height: 300px;
+    max-width: 190px;
+  }
 
-.landingTransparentOverlay {
-  background-color: rgb(0 0 0 / 0.7);
-  opacity: 0.7;
-  position: 'absolute';
-  top: 0;
-  bottom: 0;
-  right: 0;
-  height: 100vh;
-  width: 100%;
-  z-index: 2;
-}
+  .landingButtonsContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-image: url('https://images.saymedia-content.com/.image/ar_1:1%2Cc_fill%2Ccs_srgb%2Cfl_progressive%2Cq_auto:eco%2Cw_1200/MTg5NzYxMTgxNjQzMTg3OTAw/the-philosophy-behind-bikram-yoga.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+    width: 100%;
+    right: 0;
+    top: 0;
+  }
 
-.landingLogoContainer {
-  background-color: black;
-  height: 100vh;
-  width: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  left: 0;
-  top: 0;
-  z-index: 2;
-}
+  .landingButton {
+    font-family: 'Contrail One';
+    margin: 5px;
+    font-size: 15px;
+    padding: 15px;
+    border: 2px solid #2c63fc;
+    border-radius: 3rem;
+    background-color: black;
+    color: #A7FF37;
+    z-index: 2;
+  }
 
-.landingButtonsContainer {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-image: url('https://images.saymedia-content.com/.image/ar_1:1%2Cc_fill%2Ccs_srgb%2Cfl_progressive%2Cq_auto:eco%2Cw_1200/MTg5NzYxMTgxNjQzMTg3OTAw/the-philosophy-behind-bikram-yoga.jpg');
-  background-size: cover;
-  height: 100vh;
-  width: 50%;
-  position: absolute;
-  right: 0;
-  top: 0;
-}
-
-.landingButton {
-  font-family: 'Contrail One';
-  font-size: 20px;
-  padding: 15px;
-  margin-left: 5rem;
-  margin-right: 5rem;
-  border: 2px solid #2c63fc;
-  border-radius: 3rem;
-  background-color: black;
-  color: #A7FF37;
-  z-index: 2;
-}
-
-.landingButton:hover {
-  background-color: #2c63fc;
-  color: #A7FF37;
+  .landingButton:hover {
+    background-color: #2c63fc;
+    color: #A7FF37;
+  }
 }
 
 /* Login in page styles */
@@ -919,6 +956,15 @@ margin: 15px;
   background: radial-gradient(circle at center,#000000, #2c63fc );
   background-size: 400% 400%;
   animation: gradient 15s ease infinite;
+}
+
+.dashboardTitle {
+  font-size: 3rem;
+  line-height: 1;
+  padding: 1rem; 
+  display: flex; 
+  justify-content: center; 
+  align-items: center;
 }
     @keyframes gradient {
       0% {
