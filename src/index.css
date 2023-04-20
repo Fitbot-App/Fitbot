@@ -30,22 +30,6 @@ body {
   font-family: 'Contrail One';
 }
 
-.rightArrowIntensity {
-  position: absolute;
-  z-index: 2;
-  right: 30px;
-  background-color: #a8ff377a;
-  border-radius: 100%;
-  }
-
-.leftArrowIntensity {
-  position: absolute;
-  z-index: 2;
-  left: 30px;
-  background-color: #A7FF37;
-  border-radius: 100%;
-}
-
 .rightArrowIntensity:hover {
   scale: 110%;
 
@@ -540,6 +524,7 @@ body {
       justify-content: space-around;
       align-items: center;
     }
+
     .intesityTitle {
       color: white;
       display: flex;
@@ -592,20 +577,21 @@ body {
     }
 
     .rightArrowIntensity {
-        position: absolute;
-        z-index: 2;
-        right: 30px;
-        background-color: #a8ff377a;
-        border-radius: 100%;
+      position: absolute;
+      z-index: 2;
+      right: 30px;
+      background-color: #a8ff377a;
+      border-radius: 100%;
     }
     
     .leftArrowIntensity {
-        position: absolute;
-        z-index: 2;
-        left: 30px;
-        background-color: #A7FF37;
-        border-radius: 100%;
+      position: absolute;
+      z-index: 2;
+      left: 30px;
+      background-color: #A7FF37;
+      border-radius: 100%;
     }
+
     .account {
       display: flex;
       position: absolute;
@@ -739,8 +725,11 @@ body {
         border-radius: 100%;
     }
 
-    .arrowBottomMargin {
-      margin-bottom: 20px;
+    .arrowContainer {
+      padding-bottom: 10px;
+        width: 15rem;
+        height: 5rem;
+        z-index: 3;
     }
 
     .account{

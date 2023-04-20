@@ -157,24 +157,26 @@ const Intensity = () => {
             Hard
           </button>
         </div>
-        {isBreakpoint && (
-          <Link to='/'>
-            <MdKeyboardDoubleArrowLeft
-              className='leftArrowIntensity'
+        <div className='arrowContainer'>
+          {isBreakpoint && (
+            <Link to='/'>
+              <MdKeyboardDoubleArrowLeft
+                className='leftArrowIntensity'
+                color='black'
+                size='70'
+              />
+            </Link>
+          )}
+          <Link to='/equipment'>
+            <MdKeyboardDoubleArrowRight
+              className={`rightArrowIntensity ${
+                intensity && experience ? 'pulse' : ''
+              }`}
               color='black'
               size='70'
             />
           </Link>
-        )}
-        <Link to='/equipment'>
-          <MdKeyboardDoubleArrowRight
-            className={`rightArrowIntensity ${
-              intensity && experience ? 'pulse' : ''
-            }`}
-            color='black'
-            size='70'
-          />
-        </Link>
+        </div>
       </div>
     </div>
   );
