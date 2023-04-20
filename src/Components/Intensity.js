@@ -70,14 +70,14 @@ const Intensity = () => {
       <Link to='/'>
         <img width={70} src={logo} alt='FitBot' className='cornerLogo' />
       </Link>
+      {user.currentUser && (
+        <div className='account'>
+          <Account />
+        </div>
+      )}
       <div className='intensityDivsContainer'>
-        {user.currentUser && (
-          <div className='flex absolute top-6 right-6 z-20'>
-            <Account />
-          </div>
-        )}
-        {isBreakpoint ? null : (
-          <Link to='/'>
+        {!isBreakpoint && (
+          <Link to='/' className='arrowBottomMargin'>
             <MdKeyboardDoubleArrowLeft
               className='leftArrowIntensity'
               color='black'
@@ -158,37 +158,23 @@ const Intensity = () => {
           </button>
         </div>
         {isBreakpoint && (
-          <>
-            <Link to='/equipment'>
-              <MdKeyboardDoubleArrowRight
-                className={`rightArrowIntensity ${
-                  intensity && experience ? 'pulse' : ''
-                }`}
-                color='black'
-                size='70'
-              />
-            </Link>
-
-            <Link to='/'>
-              <MdKeyboardDoubleArrowLeft
-                className='leftArrowIntensity'
-                color='black'
-                size='70'
-              />
-            </Link>
-          </>
-        )}
-        {isBreakpoint ? null : (
-          <Link to='/equipment'>
-            <MdKeyboardDoubleArrowRight
-              className={`rightArrowIntensity ${
-                intensity && experience ? 'pulse' : ''
-              }`}
+          <Link to='/'>
+            <MdKeyboardDoubleArrowLeft
+              className='leftArrowIntensity'
               color='black'
               size='70'
             />
           </Link>
         )}
+        <Link to='/equipment'>
+          <MdKeyboardDoubleArrowRight
+            className={`rightArrowIntensity ${
+              intensity && experience ? 'pulse' : ''
+            }`}
+            color='black'
+            size='70'
+          />
+        </Link>
       </div>
     </div>
   );

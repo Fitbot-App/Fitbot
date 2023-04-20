@@ -243,111 +243,109 @@ const Equipment = () => {
             </span>
           )}
 
-          <div>
-            <div className='flex justify-center items-center mt-5'>
-              <span className='title flex items-center'>
-                Select your equipment
-                <CustomTooltip
-                  text={
-                    'Choose some equipment that you have available to use. You may also add any additional equipment that is not already present in the list of options. Do this by typing into the "add new equipment" input area and pressing the "Add" button. If you are a logged in user, you also have the option to add all of your selected equipment to a savable gym.'
-                  }
+          <div className='flex justify-center items-center mt-5'>
+            <span className='title flex items-center'>
+              Select your equipment
+              <CustomTooltip
+                text={
+                  'Choose some equipment that you have available to use. You may also add any additional equipment that is not already present in the list of options. Do this by typing into the "add new equipment" input area and pressing the "Add" button. If you are a logged in user, you also have the option to add all of your selected equipment to a savable gym.'
+                }
+              />
+            </span>
+          </div>
+          <div className='equipmentSelectorAndButton'>
+            {user.currentUser && (
+              <select className='gymSelect' onChange={handleGymChange}>
+                {!savedGym && (
+                  <option value='none' selected disabled hidden>
+                    Use one of your gyms...
+                  </option>
+                )}
+                <option value='Custom'> Custom</option>
+                {gyms.map((gym, i) => {
+                  return (
+                    <option key={i} value={gym.name}>
+                      {gym.name}
+                    </option>
+                  );
+                })}
+              </select>
+            )}
+            {user.currentUser && (
+              <div className='flex justify-center items-center'>
+                {user.currentUser && !savedGym ? (
+                  <ModalCreateGym equipment={equipment} />
+                ) : (
+                  [...selectedGym.equipment].sort().join('') !==
+                    [...equipment].sort().join('') &&
+                  (updatePending ? (
+                    <BeatLoader className='beatLoader' color='#A7FF37' />
+                  ) : (
+                    <button
+                      className='createGymButton'
+                      onClick={handleUpdateGym}
+                    >
+                      Update gym
+                    </button>
+                  ))
+                )}
+              </div>
+            )}
+          </div>
+
+          <div className='equipmentItemDiv'>
+            {equipmentArray.map((item, i) => {
+              return (
+                <React.Fragment key={i}>
+                  {equipment.includes(item) ? (
+                    <span className='equipmentItemSelected' key={i}>
+                      {item}
+                      <button onClick={() => handleRemove(item)}>
+                        <BsFillCheckCircleFill
+                          color={'#A7FF37'}
+                          size={17}
+                          className='hover:scale-125 duration-150'
+                        />
+                      </button>
+                    </span>
+                  ) : (
+                    <span className='equipmentItem' key={i}>
+                      {item}
+                      <button onClick={() => handleSetEquipment(item)}>
+                        <IoMdAddCircle
+                          color={'#2c63fc'}
+                          size={17}
+                          className='hover:scale-125 duration-150'
+                        />
+                      </button>
+                    </span>
+                  )}
+                </React.Fragment>
+              );
+            })}
+            <div className='flex m-2'>
+              <span>
+                <input
+                  className='creatable generatedResponse'
+                  onChange={handleChange}
+                  onKeyDown={handleKeypress}
+                  value={equipmentInput}
+                  placeholder='Add new equipment...'
+                />
+                {error && (
+                  <p id='error' className='text-center'>
+                    {error}
+                  </p>
+                )}
+              </span>
+              <span className='flex justify-center items-center ml-2'>
+                <IoMdAddCircle
+                  color={'#A7FF37'}
+                  size={30}
+                  className='hover:scale-125 duration-150'
+                  onClick={handleAddEquipment}
                 />
               </span>
-            </div>
-            <div className='flex items-center justify-center mt-5'>
-              {user.currentUser && (
-                <select className='gymSelect' onChange={handleGymChange}>
-                  {!savedGym && (
-                    <option value='none' selected disabled hidden>
-                      Use one of your gyms...
-                    </option>
-                  )}
-                  <option value='Custom'> Custom</option>
-                  {gyms.map((gym, i) => {
-                    return (
-                      <option key={i} value={gym.name}>
-                        {gym.name}
-                      </option>
-                    );
-                  })}
-                </select>
-              )}
-              {user.currentUser && (
-                <div className='flex justify-center items-center'>
-                  {user.currentUser && !savedGym ? (
-                    <ModalCreateGym equipment={equipment} />
-                  ) : (
-                    [...selectedGym.equipment].sort().join('') !==
-                      [...equipment].sort().join('') &&
-                    (updatePending ? (
-                      <BeatLoader className='beatLoader' color='#A7FF37' />
-                    ) : (
-                      <button
-                        className='createGymButton'
-                        onClick={handleUpdateGym}
-                      >
-                        Update gym
-                      </button>
-                    ))
-                  )}
-                </div>
-              )}
-            </div>
-
-            <div className='equipmentItemDiv'>
-              {equipmentArray.map((item, i) => {
-                return (
-                  <React.Fragment key={i}>
-                    {equipment.includes(item) ? (
-                      <span className='equipmentItemSelected' key={i}>
-                        {item}
-                        <button onClick={() => handleRemove(item)}>
-                          <BsFillCheckCircleFill
-                            color={'#A7FF37'}
-                            size={17}
-                            className='hover:scale-125 duration-150'
-                          />
-                        </button>
-                      </span>
-                    ) : (
-                      <span className='equipmentItem' key={i}>
-                        {item}
-                        <button onClick={() => handleSetEquipment(item)}>
-                          <IoMdAddCircle
-                            color={'#2c63fc'}
-                            size={17}
-                            className='hover:scale-125 duration-150'
-                          />
-                        </button>
-                      </span>
-                    )}
-                  </React.Fragment>
-                );
-              })}
-              <div className='flex m-2'>
-                <span>
-                  <input
-                    className='creatable generatedResponse'
-                    onChange={handleChange}
-                    onKeyDown={handleKeypress}
-                    value={equipmentInput}
-                    placeholder='Add new equipment...'
-                  />
-                  {error && (
-                    <p id='error' className='text-center'>
-                      {error}
-                    </p>
-                  )}
-                </span>
-                <span className='flex justify-center items-center ml-2'>
-                  <IoMdAddCircle
-                    color={'#A7FF37'}
-                    size={30}
-                    className='hover:scale-125 duration-150'
-                    onClick={handleAddEquipment}
-                  />
-                </span>
-              </div>
             </div>
           </div>
         </div>
