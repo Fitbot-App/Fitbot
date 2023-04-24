@@ -30,22 +30,6 @@ body {
   font-family: 'Contrail One';
 }
 
-.rightArrowIntensity {
-  position: absolute;
-  z-index: 2;
-  right: 30px;
-  background-color: #a8ff377a;
-  border-radius: 100%;
-  }
-
-.leftArrowIntensity {
-  position: absolute;
-  z-index: 2;
-  left: 30px;
-  background-color: #A7FF37;
-  border-radius: 100%;
-}
-
 .rightArrowIntensity:hover {
   scale: 110%;
 
@@ -327,169 +311,366 @@ body {
 }
 
 /*Pick Exercise Page */
+@media (min-width: 600px){
+  
+  .pickExerciseContainer {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    background-image: url("https://images.squarespace-cdn.com/content/v1/58add6dc5016e11dc287536a/1528627828522-GR5UX06W5MNWJUJA4QII/BK_CF_079.jpg?format=1000w");
+    background-size: cover;
+  }
 
-.pickExerciseContainer {
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  background-image: url("https://images.squarespace-cdn.com/content/v1/58add6dc5016e11dc287536a/1528627828522-GR5UX06W5MNWJUJA4QII/BK_CF_079.jpg?format=1000w");
-  background-size: cover;
+  .pickExerciseDivsContainer {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    z-index: 20;
+  }
+
+  .cornerLogo {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 20;
+  }
+
+  .goBack {
+    position: absolute;
+    top: 35px;
+    left: 35px;
+    z-index: 20;
+    border: 2px solid #A7FF37;
+    padding: 5px;
+    border-radius: 3rem;
+  }
+
+  .goBack:hover {
+    background-color: #2c63fc;
+    scale: 110%;
+    transition-duration: 150ms;
+  }
+    .pickTransparentOverlay {
+      background-color: rgb(0 0 0 / 0.7);
+      opacity: 0.7;
+      position: 'absolute';
+      top: 0;
+      bottom: 0;
+      right: 0;
+      z-index: 2;
+      right: 0;
+      height: 100vh;
+      width: 100%;
+    }
+  
+    .pickExerciseBox {
+      width: 30%;
+      height: 70%;
+      border-radius: 3rem;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      overflow: scroll;
+      border: solid 3px #A7FF37;
+      box-shadow: 0 0 12px rgb(191, 191, 191);
+      background-color: rgba(0, 0, 0, 0.818);
+    }
+  
+    .pickExerciseTitle {
+      text-align: center;
+      font-size: 25px;
+    }
+  
+    .selectedExercises {
+      width: 25%;
+      height: 70%;
+      border: solid 3px #A7FF37;
+      border-radius: 3rem;
+      padding: 2rem;
+      overflow: auto;
+      box-shadow: 0 0 12px rgb(191, 191, 191);
+      background-color: rgba(0, 0, 0, 0.818);
+    }
+  
+    .muscleGroupSelector {
+      padding-left: 10px;
+      padding-right: 10px;
+      margin: 10px;
+      border-radius: 3rem;
+      height: 36px;
+      background-color: black;
+      border: solid #A7FF37;
+      text-align: center;
+    }
+  
+    .muscleGroupButton {
+      font-family: 'Contrail One';
+      height: 36px;
+      background-color: black;
+      color: #2c63fc;
+      border: 2px solid #2c63fc;
+      border-radius: 3rem;
+      font-size: 20px;
+      padding-left: 10px;
+      padding-right: 10px;
+      margin-left: 10px;
+    }
+  
+    .muscleGroupButton:hover {
+      background-color: #2c63fc;
+      border: 2px solid #2c63fc;
+      color: black;
+    }
+  
+    .muscleGroupForm {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .singleExercise {
+      display: flex;
+      justify-content: space-between;
+      padding-left: 10px;
+      padding-right: 10px;
+      padding-top: 5px;
+      padding-bottom: 5px;
+    }
+  
+    .generatedExercises {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      overflow-y: scroll;
+    }
+  
+    .singleGeneratedExercise {
+      margin: 10px;
+      border: solid #2c63fc;
+      border-radius: 3rem;
+      width: 90%;
+      background-color: #000000;
+      box-shadow: 0 0 2px #fff, 0 0 5px #2c63fc, 0 0 7px #2c63fc, 0 0 10px #2c63fc;
+    }
+  
+    .helperMessage {
+      font-family: Contrail One;
+      font-size: small;
+      color: #A7FF37;
+      text-align: center;
+      background-color: #2c64fc77;
+      border-radius: 20px;
+      padding: 5px;
+    }
+  
+    .helperDiv {
+      display: flex;
+      width: 50%;
+      margin: 0 auto;
+      padding: 5px;
+    }
 }
 
-.pickExerciseDivsContainer {
-  position: absolute;
-  width: 100vw; 
-  height: 100vh; 
-  display: flex;
-  justify-content: space-around; 
-  align-items: center; 
-  z-index: 20;
+@media (max-width: 600px) {
+
+  .pickExerciseContainer {
+    width: 100vw;
+    height: 180vh;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    background-image: url("https://images.squarespace-cdn.com/content/v1/58add6dc5016e11dc287536a/1528627828522-GR5UX06W5MNWJUJA4QII/BK_CF_079.jpg?format=1000w");
+    background-size: cover;
+  }
+
+  .pickExerciseDivsContainer {
+    position: absolute;
+    top: 0;
+    width: 100vw;
+    height: 180vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    z-index: 20;
+  }
+
+  .cornerLogo {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 20;
+  }
+
+  .goBack {
+    position: absolute;
+    top: 35px;
+    left: 35px;
+    z-index: 20;
+    border: 2px solid #A7FF37;
+    padding: 5px;
+    border-radius: 3rem;
+  }
+
+  .goBack:hover {
+    background-color: #2c63fc;
+    scale: 110%;
+    transition-duration: 150ms;
+  }
+
+  .pickTransparentOverlay {
+    background-color: rgb(0 0 0 / 0.7);
+    opacity: 0.7;
+    position: 'absolute';
+    top: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 2;
+    right: 0;
+    height: 180vh;
+    width: 100%;
+  }
+
+  .pickExerciseBox {
+    width: 80%;
+    height: 40%;
+    margin-top: 180px;
+    margin-bottom: 20px;
+    border-radius: 3rem;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    overflow: scroll;
+    border: solid 3px #A7FF37;
+    box-shadow: 0 0 12px rgb(191, 191, 191);
+    background-color: rgba(0, 0, 0, 0.818);
+  }
+
+  .pickExerciseTitle {
+    text-align: center;
+    font-size: 25px;
+  }
+
+  .selectedExercises {
+    width: 80%;
+    height: 40%;
+    border: solid 3px #A7FF37;
+    border-radius: 3rem;
+    padding: 2rem;
+    overflow: auto;
+    box-shadow: 0 0 12px rgb(191, 191, 191);
+    background-color: rgba(0, 0, 0, 0.818);
+  }
+
+  .muscleGroupSelector {
+    padding-left: 10px;
+    padding-right: 10px;
+    margin: 10px;
+    border-radius: 3rem;
+    height: 36px;
+    background-color: black;
+    border: solid #A7FF37;
+    text-align: center;
+  }
+
+  .muscleGroupButton {
+    font-family: 'Contrail One';
+    height: 36px;
+    background-color: black;
+    color: #2c63fc;
+    border: 2px solid #2c63fc;
+    border-radius: 3rem;
+    font-size: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-left: 10px;
+  }
+
+  .muscleGroupButton:hover {
+    background-color: #2c63fc;
+    border: 2px solid #2c63fc;
+    color: black;
+  }
+
+  .muscleGroupForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .singleExercise {
+    display: flex;
+    justify-content: space-between;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+
+  .generatedExercises {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: scroll;
+  }
+
+  .singleGeneratedExercise {
+    margin: 10px;
+    border: solid #2c63fc;
+    border-radius: 3rem;
+    width: 90%;
+    background-color: #000000;
+    box-shadow: 0 0 2px #fff, 0 0 5px #2c63fc, 0 0 7px #2c63fc, 0 0 10px #2c63fc;
+  }
+
+  .helperMessage {
+    font-family: Contrail One;
+    font-size: small;
+    color: #A7FF37;
+    text-align: center;
+    background-color: #2c64fc77;
+    border-radius: 20px;
+    padding: 5px;
+  }
+
+  .helperDiv {
+    display: flex;
+    width: 50%;
+    margin: 0 auto;
+    padding: 5px;
+  }
+
+  .rightArrowIntensity {
+    position: absolute;
+    z-index: 2;
+    right: 5rem;
+    background-color: #a8ff377a;
+    border-radius: 100%;
+  }
+
+  .leftArrowIntensity {
+    position: absolute;
+    z-index: 2;
+    left: 5rem;
+    background-color: #A7FF37;
+    border-radius: 100%;
+  }
+
+  .arrowContainer {
+    padding-bottom: 10px;
+    margin-top: 10px;;
+    width: 15rem;
+    height: 5rem;
+    z-index: 3;
+  }
 }
 
-.cornerLogo {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  z-index: 20;
-}
 
-.goBack {
-  position: absolute;
-  top: 35px;
-  left: 35px;
-  z-index: 20;
-  border: 2px solid #A7FF37;
-  padding: 5px;
-  border-radius: 3rem;
-}
-
-.goBack:hover {
-  background-color: #2c63fc;
-  scale: 110%;
-  transition-duration: 150ms;
-}
-
-.pickTransparentOverlay {
-  background-color: rgb(0 0 0 / 0.7);
-  opacity: 0.7;
-  position: 'absolute';
-  top: 0;
-  bottom: 0;
-  right: 0;
-  z-index: 2;
-  right: 0;
-  height: 100vh;
-  width: 100%;
-}
-
-.pickExerciseBox {
-  width: 30%;
-  height: 70%;
-  border-radius: 3rem;
-  padding: 2rem;
-  display: flex;
-  flex-direction: column;
-  overflow: scroll;
-  border: solid 3px #A7FF37;
-  box-shadow: 0 0 12px rgb(191, 191, 191);
-  background-color: rgba(0, 0, 0, 0.818);
-}
-
-.pickExerciseTitle {
-  text-align: center; 
-  font-size: 25px;
-}
-
-.selectedExercises {
-  width: 25%;
-  height: 70%;
-  border: solid 3px #A7FF37;
-  border-radius: 3rem;
-  padding: 2rem;
-  overflow: auto;
-  box-shadow: 0 0 12px rgb(191, 191, 191);
-  background-color: rgba(0, 0, 0, 0.818);
-}
-
-.muscleGroupSelector {
-  padding-left: 10px;
-  padding-right: 10px;
-  margin: 10px;
-  border-radius: 3rem;
-  height: 36px;
-  background-color: black;
-  border: solid #A7FF37;
-  text-align: center;
-}
-
-.muscleGroupButton {
-  font-family: 'Contrail One';
-  height: 36px;
-  background-color: black;
-  color: #2c63fc;
-  border: 2px solid #2c63fc;
-  border-radius: 3rem;
-  font-size: 20px;
-  padding-left: 10px;
-  padding-right: 10px;
-  margin-left: 10px;
-}
-
-.muscleGroupButton:hover {
-  background-color: #2c63fc;
-  border: 2px solid #2c63fc;
-  color: black;
-}
-
-.muscleGroupForm {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.singleExercise {
-  display: flex;
-  justify-content: space-between;
-  padding-left: 10px;
-  padding-right: 10px;
-  padding-top: 5px;
-  padding-bottom: 5px;
-}
-
-.generatedExercises {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  overflow-y: scroll;
-}
-
-.singleGeneratedExercise {
-  margin: 10px;
-  border: solid #2c63fc;
-  border-radius: 3rem;
-  width: 90%;
-  background-color: #000000;
-  box-shadow: 0 0 2px #fff, 0 0 5px #2c63fc, 0 0 7px #2c63fc, 0 0 10px #2c63fc;
-}
-
-.helperMessage{
-  font-family: Contrail One;
-  font-size: small;
-  color: #A7FF37;
-  text-align: center;
-  background-color: #2c64fc77;
-  border-radius: 20px;
-  padding: 5px;
-}
-
-.helperDiv{
-  display: flex;
-  width: 50%;
-  margin: 0 auto;
-  padding: 5px;
-}
 
 /* Intensity and skill level page */
 @media (min-width: 600px) {
@@ -540,6 +721,7 @@ body {
       justify-content: space-around;
       align-items: center;
     }
+
     .intesityTitle {
       color: white;
       display: flex;
@@ -592,20 +774,21 @@ body {
     }
 
     .rightArrowIntensity {
-        position: absolute;
-        z-index: 2;
-        right: 30px;
-        background-color: #a8ff377a;
-        border-radius: 100%;
+      position: absolute;
+      z-index: 2;
+      right: 30px;
+      background-color: #a8ff377a;
+      border-radius: 100%;
     }
     
     .leftArrowIntensity {
-        position: absolute;
-        z-index: 2;
-        left: 30px;
-        background-color: #A7FF37;
-        border-radius: 100%;
+      position: absolute;
+      z-index: 2;
+      left: 30px;
+      background-color: #A7FF37;
+      border-radius: 100%;
     }
+
     .account {
       display: flex;
       position: absolute;
@@ -739,8 +922,11 @@ body {
         border-radius: 100%;
     }
 
-    .arrowBottomMargin {
-      margin-bottom: 20px;
+    .arrowContainer {
+      padding-bottom: 10px;
+      width: 15rem;
+      height: 5rem;
+      z-index: 3;
     }
 
     .account{

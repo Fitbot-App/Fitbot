@@ -4,28 +4,75 @@ import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import { MdKeyboardDoubleArrowRight } from 'react-icons/md';
 import { useNavigate } from 'react-router-dom';
-
-const style = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: 400,
-  height: 250,
-  bgcolor: 'black',
-  border: '2px solid #A7FF37',
-  boxShadow: 24,
-  p: 4,
-  borderRadius: '3rem',
-  color: '#A7FF37',
-  fontFamily: 'Contrail-One',
-};
+import { useEffect, useState, useCallback } from 'react';
 
 export default function ModalWarning({ pick }) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const navigate = useNavigate();
+
+  const useMediaQuery = (width) => {
+    const [targetReached, setTargetReached] = useState(false);
+
+    const updateTarget = useCallback((e) => {
+      if (e.matches) {
+        setTargetReached(true);
+      } else {
+        setTargetReached(false);
+      }
+    }, []);
+
+    useEffect(() => {
+      const media = window.matchMedia(`(max-width: ${width}px)`);
+      media.addListener(updateTarget);
+
+      // Check on mount (callback is not called until a change occurs)
+      if (media.matches) {
+        setTargetReached(true);
+      }
+
+      return () => media.removeListener(updateTarget);
+    }, [width, updateTarget]);
+
+    return targetReached;
+  };
+
+  const isBreakpoint = useMediaQuery(600);
+
+  let style;
+
+  !isBreakpoint
+    ? (style = {
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+        width: 400,
+        height: 250,
+        bgcolor: 'black',
+        border: '2px solid #A7FF37',
+        boxShadow: 24,
+        p: 4,
+        borderRadius: '3rem',
+        color: '#A7FF37',
+        fontFamily: 'Contrail-One',
+      })
+    : (style = {
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+        width: 250,
+        height: 300,
+        bgcolor: 'black',
+        border: '2px solid #A7FF37',
+        boxShadow: 24,
+        p: 3,
+        borderRadius: '3rem',
+        color: '#A7FF37',
+        fontFamily: 'Contrail-One',
+      });
 
   return (
     <div>
