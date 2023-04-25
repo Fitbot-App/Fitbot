@@ -409,9 +409,6 @@ body {
   color: black;
 }
 
-.broomIcon:hover {
-  color: black;
-}
 }
 
 @media (max-width: 600px){
@@ -632,7 +629,7 @@ body {
 
   .pickExerciseContainer {
     width: 100vw;
-    height: 180vh;
+    height: 190vh;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
@@ -803,6 +800,7 @@ body {
     right: 5rem;
     background-color: #a8ff377a;
     border-radius: 100%;
+    margin-top: 20px;
   }
 
   .leftArrowIntensity {
@@ -811,11 +809,12 @@ body {
     left: 5rem;
     background-color: #A7FF37;
     border-radius: 100%;
+        margin-top: 20px;
   }
 
   .arrowContainer {
     padding-bottom: 10px;
-    margin-top: 10px;;
+    margin-top: 30px;
     width: 15rem;
     height: 5rem;
     z-index: 3;
@@ -963,13 +962,13 @@ body {
       right: 0;
       z-index: 2;
       right: 0;
-      height: 130vh;
+      height: 140vh;
       width: 100%;
     }
   
     .intensityContainer {
       width: 100vw;
-      height: 130vh;
+      height: 140vh;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -1090,6 +1089,7 @@ body {
 
     .arrowBottomMargin {
       margin-bottom: 20px;
+    }
 
     .arrowContainer {
       padding-bottom: 10px;
