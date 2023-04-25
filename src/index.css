@@ -264,7 +264,7 @@ body {
 }
 
 /* Generate Workout Styles */
-
+@media (min-width: 600px){
 .generatedResponse {
   font-family: 'Contrail One';
   color:#A7FF37;
@@ -308,6 +308,55 @@ body {
 
 .broomIcon:hover {
   color: black;
+}
+}
+
+@media (max-width: 600px){
+  .generatedResponse {
+      margin-top: 30px;
+      font-family: 'Contrail One';
+      color: #A7FF37;
+    }
+  
+    .generatedExercisesWarning {
+      font-family: 'Contrail One';
+      color: #2c63fc;
+    }
+  
+    .xButton {
+      margin: 3px;
+      font-family: 'Contrail One';
+      background-color: black;
+      color: #2c63fc;
+      border: 2px solid #2c63fc;
+      border-radius: 3rem;
+      font-size: 20px;
+    }
+  
+    .xButton:hover {
+      background-color: #2c63fc;
+      color: black;
+    }
+  
+    .addMuscleGroupButton {
+      margin-left: 40px;
+      font-family: 'Contrail One';
+      background-color: black;
+      color: #37a5ff;
+      border: 2px solid #37a5ff;
+      border-radius: 3rem;
+      font-size: 20px;
+    }
+  
+    .addMuscleGroupButton:hover {
+      background-color: #37a5ff;
+      border: 2px solid #37a5ff;
+      color: black;
+    }
+  
+    .broomIcon:hover {
+      color: black;
+    }
 }
 
 /*Pick Exercise Page */
@@ -1440,6 +1489,8 @@ body {
 
 /* Finalize Page */
 
+@media (min-width: 600px){
+
 .finalizeContainer {
   width: 100vw;
   height: 100vh;
@@ -1451,6 +1502,19 @@ body {
   position: absolute;
   background-image: url("https://images.squarespace-cdn.com/content/v1/5d07f87f8ac0bf00019389a4/1638220970423-8M3TQBPVVO1PJ559SEFP/TN_Website_Bench.jpg?format=2500w");
     }
+
+.finalizeTransparentOverlay {
+  background-color: rgba(18, 18, 18, 0.7);
+  opacity: 0.7;
+  position: 'absolute';
+  top: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 2;
+  right: 0;
+  height: 100vh;
+  width: 100%;
+}
     
 .finalizeDuration {
   padding-left: 10px;
@@ -1527,6 +1591,125 @@ body {
 margin: 15px;
 }
 
+ .finalizeLeftArrowIntensity {
+   position: absolute;
+   z-index: 2;
+   left: 30px;
+   background-color: #A7FF37;
+   border-radius: 100%;
+ }
+}
+
+@media (max-width: 600px){
+.finalizeContainer {
+    width: 100vw;
+    height: 130vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    background-size: cover;
+    position: absolute;
+    background-image: url("https://images.squarespace-cdn.com/content/v1/5d07f87f8ac0bf00019389a4/1638220970423-8M3TQBPVVO1PJ559SEFP/TN_Website_Bench.jpg?format=2500w");
+  }
+
+  .finalizeTransparentOverlay {
+    background-color: rgba(18, 18, 18, 0.7);
+    opacity: 0.7;
+    position: 'absolute';
+    top: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 2;
+    right: 0;
+    height: 130vh;
+    width: 100%;
+  }
+
+  .finalizeDuration {
+    padding-left: 10px;
+    padding-right: 10px;
+    margin: 10px;
+    border-radius: 3rem;
+    height: 36px;
+    background-color: rgb(37, 37, 37);
+    border: solid #A7FF37;
+    text-align: center;
+    color: #A7FF37;
+    width: 40%;
+  }
+
+  .finalizeResponseContainer {
+    position: absolute;
+    width: 100vw;
+    height: 130vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .finalResponseDiv {
+    display: flex;
+    flex-direction: column;
+    margin-top: 60px;
+    padding: 15px;
+    width: 80%;
+    height: 65%;
+    color: #A7FF37;
+    background-color: rgba(0, 0, 0, 0.73);
+    border: 3px solid #A7FF37;
+    border-radius: 32px;
+    z-index: 2;
+    overflow: scroll;
+    box-shadow: 0 0 12px rgb(191, 191, 191);
+  }
+
+  .finalResponseParts {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #A7FF37;
+  }
+
+  .finalizeButton {
+    font-family: 'Contrail One';
+    margin-top: 20px;
+    width: 90%;
+    background-color: black;
+    color: #2c63fc;
+    border: 2px solid #2c63fc;
+    border-radius: 3rem;
+    font-size: 30px;
+    padding: 10px;
+  }
+
+  .finalizeButton:hover {
+    background-color: #2c63fc;
+    color: black;
+    scale: 110%;
+    transition-duration: 400ms;
+  }
+
+  .savedMessage {
+    font-family: 'Contrail One';
+    color: #2c63fc;
+    font-size: 20px;
+    margin: 15px;
+  }
+
+  .beatLoader {
+    margin: 15px;
+  }
+
+  .finalizeLeftArrowIntensity {
+    position: absolute;
+    bottom: 20px;
+    z-index: 2;
+    left: 5rem;
+    background-color: #A7FF37;
+    border-radius: 100%;
+  }
+}
 /* Finalize Page */
 
 /* Home Page */
@@ -1562,6 +1745,7 @@ margin: 15px;
   background-color: #2c63fc;
   color: black;
 }
+
 
 /* Home Page */
 

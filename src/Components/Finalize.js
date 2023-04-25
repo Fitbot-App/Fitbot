@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { useSelector } from 'react-redux';
 import { MdKeyboardDoubleArrowLeft } from 'react-icons/md';
 import { FaUndo } from 'react-icons/fa';
@@ -82,9 +82,37 @@ const Finalize = () => {
     });
   };
 
+  const useMediaQuery = (width) => {
+    const [targetReached, setTargetReached] = useState(false);
+
+    const updateTarget = useCallback((e) => {
+      if (e.matches) {
+        setTargetReached(true);
+      } else {
+        setTargetReached(false);
+      }
+    }, []);
+
+    useEffect(() => {
+      const media = window.matchMedia(`(max-width: ${width}px)`);
+      media.addListener(updateTarget);
+
+      // Check on mount (callback is not called until a change occurs)
+      if (media.matches) {
+        setTargetReached(true);
+      }
+
+      return () => media.removeListener(updateTarget);
+    }, [width, updateTarget]);
+
+    return targetReached;
+  };
+
+  const isBreakpoint = useMediaQuery(600);
+
   return (
     <div className='finalizeContainer'>
-      <div className='equipmentTransparentOverlay' />
+      <div className='finalizeTransparentOverlay' />
       <h1 className='intesityTitle'>Finalize</h1>
       <Link className='cornerLogo' to='/'>
         <img width={70} src={logo} alt='FitBot' />
@@ -95,13 +123,15 @@ const Finalize = () => {
         </div>
       )}
       <div className='finalizeResponseContainer'>
-        <Link to='/pickExercise'>
-          <MdKeyboardDoubleArrowLeft
-            className='leftArrowIntensity'
-            color='black'
-            size='70'
-          />
-        </Link>
+        {!isBreakpoint && (
+          <Link to='/pickExercise'>
+            <MdKeyboardDoubleArrowLeft
+              className='leftArrowIntensity'
+              color='black'
+              size='70'
+            />
+          </Link>
+        )}
         <div className='finalResponseDiv'>
           {finalized ? (
             loading ? (
@@ -259,6 +289,15 @@ const Finalize = () => {
             </div>
           )}
         </div>
+        {isBreakpoint && (
+          <Link to='/pickExercise'>
+            <MdKeyboardDoubleArrowLeft
+              className='finalizeLeftArrowIntensity '
+              color='black'
+              size='70'
+            />
+          </Link>
+        )}
       </div>
     </div>
   );
