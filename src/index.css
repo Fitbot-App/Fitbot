@@ -1639,6 +1639,37 @@ margin: 15px;
    background-color: #A7FF37;
    border-radius: 100%;
  }
+
+ .finalizeEquipmentItem {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   color: #A7FF37;
+   font-family: 'Contrail One';
+   margin: 10px;
+   padding-left: 10px;
+   padding-right: 10px;
+   padding-top: 5px;
+   padding-bottom: 5px;
+   border: 2px solid #2c63fc;
+   border-radius: 32px;
+   text-align: center;
+   box-shadow: 0 0 2px #fff, 0 0 5px #2c63fc, 0 0 7px #2c63fc, 0 0 10px #2c63fc;
+   background-color: #000000;
+ }
+
+ .finalizeEquipmentDiv {
+   display: grid;
+   grid-template-columns: repeat(3, minmax(0, 1fr));
+   align-items: center;
+   margin: 1.25rem;
+ }
+
+  .finalizeDurationContainer {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
 }
 
 @media (max-width: 600px){
@@ -1750,6 +1781,37 @@ margin: 15px;
     background-color: #A7FF37;
     border-radius: 100%;
   }
+  .finalizeEquipmentDiv{
+    display: grid;
+      grid-template-columns: repeat(1, minmax(0, 1fr));
+      align-items: center;
+      margin: 1.25rem;
+  }
+
+    .finalizeEquipmentItem {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #A7FF37;
+      font-family: 'Contrail One';
+      margin: 10px;
+      padding-left: 10px;
+      padding-right: 10px;
+      padding-top: 5px;
+      padding-bottom: 5px;
+      border: 2px solid #2c63fc;
+      border-radius: 32px;
+      text-align: center;
+      box-shadow: 0 0 2px #fff, 0 0 5px #2c63fc, 0 0 7px #2c63fc, 0 0 10px #2c63fc;
+      background-color: #000000;
+    }
+
+    .finalizeDurationContainer {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      text-align: center;
+    }
 }
 /* Finalize Page */
 

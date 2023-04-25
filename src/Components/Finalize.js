@@ -262,17 +262,17 @@ const Finalize = () => {
             <div className='flex flex-col justify-center items-center'>
               <div>
                 <h2 className='title mt-5'>Your Excersises</h2>
-                <div className='grid grid-cols-3 items-center m-5'>
+                <div className='finalizeEquipmentDiv'>
                   {exercises.map((item, i) => {
                     return (
-                      <p key={i} className='equipmentItem'>
+                      <p key={i} className='finalizeEquipmentItem'>
                         {item}
                       </p>
                     );
                   })}
                 </div>
               </div>
-              <div className='equipmentSkipButtonContainer'>
+              <div className='finalizeDurationContainer'>
                 <div>
                   <input
                     className='finalizeDuration generatedResponse'
