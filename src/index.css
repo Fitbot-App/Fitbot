@@ -136,8 +136,9 @@ body {
 
   .landingButtonsContainer {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-evenly;
     background-image: url('https://images.saymedia-content.com/.image/ar_1:1%2Cc_fill%2Ccs_srgb%2Cfl_progressive%2Cq_auto:eco%2Cw_1200/MTg5NzYxMTgxNjQzMTg3OTAw/the-philosophy-behind-bikram-yoga.jpg');
     background-size: cover;
     background-repeat: no-repeat;
@@ -150,10 +151,13 @@ body {
   .landingButton {
     font-family: 'Contrail One';
     margin: 5px;
-    font-size: 15px;
-    padding: 15px;
+    font-size: 30px;
+    padding-bottom: 30px;
+    padding-top: 30px;
+    padding-left: 40px;
+    padding-right: 40px;
     border: 2px solid #2c63fc;
-    border-radius: 3rem;
+    border-radius: 4rem;
     background-color: black;
     color: #A7FF37;
     z-index: 2;
@@ -971,6 +975,23 @@ body {
         border-radius: 100%;
     }
 
+    .equipmentRightArrowIntensity {
+      z-index: 20;
+      right: 5rem;
+      background-color: #a8ff377a;
+      border-radius: 100%;
+    }
+
+    .equipmentLeftArrowIntensity {
+      z-index: 20;
+      left: 5rem;
+      background-color: #A7FF37;
+      border-radius: 100%;
+    }
+
+    .arrowBottomMargin {
+      margin-bottom: 20px;
+
     .arrowContainer {
       padding-bottom: 10px;
       width: 15rem;
@@ -1059,6 +1080,7 @@ body {
       display: flex;
       justify-content: space-between;
       align-items: center;
+      width: 70%;
       color: #A7FF37;
       font-family: 'Contrail One';
       margin: 10px;
@@ -1076,6 +1098,7 @@ body {
     .equipmentItemSelected {
       display: flex;
       justify-content: space-between;
+      width: 70%;
       align-items: center;
       color: #A7FF37;
       font-family: 'Contrail One';
@@ -1233,12 +1256,28 @@ body {
       font-size: small;
       margin-left: 10px;
     }
+
+    .equipmentRightArrowIntensity {
+      position: absolute;
+      z-index: 20;
+      right: 5rem;
+      background-color: #a8ff377a;
+      border-radius: 100%;
+    }
+
+    .equipmentLeftArrowIntensity {
+      position: absolute;
+      z-index: 20;
+      left: 5rem;
+      background-color: #A7FF37;
+      border-radius: 100%;
+    }
 }
 
 @media (max-width: 600px){
   .equipmentContainer {
       width: 100vw;
-      height: 100vh;
+      height: 120vh;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -1266,28 +1305,30 @@ body {
       right: 0;
       z-index: 2;
       right: 0;
-      height: 100vh;
+      height: 120vh;
       width: 100%;
     }
   
     .equipmentDivsContainer {
       position: absolute;
       width: 100vw;
-      height: 100vh;
+      height: 90vh;
       display: flex;
+      flex-direction: column;
       justify-content: space-around;
       align-items: center;
+      margin-top: 160px;
     }
   
     .equipmentDiv {
       display: flex;
       flex-direction: column;
-      position: absolute;
       justify-content: space-between;
       box-sizing: border-box;
       top: 180px;
       padding-bottom: 5%;
       width: 80%;
+      height: 70vh;
       background-color: black;
       border: 3px solid #A7FF37;
       border-radius: 32px;
@@ -1298,7 +1339,6 @@ body {
     }
 
     .equipmentItemDiv {
-
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -1327,6 +1367,7 @@ body {
     .equipmentItemSelected {
       display: flex;
       justify-content: space-between;
+      width: 70%;
       align-items: center;
       color: #A7FF37;
       font-family: 'Contrail One';

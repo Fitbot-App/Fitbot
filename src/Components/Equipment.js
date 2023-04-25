@@ -218,10 +218,12 @@ const Equipment = () => {
         </div>
       )}
       <div className='equipmentDivsContainer'>
-        {isBreakpoint ? null : (
+        {isBreakpoint ? (
+          <></>
+        ) : (
           <Link to='/intensity'>
             <MdKeyboardDoubleArrowLeft
-              className='leftArrowIntensity'
+              className='equipmentLeftArrowIntensity'
               color='black'
               size='70'
             />
@@ -272,7 +274,7 @@ const Equipment = () => {
               </select>
             )}
             {user.currentUser && (
-              <div className='flex justify-center items-center'>
+              <div className='equipmentSelectorAndButton'>
                 {user.currentUser && !savedGym ? (
                   <ModalCreateGym equipment={equipment} />
                 ) : (
@@ -349,10 +351,29 @@ const Equipment = () => {
             </div>
           </div>
         </div>
-        {isBreakpoint ? null : equipment.length ? (
+        {isBreakpoint ? (
+          <div className='flex justify-around w-full z-20'>
+            <Link to='/intensity'>
+              <MdKeyboardDoubleArrowLeft
+                className='equipmentLeftArrowIntensity'
+                color='black'
+                size='70'
+              />
+            </Link>
+            <Link to='/pickExercise'>
+              <MdKeyboardDoubleArrowRight
+                className={`equipmentRightArrowIntensity ${
+                  equipment.length ? 'pulse' : ''
+                }`}
+                color='black'
+                size='70'
+              />
+            </Link>
+          </div>
+        ) : equipment.length ? (
           <Link to='/pickExercise'>
             <MdKeyboardDoubleArrowRight
-              className={`rightArrowIntensity ${
+              className={`equipmentRightArrowIntensity ${
                 equipment.length ? 'pulse' : ''
               }`}
               color='black'

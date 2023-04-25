@@ -66,7 +66,11 @@ export default function LandingPage() {
         >
           New Workout
         </button>
-        <BsLightning color='#A7FF37' size={60} className='z-[2] absolute' />
+        <BsLightning
+          color='#A7FF37'
+          size={60}
+          className='z-[2] absolute mx-2'
+        />
         <button
           className='landingButton'
           onClick={() => {
