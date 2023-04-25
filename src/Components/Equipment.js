@@ -328,7 +328,7 @@ const Equipment = () => {
             <div className='flex m-2'>
               <span>
                 <input
-                  className='creatable generatedResponse'
+                  className='equipCreatable'
                   onChange={handleChange}
                   onKeyDown={handleKeypress}
                   value={equipmentInput}
