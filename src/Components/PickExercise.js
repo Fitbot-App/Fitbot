@@ -13,6 +13,7 @@ import { useAuth } from '../AuthContext';
 import Account from './Account';
 import ModalWarning from './ModalWarning';
 import CustomTooltip from './Tooltip';
+import { useEffect, useState, useCallback } from 'react';
 
 const PickExercise = () => {
   const { exercises } = useSelector((state) => state);
@@ -23,6 +24,34 @@ const PickExercise = () => {
     dispatch(removeExercise(exercise));
   }
   const user = useAuth();
+
+  const useMediaQuery = (width) => {
+    const [targetReached, setTargetReached] = useState(false);
+
+    const updateTarget = useCallback((e) => {
+      if (e.matches) {
+        setTargetReached(true);
+      } else {
+        setTargetReached(false);
+      }
+    }, []);
+
+    useEffect(() => {
+      const media = window.matchMedia(`(max-width: ${width}px)`);
+      media.addListener(updateTarget);
+
+      // Check on mount (callback is not called until a change occurs)
+      if (media.matches) {
+        setTargetReached(true);
+      }
+
+      return () => media.removeListener(updateTarget);
+    }, [width, updateTarget]);
+
+    return targetReached;
+  };
+
+  const isBreakpoint = useMediaQuery(600);
 
   return (
     <div className='pickExerciseContainer'>
@@ -37,13 +66,16 @@ const PickExercise = () => {
             <Account />
           </div>
         )}
-        <Link to='/equipment'>
-          <MdKeyboardDoubleArrowLeft
-            className='leftArrowIntensity'
-            color='black'
-            size='70'
-          />
-        </Link>
+        {!isBreakpoint && (
+          <Link to='/equipment'>
+            <MdKeyboardDoubleArrowLeft
+              className='leftArrowIntensity'
+              color='black'
+              size='70'
+            />
+          </Link>
+        )}
+
         <div className='pickExerciseBox'>
           <div>
             <GenerateWorkout />
@@ -77,7 +109,30 @@ const PickExercise = () => {
             );
           })}
         </div>
-        {exercises.exercises.length ? (
+        {isBreakpoint ? (
+          <div className='arrowContainer'>
+            <Link to='/equipment'>
+              <MdKeyboardDoubleArrowLeft
+                className='leftArrowIntensity'
+                color='black'
+                size='70'
+              />
+            </Link>
+            {exercises.exercises.length ? (
+              <Link to='/finalize'>
+                <MdKeyboardDoubleArrowRight
+                  className={`rightArrowIntensity ${
+                    exercises.exercises.length ? 'pulse' : ''
+                  }`}
+                  color='black'
+                  size='70'
+                />
+              </Link>
+            ) : (
+              <ModalWarning pick={true} />
+            )}
+          </div>
+        ) : exercises.exercises.length ? (
           <Link to='/finalize'>
             <MdKeyboardDoubleArrowRight
               className={`rightArrowIntensity ${
