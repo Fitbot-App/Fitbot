@@ -681,7 +681,7 @@ body {
     right: 0;
     z-index: 2;
     right: 0;
-    height: 180vh;
+    height: 190vh;
     width: 100%;
   }
 
@@ -1425,7 +1425,7 @@ body {
       justify-content: space-between;
       box-sizing: border-box;
       top: 180px;
-      padding-bottom: 5%;
+      padding: 5%;
       width: 80%;
       height: 70vh;
       background-color: black;
@@ -1482,7 +1482,7 @@ body {
       background-color: #000000;
     }
   
-    .creatable {
+    .equipCreatable {
       padding-left: 10px;
       padding-right: 10px;
       height: 36px;
@@ -2135,11 +2135,21 @@ margin: 15px;
   color: 'black';
 }
 
-.pulse {
-  animation: pulse 1s infinite;
-  background-color: #A7FF37;
-  box-shadow: 0 0 40px rgb(255, 255, 255);
+@media (min-width: 600px){
+  .pulse {
+    animation: pulse 1s infinite;
+    background-color: #A7FF37;
+    box-shadow: 0 0 40px rgb(255, 255, 255);
+  }
 }
+
+@media (max-width: 600px) {
+  .pulse {
+    animation: pulse 1s infinite;
+    background-color: #A7FF37;
+  }
+}
+
 
 @keyframes pulse {
 
