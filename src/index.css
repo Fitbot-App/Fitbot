@@ -459,6 +459,7 @@ body {
     }
 }
 
+
 /*Pick Exercise Page */
 @media (min-width: 600px){
   
@@ -468,7 +469,7 @@ body {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    background-image: url("https://images.squarespace-cdn.com/content/v1/58add6dc5016e11dc287536a/1528627828522-GR5UX06W5MNWJUJA4QII/BK_CF_079.jpg?format=1000w");
+    background-image: url("https://www.windsorgym.com.au/wp-content/uploads/2021/01/Black-White-1920x1140.jpg");
     background-size: cover;
   }
 
@@ -633,7 +634,7 @@ body {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    background-image: url("https://images.squarespace-cdn.com/content/v1/58add6dc5016e11dc287536a/1528627828522-GR5UX06W5MNWJUJA4QII/BK_CF_079.jpg?format=1000w");
+    background-image: url("https://www.windsorgym.com.au/wp-content/uploads/2021/01/Black-White-1920x1140.jpg");
     background-size: cover;
   }
 
