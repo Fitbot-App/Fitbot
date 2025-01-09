@@ -22,6 +22,7 @@ function GenerateWorkout() {
   const dispatch = useDispatch();
 
   const handleSubmit = async (e) => {
+    console.log(process.env.REACT_APP_OPENAI_API_KEY);
     e.preventDefault();
     if (muscleGroup.length === 0) {
       setSelectedNone(true);
