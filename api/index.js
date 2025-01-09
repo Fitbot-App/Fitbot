@@ -17,13 +17,14 @@ const configuration = new Configuration({
 const openai = new OpenAIApi(configuration);
 app.post('/api/openaiReq', async (req, res) => {
   const { prompt } = req.body;
-  const completion = await openai.createCompletion({
-    model: 'text-davinci-003',
-    prompt: prompt,
+  const completion = await openai.createChatCompletion({
+    model: 'gpt-4o-mini',
+    messages: [{ role: 'user', content: prompt }],
     max_tokens: 200,
     temperature: 0.65,
   });
-  res.send(completion.data.choices[0].text);
+  console.log('HERE: {}', completion.data.choices[0].message.content);
+  res.send(completion.data.choices[0].message.content);
 });
 
 app.use((err, req, res, next) => {
