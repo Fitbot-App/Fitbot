@@ -23,7 +23,6 @@ app.post('/api/openaiReq', async (req, res) => {
     max_tokens: 200,
     temperature: 0.65,
   });
-  console.log('HERE: {}', completion.data.choices[0].message.content);
   res.send(completion.data.choices[0].message.content);
 });
 
