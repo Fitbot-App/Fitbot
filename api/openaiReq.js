@@ -9,7 +9,7 @@ module.exports = async (req, res) => {
   if (req.method === 'POST') {
     const { prompt } = req.body;
     const completion = await openai.createCompletion({
-      model: 'text-davinci-003',
+      model: 'gpt-4o-mini',
       prompt: prompt,
       max_tokens: 200,
       temperature: 0.65,
