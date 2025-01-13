@@ -73,7 +73,6 @@ export default function Login() {
         await login(email, password);
         dispatch(clearIntensity());
         dispatch(clearExercises());
-        console.log();
         const myauth = getAuth();
         const userDocSnap = await getDoc(
           doc(db, 'users', myauth.currentUser.uid)
