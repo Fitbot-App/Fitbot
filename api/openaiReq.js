@@ -10,10 +10,9 @@ module.exports = async (req, res) => {
     const { prompt } = req.body;
     const completion = await openai.createCompletion({
       model: 'gpt-4o-mini',
-      prompt: prompt,
-      max_tokens: 200,
+      messages: [{ role: 'user', content: prompt }],
       temperature: 0.65,
     });
-    res.send(completion.data.choices[0].text);
+    res.send(completion.data.choices[0].message.content);
   }
 };
