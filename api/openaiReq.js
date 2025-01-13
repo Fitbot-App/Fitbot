@@ -11,6 +11,7 @@ module.exports = async (req, res) => {
     const completion = await openai.createCompletion({
       model: 'gpt-4o-mini',
       messages: [{ role: 'user', content: prompt }],
+      max_tokens: 200,
       temperature: 0.65,
     });
     res.send(completion.data.choices[0].message.content);
