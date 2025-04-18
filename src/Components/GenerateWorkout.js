@@ -16,6 +16,7 @@ function GenerateWorkout() {
   const [response, setResponse] = useState([]);
   const [loading, setLoading] = useState(false);
   const [selectedNone, setSelectedNone] = useState(false);
+  const [error, setError] = useState(null);
 
   const equipment = useSelector((state) => state.equipment.equipment);
 
@@ -29,6 +30,7 @@ function GenerateWorkout() {
     }
     setSelectedNone(false);
     setLoading(true);
+    setError(null); // Reset error state
 
     try {
       const res = await axios.post(`${host}/api/openaiReq`, {
@@ -41,21 +43,20 @@ function GenerateWorkout() {
         throw new Error('Invalid response format from server');
       }
       setResponse(res.data.result.split(':'));
-      setLoading(false);
     } catch (error) {
       console.error('Error generating workout:', error);
-      setLoading(false);
-      // Add error state handling
-      if (error.response) {
-        // Server responded with error
-        console.error('Server error:', error.response.data);
-      } else if (error.request) {
-        // Request made but no response
-        console.error('No response from server');
-      } else {
-        // Error in request setup
-        console.error('Request setup error:', error.message);
+      let errorMessage = 'An unexpected error occurred';
+
+      if (error.response?.data?.error?.message) {
+        errorMessage = error.response.data.error.message;
+      } else if (error.message) {
+        errorMessage = error.message;
       }
+
+      setError(errorMessage);
+      setResponse([]); // Clear any previous response
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -121,6 +122,13 @@ function GenerateWorkout() {
           </h1>
         </div>
       </form>
+
+      {error && (
+        <div className='text-red-500 mt-2 p-2 border border-red-300 rounded'>
+          {error}
+        </div>
+      )}
+
       {loading ? (
         <Box>
           <Skeleton
