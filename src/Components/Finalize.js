@@ -56,7 +56,7 @@ const Finalize = () => {
         make sure there is a semicolon after every exercise.
         `,
       });
-      let cleanedResponse = res.data.replace(/^\./, '');
+      let cleanedResponse = res.data.result.replace(/^\./, '');
       cleanedResponse = cleanedResponse.split(';');
       cleanedResponse = cleanedResponse.filter((el) => el !== '');
       setResponse(cleanedResponse);

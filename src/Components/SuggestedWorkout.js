@@ -70,7 +70,7 @@ const SuggestedWorkout = () => {
         Yesterdays workout was the following: ${latestWorkout.join(';')}. 
 `,
       });
-      let cleanedResponse = res.data.replace(/^\./, '');
+      let cleanedResponse = res.data.result.replace(/^\./, '');
       cleanedResponse = cleanedResponse.split(';');
       cleanedResponse = cleanedResponse.filter((el) => el !== '');
       setSuggestedWorkout(cleanedResponse);
