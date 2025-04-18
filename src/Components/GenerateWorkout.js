@@ -37,7 +37,7 @@ function GenerateWorkout() {
         The format of the response should be a list of just the exercise names with a colon 
         after each exercise expcept for the last. Here's an example "Crunches:".`,
       });
-      setResponse(res.data.split(':'));
+      setResponse(res.data.result.split(':'));
       setLoading(false);
     } catch (error) {
       console.error(error);

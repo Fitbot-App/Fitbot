@@ -8,7 +8,27 @@ const { Configuration, OpenAIApi } = require('openai');
 const app = express();
 app.use(morgan('dev'));
 app.use(bodyParser.json());
-app.use(cors());
+
+app.options('*', cors());
+if (process.env.NODE_ENV === 'production') {
+  app.use(
+    cors({
+      origin: ['http://fitbotapp.com', 'https://fitbotapp.com'],
+      credentials: true,
+      methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+      allowedHeaders: ['Content-Type', 'Authorization'],
+    })
+  );
+} else {
+  app.use(
+    cors({
+      origin: true,
+      credentials: true,
+      methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+      allowedHeaders: ['Content-Type', 'Authorization'],
+    })
+  );
+}
 
 // Move configuration inside the route handler to ensure environment variables are available
 let configuration;
@@ -18,14 +38,14 @@ app.post('/api/openaiReq', async (req, res) => {
   try {
     // Initialize OpenAI configuration for each request
     configuration = new Configuration({
-      apiKey: process.env.OPENAI_API_KEY,
+      apiKey: process.env.REACT_APP_OPENAI_API_KEY,
     });
     openai = new OpenAIApi(configuration);
 
     const { prompt } = req.body;
 
     // Add more detailed error logging
-    if (!process.env.OPENAI_API_KEY) {
+    if (!process.env.REACT_APP_OPENAI_API_KEY) {
       console.error('Missing OpenAI API Key in environment');
       return res.status(500).json({
         error:
