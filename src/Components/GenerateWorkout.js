@@ -37,10 +37,25 @@ function GenerateWorkout() {
         The format of the response should be a list of just the exercise names with a colon 
         after each exercise expcept for the last. Here's an example "Crunches:".`,
       });
+      if (!res.data || !res.data.result) {
+        throw new Error('Invalid response format from server');
+      }
       setResponse(res.data.result.split(':'));
       setLoading(false);
     } catch (error) {
-      console.error(error);
+      console.error('Error generating workout:', error);
+      setLoading(false);
+      // Add error state handling
+      if (error.response) {
+        // Server responded with error
+        console.error('Server error:', error.response.data);
+      } else if (error.request) {
+        // Request made but no response
+        console.error('No response from server');
+      } else {
+        // Error in request setup
+        console.error('Request setup error:', error.message);
+      }
     }
   };
 
