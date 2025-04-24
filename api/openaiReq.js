@@ -8,7 +8,7 @@ const openai = new OpenAIApi(configuration);
 module.exports = async (req, res) => {
   if (req.method === 'POST') {
     const { prompt } = req.body;
-    const completion = await openai.createCompletion({
+    const completion = await openai.createChatCompletion({
       model: 'gpt-4o-mini',
       messages: [{ role: 'user', content: prompt }],
       max_tokens: 200,
