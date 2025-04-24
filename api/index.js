@@ -61,7 +61,7 @@ app.post('/api/openaiReq', async (req, res) => {
     }
 
     const completion = await openai.createChatCompletion({
-      model: 'gpt-3.5-turbo',
+      model: 'gpt-4o-mini',
       messages: [{ role: 'user', content: prompt }],
       max_tokens: 200,
       temperature: 0.65,
