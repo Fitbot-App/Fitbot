@@ -1,14 +1,13 @@
 import React from 'react';
 import { useState } from 'react';
-import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { setExercises } from '../slices/chosenExercisesSlice';
 import Box from '@mui/material/Box';
 import Skeleton from '@mui/material/Skeleton';
 import { IoMdAddCircle } from 'react-icons/io';
 import Creatable from 'react-select/creatable';
-import host from '../utils/host';
 import CustomTooltip from './Tooltip';
+import { generateExerciseOptions } from '../services/workouts';
 
 function GenerateWorkout() {
   const [selectedOption, setSelectedOption] = useState(null);
@@ -30,31 +29,18 @@ function GenerateWorkout() {
     }
     setSelectedNone(false);
     setLoading(true);
-    setError(null); // Reset error state
+    setError(null);
 
     try {
-      const res = await axios.post(`${host}/api/openaiReq`, {
-        prompt: `Do not include numbers or periods in the response to the following question. What are six exercises to target my ${muscleGroup}? 
-        I have access to the following equipment: ${equipment.join(', ')}.
-        The format of the response should be a list of just the exercise names with a colon 
-        after each exercise expcept for the last. Here's an example "Crunches:".`,
+      const generatedExercises = await generateExerciseOptions({
+        muscleGroup,
+        equipment,
       });
-      if (!res.data || !res.data.result) {
-        throw new Error('Invalid response format from server');
-      }
-      setResponse(res.data.result.split(':'));
+      setResponse(generatedExercises);
     } catch (error) {
       console.error('Error generating workout:', error);
-      let errorMessage = 'An unexpected error occurred';
-
-      if (error.response?.data?.error?.message) {
-        errorMessage = error.response.data.error.message;
-      } else if (error.message) {
-        errorMessage = error.message;
-      }
-
-      setError(errorMessage);
-      setResponse([]); // Clear any previous response
+      setError(error.response?.data?.error || error.message || 'An unexpected error occurred');
+      setResponse([]);
     } finally {
       setLoading(false);
     }

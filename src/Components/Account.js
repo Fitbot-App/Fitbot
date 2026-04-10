@@ -2,7 +2,6 @@ import { Link } from 'react-router-dom';
 import { Menu, Transition } from '@headlessui/react';
 import { ChevronDownIcon } from '@heroicons/react/20/solid';
 import { Fragment } from 'react';
-import { CgProfile } from 'react-icons/cg';
 import { clearExercises } from '../slices/chosenExercisesSlice';
 import { clearEquipment } from '../slices/equipmentSlice';
 import { clearIntensity } from '../slices/intensitySlice';
@@ -118,110 +117,5 @@ export default function Account({ buildWorkout }) {
         </Menu.Items>
       </Transition>
     </Menu>
-  );
-}
-
-function LogoutInactiveIcon(props) {
-  return (
-    <svg
-      {...props}
-      viewBox='0 0 20 20'
-      fill='none'
-      xmlns='http://www.w3.org/2000/svg'
-    >
-      <path
-        d='M4 4H12V12H4V4Z'
-        fill='#EDE9FE'
-        stroke='#000000'
-        strokeWidth='2'
-      />
-      <path
-        d='M8 8H16V16H8V8Z'
-        fill='#EDE9FE'
-        stroke='#000000'
-        strokeWidth='2'
-      />
-    </svg>
-  );
-}
-
-function LogoutActiveIcon(props) {
-  return (
-    <svg
-      {...props}
-      viewBox='0 0 20 20'
-      fill='#EDE9FE'
-      xmlns='http://www.w3.org/2000/svg'
-    >
-      <path d='M4 4H12V12H4V4Z' fill='' stroke='#000000' strokeWidth='2' />
-      <path
-        d='M8 8H16V16H8V8Z'
-        fill='#EDE9FE'
-        stroke='#000000'
-        strokeWidth='2'
-      />
-    </svg>
-  );
-}
-
-function ProfileInactiveIcon(props) {
-  return (
-    <svg
-      {...props}
-      viewBox='0 0 20 20'
-      fill='none'
-      xmlns='http://www.w3.org/2000/svg'
-    >
-      <rect
-        x='5'
-        y='8'
-        width='10'
-        height='8'
-        fill='#EDE9FE'
-        stroke='#000000'
-        strokeWidth='2'
-      />
-      <rect
-        x='4'
-        y='4'
-        width='12'
-        height='4'
-        fill='#EDE9FE'
-        stroke='#000000'
-        strokeWidth='2'
-      />
-      <path d='M8 12H12' stroke='#A78BFA' strokeWidth='2' />
-    </svg>
-  );
-}
-
-function ProfileActiveIcon(props) {
-  return (
-    <svg
-      {...props}
-      viewBox='0 0 20 20'
-      fill='none'
-      xmlns='http://www.w3.org/2000/svg'
-    >
-      <rect
-        x='5'
-        y='8'
-        width='10'
-        height='8'
-        fill='#EDE9FE'
-        stroke='#000000'
-        strokeWidth='2'
-      />
-      <rect
-        x='4'
-        y='4'
-        width='12'
-        height='4'
-        fill='#EDE9FE'
-        stroke='#000000'
-        strokeWidth='2'
-      />
-      <path d='M8 12H12' stroke='#A78BFA' strokeWidth='2' />
-    </svg>
   );
 }
