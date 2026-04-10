@@ -52,7 +52,6 @@ const Equipment = () => {
   const [error, setError] = useState('');
   const [gyms, setGyms] = useState([]);
   const [savedGym, setSavedGym] = useState(false);
-  const [gymUpdate, setGymUpdate] = useState(false);
   const [selectedGym, setSelectedGym] = useState({});
   const [updatePending, setUpdatePending] = useState(false);
 
