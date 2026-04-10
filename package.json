@@ -52,6 +52,9 @@
     "eject": "react-scripts eject",
     "dev": "node api && node src"
   },
+  "engines": {
+    "node": "24.x"
+  },
   "eslintConfig": {
     "extends": [
       "react-app",
