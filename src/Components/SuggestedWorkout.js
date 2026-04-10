@@ -1,89 +1,87 @@
-import {
-  collection,
-  query,
-  where,
-  getDocs,
-  orderBy,
-  addDoc,
-} from 'firebase/firestore';
 import { serverTimestamp } from 'firebase/firestore';
-import { getAuth } from 'firebase/auth';
-import { db } from '../firebase';
-import { limit } from 'firebase/firestore';
-import { useEffect, useState } from 'react';
-import axios from 'axios';
+import { useCallback, useEffect, useState } from 'react';
 import Box from '@mui/material/Box';
 import Skeleton from '@mui/material/Skeleton';
 import { BeatLoader } from 'react-spinners';
-import host from '../utils/host';
 import { useAuth } from '../AuthContext';
 import CustomTooltip from './Tooltip';
+import {
+  generateSuggestedWorkout,
+  getLatestWorkout,
+  saveWorkout,
+} from '../services/workouts';
+import {
+  cleanWorkoutLine,
+  isWorkoutHeading,
+} from '../utils/workoutFormatting';
 
 const SuggestedWorkout = () => {
-  const [suggestedWorkout, setSuggestedWorkout] = useState('');
+  const [suggestedWorkout, setSuggestedWorkout] = useState([]);
   const [savedLoading, setSavedLoading] = useState(false);
   const [saved, setSaved] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [latestWorkout, setLatestWorkout] = useState('');
+  const [latestWorkout, setLatestWorkout] = useState([]);
   const [recentDate, setRecentDate] = useState('');
+  const [error, setError] = useState('');
 
   const myauth = useAuth();
+  const userId = myauth.currentUser?.uid;
 
   const handleSaveWorkout = async () => {
     setSavedLoading(true);
-    setTimeout(() => {
-      setSavedLoading(false);
-      setSaved(true);
-    }, 1500);
-    await addDoc(collection(db, 'workouts'), {
-      userId: myauth.currentUser.uid,
-      workout: suggestedWorkout,
-      date: serverTimestamp(),
-    });
-    getWorkout();
-  };
-
-  const getWorkout = async () => {
-    setLoading(true);
-    const myauth = getAuth();
-    const q = query(
-      collection(db, 'workouts'),
-      where('userId', '==', myauth.currentUser.uid),
-      orderBy('date', 'desc'),
-      limit(1)
-    );
-
     try {
-      const querySnapshot = await getDocs(q);
-      const latestWorkout = querySnapshot.docs[0].data().workout;
-      const date = querySnapshot.docs[0].data().date.toDate();
-      setRecentDate(
-        `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`
-      );
-      setLatestWorkout(latestWorkout);
-      const res = await axios.post(`${host}/api/openaiReq`, {
-        prompt: `The response to the following question should be formated the same as the following: ${latestWorkout.join(
-          ';'
-        )}.Generate a new workout that exercises different muscle groups from the workout I did yesterday.
-        For example, upper body exercises in yesterdays workout would require lower body exercises in the new workout, 
-        and lower body exercises in yesterdays workout would require upper body exercises in the new workout. 
-        Yesterdays workout was the following: ${latestWorkout.join(';')}. 
-`,
+      await saveWorkout({
+        userId: myauth.currentUser.uid,
+        workout: suggestedWorkout,
+        date: serverTimestamp(),
       });
-      let cleanedResponse = res.data.result.replace(/^\./, '');
-      cleanedResponse = cleanedResponse.split(';');
-      cleanedResponse = cleanedResponse.filter((el) => el !== '');
-      setSuggestedWorkout(cleanedResponse);
+      setSaved(true);
+      await getWorkout();
     } catch (error) {
       console.error(error);
+      setError(error.message || 'Unable to save workout.');
+    } finally {
+      setSavedLoading(false);
     }
-    setLoading(false);
-    setSaved(false);
   };
+
+  const getWorkout = useCallback(async () => {
+    setLoading(true);
+    setError('');
+
+    try {
+      if (!userId) {
+        setLatestWorkout([]);
+        setSuggestedWorkout([]);
+        setRecentDate('');
+        return;
+      }
+
+      const latest = await getLatestWorkout(userId);
+
+      if (!latest) {
+        setLatestWorkout([]);
+        setSuggestedWorkout([]);
+        setRecentDate('');
+        return;
+      }
+
+      setRecentDate(latest.recentDate);
+      setLatestWorkout(latest.workout);
+      const nextWorkout = await generateSuggestedWorkout(latest.workout);
+      setSuggestedWorkout(nextWorkout);
+    } catch (error) {
+      console.error(error);
+      setError(error.message || 'Unable to load suggested workout.');
+    } finally {
+      setLoading(false);
+      setSaved(false);
+    }
+  }, [userId]);
 
   useEffect(() => {
     getWorkout();
-  }, []);
+  }, [getWorkout]);
 
   return (
     <div className='dashboardWorkouts'>
@@ -91,18 +89,23 @@ const SuggestedWorkout = () => {
         <h1 className='pickExerciseTitle generatedResponse'>
           {`Your Most Recent Workout (${recentDate})`}
         </h1>
+        {error && (
+          <div className='text-red-500 mt-2 p-2 border border-red-300 rounded'>
+            {error}
+          </div>
+        )}
         <div className='generatedResponse'>
           {latestWorkout &&
             latestWorkout.map((part) => {
               return part.split(':').map((item, i) => {
-                if (item.includes('Warm-Up') || item.includes('Part')) {
+                if (isWorkoutHeading(item)) {
                   return (
                     <div key={i} className='font-bold text-xl pt-6'>
                       {item}
                     </div>
                   );
                 } else {
-                  return <li key={i}>{item.replace(/\.$/, '')}</li>;
+                  return <li key={i}>{cleanWorkoutLine(item)}</li>;
                 }
               });
             })}
@@ -181,14 +184,14 @@ const SuggestedWorkout = () => {
             {suggestedWorkout &&
               suggestedWorkout.map((part) => {
                 return part.split(':').map((item, i) => {
-                  if (item.includes('Warm-Up') || item.includes('Part')) {
+                  if (isWorkoutHeading(item)) {
                     return (
                       <div key={i} className='font-bold text-xl pt-6'>
                         {item}
                       </div>
                     );
                   } else {
-                    return <li key={i}>{item.replace(/\.$/, '')}</li>;
+                    return <li key={i}>{cleanWorkoutLine(item)}</li>;
                   }
                 });
               })}

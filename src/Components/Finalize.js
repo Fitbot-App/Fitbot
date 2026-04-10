@@ -4,17 +4,19 @@ import { MdKeyboardDoubleArrowLeft } from 'react-icons/md';
 import { FaUndo } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import logo from '../logo/Fitbot2.png';
-import axios from 'axios';
 import Box from '@mui/material/Box';
 import Skeleton from '@mui/material/Skeleton';
-import { serverTimestamp, addDoc, collection } from 'firebase/firestore';
+import { serverTimestamp } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
-import { db } from '../firebase';
 import { BeatLoader } from 'react-spinners';
 import Account from './Account';
 import { useAuth } from '../AuthContext';
-import host from '../utils/host';
 import CustomTooltip from './Tooltip';
+import { generateFinalWorkout, saveWorkout } from '../services/workouts';
+import {
+  cleanWorkoutLine,
+  isWorkoutHeading,
+} from '../utils/workoutFormatting';
 
 const Finalize = () => {
   const exercises = useSelector((state) => state.exercises.exercises);
@@ -27,42 +29,27 @@ const Finalize = () => {
   const [loading, setLoading] = useState(false);
   const [savedLoading, setSavedLoading] = useState(false);
   const [saved, setSaved] = useState(false);
+  const [error, setError] = useState('');
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async () => {
     setLoading(true);
     setFinalized(true);
+    setError('');
     try {
-      const res = await axios.post(`${host}/api/openaiReq`, {
-        prompt: `My experience level with fitness is ${experience}. I am looking for a ${intensity} workout. Make a ${
-          duration ? duration : '60'
-        } minute workout that includes each of the following exercises only once: ${exercises.join(
-          ', '
-        )}. 
-        The workout should always include a warmup that consists of easy calisthenics that will warm up the muscles used in these exercises: ${exercises.join(
-          ', '
-        )} and easy cardio. Do not include a cool down.
-        The rest of the workout should be seperated into multiple parts with 1 to 4 excersises per part.
-        Here's an example of how the response should be formated - 
-        Warm-Up: exercise (sets x reps); exercise (sets x reps); exercise (sets x reps); 
-        Part-1: exercise (sets x reps); exercise (sets x reps); exercise (sets x reps); 
-        ${
-          duration >= 20 &&
-          'Part-2: exercise (sets x reps); exercise (sets x reps); exercise (sets x reps);'
-        } 
-        ${
-          duration >= 40 &&
-          'Part-3: exercise (sets x reps); exercise (sets x reps); exercise (sets x reps);'
-        }
-        make sure there is a semicolon after every exercise.
-        `,
+      const workout = await generateFinalWorkout({
+        exercises,
+        experience,
+        intensity,
+        duration: Number(duration),
       });
-      let cleanedResponse = res.data.result.replace(/^\./, '');
-      cleanedResponse = cleanedResponse.split(';');
-      cleanedResponse = cleanedResponse.filter((el) => el !== '');
-      setResponse(cleanedResponse);
-      setLoading(false);
+      setResponse(workout);
     } catch (error) {
       console.error(error);
+      setError(error.response?.data?.error || error.message || 'Unable to generate workout.');
+      setResponse([]);
+      setFinalized(false);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -71,15 +58,19 @@ const Finalize = () => {
 
   const handleSaveWorkout = async () => {
     setSavedLoading(true);
-    setTimeout(() => {
-      setSavedLoading(false);
+    try {
+      await saveWorkout({
+        userId: myauth.currentUser.uid,
+        workout: response,
+        date: serverTimestamp(),
+      });
       setSaved(true);
-    }, 1500);
-    await addDoc(collection(db, 'workouts'), {
-      userId: myauth.currentUser.uid,
-      workout: response,
-      date: serverTimestamp(),
-    });
+    } catch (error) {
+      console.error(error);
+      setError(error.message || 'Unable to save workout.');
+    } finally {
+      setSavedLoading(false);
+    }
   };
 
   const useMediaQuery = (width) => {
@@ -133,6 +124,11 @@ const Finalize = () => {
           </Link>
         )}
         <div className='finalResponseDiv'>
+          {error && (
+            <div className='text-red-500 mt-2 p-2 border border-red-300 rounded'>
+              {error}
+            </div>
+          )}
           {finalized ? (
             loading ? (
               <Box>
@@ -217,11 +213,7 @@ const Finalize = () => {
                   <div className='generatedResponse w-fit flex flex-col items-start'>
                     {response.map((part) => {
                       return part.split(':').map((item) => {
-                        if (
-                          item.includes('Warm-Up') ||
-                          item.includes('Part') ||
-                          item.includes('Cool-Down')
-                        ) {
+                        if (isWorkoutHeading(item)) {
                           return (
                             <div className='font-bold text-xl pt-6 text-center'>
                               {item}
@@ -230,7 +222,7 @@ const Finalize = () => {
                         } else {
                           return (
                             <li className='text-center'>
-                              {item.replace(/\.$/, '')}
+                              {cleanWorkoutLine(item)}
                             </li>
                           );
                         }

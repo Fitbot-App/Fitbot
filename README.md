@@ -1,70 +1,62 @@
-# Getting Started with Create React App
+# Fitbot
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Fitbot is a React fitness app for building workouts, saving them to Firebase, and generating AI-assisted workout suggestions.
+
+## Stack
+
+- React 18 with React Router
+- Redux Toolkit with `redux-persist`
+- Firebase Auth and Firestore
+- Express API for local development
+- OpenAI chat completions for workout generation
+
+## Project Structure
+
+- `src/index.js`: app entrypoint
+- `src/Routes.js`: route definitions
+- `src/AuthContext.js`: authentication state and actions
+- `src/services/workouts.js`: shared workout generation and persistence logic
+- `src/utils/workoutFormatting.js`: shared parsing and formatting helpers
+- `api/index.js`: Express server for local development
+- `api/openaiReq.js`: serverless API entrypoint
+
+## Environment Variables
+
+Create a local `.env` file with:
+
+```bash
+OPENAI_API_KEY=your_server_side_openai_key
+```
+
+Notes:
+
+- The backend now expects `OPENAI_API_KEY` for OpenAI requests.
+- `REACT_APP_OPENAI_API_KEY` is still accepted as a fallback for backward compatibility, but it should be removed over time.
+- Firebase configuration is currently stored in `src/firebase.js`.
 
 ## Available Scripts
 
-In the project directory, you can run:
-
 ### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Runs the local Express API and the React development server.
 
 ### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Runs the React test runner.
 
 ### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Builds the frontend for production.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Current Cleanup Direction
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Centralize OpenAI request handling in one backend handler
+- Move workout generation and persistence into shared frontend services
+- Remove duplicated parsing logic from components
+- Continue extracting shared UI hooks and layout primitives in follow-up refactors
 
-### `npm run eject`
+## Next Recommended Refactors
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Extract repeated `useMediaQuery` logic into a shared hook
+- Move Firebase user profile reads into a dedicated service or hook
+- Add linting and a small test suite around workout formatting and service behavior
